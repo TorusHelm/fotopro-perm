@@ -1,0 +1,32 @@
+block variables
+
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    title #{title}
+    meta(content="" name="author")
+    meta(content="" name="description")
+    meta(content="" name="keywords")
+    meta(content="width=device-width, initial-scale=1" name="viewport")
+    meta(content="ie=edge" http-equiv="x-ua-compatible")
+
+    //- favicon block start
+    link(rel="shrtcut icon" type="image/ico" href="img/favicon.ico")
+    //- favicon block end
+    
+    link(rel='stylesheet' href='css/libs.css')
+    link(rel='stylesheet' href='css/app.css')
+    
+    script(src='js/libs.js' defer)
+    script(src='js/app.js' defer)
+    //- <!--[if lt IE 9]>
+    //- script(src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js")
+    //- <![endif]-->
+
+  body
+
+    include common/svg-use
+
+  .page-wrap
+    block content
