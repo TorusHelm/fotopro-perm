@@ -9,11 +9,23 @@ block content
   include ../parts/header  
 
   main
+    article.container.main-banner
+      .row
+        .col
+          .swiper-container
+            .swiper-wrapper
+              .swiper-slide 12
+              .swiper-slide 123
+              .swiper-slide 1234
+            .swiper-pagination
+            .swiper-button-prev
+              +svg-use('slider-arrow', 'main-banner__arrow')
+            .swiper-button-next
+              +svg-use('slider-arrow', 'main-banner__arrow main-banner__arrow_next')
 
-    section
-
-      h1 Hello World!
-
-      +svg-use('egg', 'egg')
+    article.container
+      .row
+        .col
+          h1.title test
 
   include ../parts/footer

@@ -28,8 +28,8 @@ $.gulp.task('build', $.gulp.series(
     'js:foundation',
     'js:process',
     'copy:image',
-    'copy:fonts'
-    // 'css:foundation'
+    'copy:fonts',
+    'css:foundation'
   )
 ));
 
@@ -41,8 +41,8 @@ $.gulp.task('default', $.gulp.series(
     'js:foundation',
     'js:process',
     'copy:image',
-    'copy:fonts'
-    // 'css:foundation'
+    'copy:fonts',
+    'css:foundation'
   ),
   $.gulp.parallel(
     'watch',
