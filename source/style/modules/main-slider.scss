@@ -1,0 +1,40 @@
+.main-slider {
+    height: 460px;
+
+    &__slide {
+        position: relative;
+        padding: 64px 80px;
+        color: white;
+    }
+
+    &__slide-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+
+        img {
+            object-fit: cover;
+            object-position: right;
+            height: 100%;
+            width: 100%;
+            display: block;
+        }
+    }
+
+    &__title {
+        margin-bottom: 32px;
+    }
+
+    &__desc {
+        font-size: 18px;
+        line-height: 24px;
+        font-weight: 500;
+    }
+
+    &__btn {
+        height: 64px;
+        width: 64px;
+    }
+}

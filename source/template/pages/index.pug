@@ -21,7 +21,9 @@ block content
 								let length = 0;
 
 							while length < 6
-								.swiper-slide(data-slider=length++)
+								.swiper-slide.main-slider__slide(data-slider=length++)
+									picture.main-slider__slide-bg
+										img(src="img/main-banner/main-banner.jpg", alt="")
 									.row
 										.col-xl-10.offset-xl-1
 											if ( length == 1 )
@@ -30,10 +32,10 @@ block content
 												h2.main-slider__title.title Типография ФОТОПРО
 											.main-slider__desc Оперативная печать и&nbsp;изготовление выпускных <br>альбомов для родителей, выпускников <br>и&nbsp;профессиональных фотографов в&nbsp;любом количестве
 						.swiper-pagination
-						.swiper-button-prev
-							+svg-use('slider-arrow', 'main-banner__arrow')
-						.swiper-button-next
-							+svg-use('slider-arrow', 'main-banner__arrow main-banner__arrow_next')
+						.swiper-button-prev.main-slider__btn
+							+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')
+						.swiper-button-next.main-slider__btn
+							+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')
 
 		article.space-article.container
 			.row
