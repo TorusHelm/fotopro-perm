@@ -1,0 +1,19 @@
+mixin card(item)
+    .card
+        a(href="#").card__header
+            img(src=item.img, alt=item.title)
+            .card__header-hover Посмотреть примеры альбомов
+        .card__content
+            h3.card__title!= item.title
+            ul.card__list
+                each itemList in item.list
+                    li.card__list-item!= itemList
+        .card__footer
+            label.input.input_xl-half
+                p.caption Кол-во альбомов
+                input(type="number" value="20")
+                span шт.
+            p.caption Стоимость альбома
+            h4.card__price!= item.price + ' ₽'
+            a(href="#").btn.btn_primary Рассчитать стоимость
+            a(href="#").btn.btn_thin Подробнее

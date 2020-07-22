@@ -1,31 +1,311 @@
 extends ../_template
 block variables
-  - var title = ''
+	- var title = 'Главная'
 
 block content
 
-  body
-  
-  include ../parts/header  
+	body
 
-  main
-    article.container.main-banner
-      .row
-        .col
-          .swiper-container
-            .swiper-wrapper
-              .swiper-slide 12
-              .swiper-slide 123
-              .swiper-slide 1234
-            .swiper-pagination
-            .swiper-button-prev
-              +svg-use('slider-arrow', 'main-banner__arrow')
-            .swiper-button-next
-              +svg-use('slider-arrow', 'main-banner__arrow main-banner__arrow_next')
+	include ../parts/header
+	include ../modules/card-step/card-step
+	include ../modules/card/card
+	include ../modules/prefooter-card/prefooter-card
 
-    article.container
-      .row
-        .col
-          h1.title test
+	main
+		article.container
+			.row
+				.col
+					.swiper-container.main-slider.js-main-swiper-container
+						.swiper-wrapper
+							-
+								let length = 0;
 
-  include ../parts/footer
+							while length < 6
+								.swiper-slide(data-slider=length++)
+									.row
+										.col-xl-10.offset-xl-1
+											if ( length == 1 )
+												h1.main-slider__title.title Типография ФОТОПРО
+											else
+												h2.main-slider__title.title Типография ФОТОПРО
+											.main-slider__desc Оперативная печать и&nbsp;изготовление выпускных <br>альбомов для родителей, выпускников <br>и&nbsp;профессиональных фотографов в&nbsp;любом количестве
+						.swiper-pagination
+						.swiper-button-prev
+							+svg-use('slider-arrow', 'main-banner__arrow')
+						.swiper-button-next
+							+svg-use('slider-arrow', 'main-banner__arrow main-banner__arrow_next')
+
+		article.space-article.container
+			.row
+				.col-12
+					h1.title 4&nbsp;простых шага создания выпускного альбома
+				-
+					let data = [
+						{
+							img: 'img/card-step/card-step1.png',
+							title: 'Выбираете',
+							list: [
+								'Выбираете <a href="#">вариант альбома</a>',
+								'Или получаете <a href="#">образец для презентации родителям</a>'
+							]
+						},
+						{
+							img: 'img/card-step/card-step2.png',
+							title: 'Создаете альбом',
+							list: [
+								'Создаёте альбом  в <a href="#">онлайн-редакторе (Инструкция)</a>',
+								'Или создаёте альбом в Ps <a href="#">скачать шаблоны</a>'
+							]
+						},
+						{
+							img: 'img/card-step/card-step3.png',
+							title: 'Мы делаем свою работу',
+							list: [
+								'Печатаем альбомы из&nbsp;ваших макетов',
+								'Изготавливаем альбомы'
+							]
+						},
+						{
+							img: 'img/card-step/card-step4.png',
+							title: 'Вы получаете готовые альбомы',
+							list: [
+								'Самовывоз из офиса компании',
+								'Курьерская доставка «до двери»',
+								'Доставка в любой город России',
+							]
+						},
+					];
+
+				each item in data
+					.col-xl-3
+						+card-step(item)
+
+			.row
+				.col-xl-3.ml-auto
+					a(href="#").link.link_inline Подробнее
+
+		article.space-article.article-dirty.container
+			.row
+				.col
+					h2.title Виды альбомов
+
+					-
+						let data1 = [
+							{
+								img: 'img/card/card-header.png',
+								title: 'Альбом-эконом',
+								list: [
+									'твёрдый переплёт, фабричная <strong>нередактируемая</strong> обложка',
+									'глянцевые листы, плотность 190гр',
+									'от 10 стр.',
+								],
+								price: '234',
+							},
+							{
+								img: 'img/card/card-header.png',
+								title: 'Альбом-эконом',
+								list: [
+									'твёрдый переплёт, фабричная <strong>нередактируемая</strong> обложка',
+									'глянцевые листы, плотность 190гр',
+									'от 10 стр.',
+								],
+								price: '234',
+							},
+							{
+								img: 'img/card/card-header.png',
+								title: 'Альбом-эконом',
+								list: [
+									'твёрдый переплёт, фабричная <strong>нередактируемая</strong> обложка',
+									'глянцевые листы, плотность 190гр',
+									'от 10 стр.',
+								],
+								price: '234',
+							},
+							{
+								img: 'img/card/card-header.png',
+								title: 'Альбом-эконом',
+								list: [
+									'твёрдый переплёт, фабричная <strong>нередактируемая</strong> обложка',
+									'глянцевые листы, плотность 190гр',
+									'от 10 стр.',
+								],
+								price: '234',
+							},
+							{
+								img: 'img/card/card-header.png',
+								title: 'Альбом-эконом',
+								list: [
+									'твёрдый переплёт, фабричная <strong>нередактируемая</strong> обложка',
+									'глянцевые листы, плотность 190гр',
+									'от 10 стр.',
+								],
+								price: '1 234',
+							},
+							{
+								img: 'img/card/card-header.png',
+								title: 'Альбом-эконом',
+								list: [
+									'твёрдый переплёт, фабричная <strong>нередактируемая</strong> обложка',
+									'глянцевые листы, плотность 190гр',
+									'от 10 стр.',
+								],
+								price: '234',
+							},
+							{
+								img: 'img/card/card-header.png',
+								title: 'Альбом-эконом',
+								list: [
+									'твёрдый переплёт, фабричная <strong>нередактируемая</strong> обложка',
+									'глянцевые листы, плотность 190гр',
+									'от 10 стр.',
+								],
+								price: '234',
+							},
+							{
+								img: 'img/card/card-header.png',
+								title: 'Альбом-эконом',
+								list: [
+									'твёрдый переплёт, фабричная <strong>нередактируемая</strong> обложка',
+									'глянцевые листы, плотность 190гр',
+									'от 10 стр.',
+								],
+								price: '234',
+							},
+						];
+
+					each item in data1
+						+card(item)
+
+		article.space-article.container
+			.row
+				.col-12
+					h2.title Преимущества
+				-
+					let data2 = [
+						{
+							title: 'Качество',
+							desc: 'Стабильная цветопередача, высокое качество печати. Оригинальные европейские расходные материалы.'
+						},
+						{
+							title: 'Скорость',
+							desc: 'Быстрые сроки изготовления. <br>Минимальный срок изготовления тиража — 5 часов.'
+						},
+						{
+							title: 'Собственное производство',
+							desc: 'Контроль качества печати и&nbsp;сборки на&nbsp;всех этапах производства.'
+						},
+						{
+							title: 'Печать цветопробы',
+							desc: 'Печать цветопробы одного экземпляра тиража или бесплатная цветопроба страницы.'
+						},
+						{
+							title: 'Онлайн-редактор',
+							desc: 'Большой выбор авторских дизайнов. <br>Удобство и простота в создании макетов.'
+						},
+						{
+							title: 'Лучшие цены',
+							desc: 'Все виды альбомов по самым низким ценам.'
+						},
+					];
+
+				each item, idx in data2
+					.col-4
+						.preference
+							.preference__icon
+								+svg-use(`preference${idx}`)
+							.preference__content
+								.preference__title!= item.title
+								.preference__desc!= item.desc
+
+			.row.space-article.space-article_top.js-tab-container
+				.col-12
+					h2.title Примеры альбомов
+
+				.col-12
+					ul.tab-list
+						li.tab-list__item.js-tab-menu-item.is-active(data-target="#target0")
+							h4.tab-list__title Обложки
+						li.tab-list__item.js-tab-menu-item(data-target="#target1")
+							h4.tab-list__title Развороты
+						li.tab-list__item.js-tab-menu-item(data-target="#target2")
+							h4.tab-list__title Фотогалерея
+						.js-tab-underline.tab-list__underline
+
+				.col-12
+					.tab__content.is-active#target0(style="padding: 0 60px;")
+						.block-shelf
+							img(src="./img/shelf.svg", alt="")
+						.swiper-container.js-swiper-container
+							.swiper-wrapper
+								-
+									let lengthSlides = 0;
+								while lengthSlides < 10
+									.swiper-slide
+										img(src="img/albums/album.jpg", alt=`album${lengthSlides++}`)
+							.swiper-button-prev
+								+svg-use('slider-arrow', 'main-banner__arrow')
+							.swiper-button-next
+								+svg-use('slider-arrow', 'main-banner__arrow main-banner__arrow_next')
+					.tab__content#target1
+						.block-shelf
+							img(src="./img/shelf.svg", alt="")
+						.swiper-container.js-swiper-container
+							.swiper-wrapper
+								-
+									let lengthSlides1 = 0;
+								while lengthSlides1 < 10
+									.swiper-slide
+										img(src="img/albums/album.jpg", alt=`album${lengthSlides1++}`)
+							.swiper-button-prev
+								+svg-use('slider-arrow', 'main-banner__arrow')
+							.swiper-button-next
+								+svg-use('slider-arrow', 'main-banner__arrow main-banner__arrow_next')
+					.tab__content#target2
+						.block-shelf
+							img(src="./img/shelf.svg", alt="")
+						.swiper-container.js-swiper-container
+							.swiper-wrapper
+								-
+									let lengthSlides2 = 0;
+								while lengthSlides2 < 10
+									.swiper-slide
+										img(src="img/albums/album.jpg", alt=`album${lengthSlides2++}`)
+							.swiper-button-prev
+								+svg-use('slider-arrow', 'main-banner__arrow')
+							.swiper-button-next
+								+svg-use('slider-arrow', 'main-banner__arrow main-banner__arrow_next')
+
+		article.space-article.article-dirty.container
+			.row
+				-
+					let data3 = [
+						{
+							img: 'img/prefooter-card/prefooter-card.jpg',
+							title: 'Вы фотограф?',
+							desc: 'Мы предлагаем специальные условия для фотографов',
+							btnText: 'Задать вопрос'
+						},
+						{
+							img: 'img/prefooter-card/prefooter-card1.jpg',
+							title: 'Нужна помощь?',
+							desc: 'Не&nbsp;нашли нужной информацииили не&nbsp;можете определиться с&nbsp;выбором? Перейдите в раздел “<a href="#">вопрос-ответ</a>” или просто напишите или позвоните нам по&nbsp;телефону: <a href="tel:+73422032300"><strong>+7 (342) 203 23 00</strong></a>',
+							btnText: 'Написать нам'
+						},
+						{
+							img: 'img/prefooter-card/prefooter-card2.jpg',
+							title: 'Онлайн-редактор',
+							desc: 'Хотите сэкономить на&nbsp;изготовлении альбома? Создайте  альбом самостоятельно через удобный онлайн-редактор. <a href="#">Инструкция пользования редактором</a>',
+							btnText: 'Подробнее'
+						},
+						{
+							img: 'img/prefooter-card/prefooter-card3.jpg',
+							title: 'Нужен альбом с&nbsp;фотосессией «под ключ»?',
+							desc: 'Предлагаем выпускные альбомы «под ключ» с&nbsp;фотосъёмкой и&nbsp;изготовлением',
+							btnText: 'Перейти'
+						},
+					];
+
+				each item in data3
+					+prefooter-card(item)
+
+	include ../parts/footer

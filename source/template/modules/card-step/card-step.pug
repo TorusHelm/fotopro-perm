@@ -1,0 +1,9 @@
+mixin card-step(item)
+    .card-step
+        .card-step__header
+            img(src=item.img, alt=item.title)
+            h4.card-step__title!= item.title
+        .card-step__content
+            ul.card-step__list
+                each listItem in item.list
+                    li.card-step__list-item!= listItem
