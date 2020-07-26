@@ -1,0 +1,20 @@
+.btn {
+    &_warning {
+        color: $clean;
+        background-color: $warning;
+        border-color: $warning;
+
+        &:hover {
+            background-color: $warning-hover;
+            border-color: $warning-hover;
+        }
+
+        &:focus {
+            box-shadow: $btn-focus rgba($warning, 0.4);
+        }
+
+        &.thin {
+            color: $warning;
+        }
+    }
+}

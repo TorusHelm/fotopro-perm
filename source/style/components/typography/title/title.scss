@@ -1,0 +1,10 @@
+.title {
+    font-size: 40px;
+    line-height: 48px;
+    font-weight: 400;
+
+    @include respondTo(max-md) {
+        font-size: 32px;
+        line-height: 40px;
+    }
+}

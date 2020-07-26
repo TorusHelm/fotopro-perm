@@ -1,0 +1,14 @@
+.article-dirty {
+    position: relative;
+
+    &:before {
+        content: '';
+        position: absolute;
+        left: calc((50% - 50vw));
+        top: 0;
+        height: 100%;
+        width: 100vw;
+        background-color: $dirty;
+        z-index: -1;
+    }
+}

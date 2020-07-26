@@ -1,0 +1,42 @@
+.preference {
+    display: flex;
+
+    &__icon {
+        flex: 0 0 auto;
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+        background-color: $warning;
+        margin-right: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            flex: 0 0 auto;
+            display: block;
+        }
+    }
+
+    &__content {
+        flex: 0 1 auto;
+    }
+
+    &__title {
+        font-size: 16px;
+        line-height: 19px;
+        margin-bottom: 16px;
+        font-weight: 600;
+
+        @include respondTo(max-md) {
+            margin-bottom: 8px;
+        }
+    }
+
+    &__desc {
+        color: $subtitle;
+        font-size: 12px;
+        line-height: 14px;
+        font-weight: 500;
+    }
+}

@@ -1,0 +1,37 @@
+.btn {
+    text-decoration: none;
+    border: 2px solid $link;
+    border-radius: 8px;
+    background-color: $link;
+    font: inherit;
+    color: $clean;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 600;
+    outline: none;
+    padding: 11px 24px;
+    display: inline-block;
+    text-align: center;
+    transition: all .3s ease;
+
+    &:hover {
+        background-color: $link-hover;
+        border-color: $link-hover;
+    }
+
+    &:focus {
+        box-shadow: $btn-focus rgba($link, 0.4);
+    }
+
+    &_thin {
+        color: $link;
+
+        &:hover {
+            color: $clean;
+        }
+    }
+}
+
+@import './modificators/full';
+@import './modificators/thin';
+@import './modificators/warning';

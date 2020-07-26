@@ -1,0 +1,49 @@
+.main-page-cardset {
+    @include respondTo(max-md) {
+        flex-wrap: inherit;
+        margin: 0;
+
+        .swiper-slide {
+            padding: 0;
+        }
+    }
+
+    .swiper-slide {
+        height: auto;
+    }
+
+    &__btn {
+        width: 20px;
+        height: 40px;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $clean;
+        box-shadow: $def-shadow;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        padding-right: 5px;
+
+        svg {
+            flex: 0 0 auto;
+            transform: scale(0.6);
+        }
+
+        @include respondTo(md) {
+            display: none;
+        }
+
+        &.swiper-button-prev {
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        &.swiper-button-next {
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%) scaleX(-1);
+        }
+    }
+}

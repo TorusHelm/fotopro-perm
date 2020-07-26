@@ -1,0 +1,34 @@
+.input {
+    color: inherit;
+    display: block;
+    position: relative;
+
+    input {
+        border: 0;
+        font-size: 16px;
+        line-height: 19px;
+        font-weight: 500;
+        padding-bottom: 4px;
+        padding-right: 32px;
+        border-bottom: 2px solid $border-case2;
+        transition: border-color .3s ease;
+        width: 100%;
+
+        &:focus {
+            border-color: $warning;
+            outline: none;
+        }
+    }
+
+    span {
+        position: absolute;
+        bottom: 6px;
+        right: 0;
+        font-size: 16px;
+        line-height: 19px;
+        color: $caption;
+        font-weight: 500;
+    }
+}
+
+@import './modificators/xl-half';

@@ -1,0 +1,125 @@
+.card {
+    $root: #{&};
+
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: $clean;
+    transition: box-shadow .3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 1px solid $border;
+
+    &:hover {
+        box-shadow: $card-shadow;
+    }
+
+    &__header {
+        color: inherit;
+        height: 160px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $coral;
+
+        img {
+            display: block;
+            flex: 0 0 auto;
+            max-height: 100%;
+            width: auto;
+        }
+
+        &:hover {
+            #{$root}__header-hover {
+                opacity: 1;
+                z-index: 1;
+            }
+        }
+    }
+
+    &__header-hover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba($dark, 0.7);
+        text-decoration: underline;
+        color: $clean;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        opacity: 0;
+        z-index: -1;
+        transition: opacity .3s ease, z-index .3s ease;
+    }
+
+    &__content {
+        padding: 16px 24px 24px;
+    }
+
+    &__title {
+        font-size: 20px;
+        line-height: 24px;
+        color: $secondary;
+        margin-bottom: 24px;
+        text-align: center;
+    }
+
+    &__list {
+        margin-bottom: 0;
+    }
+
+    &__list-item {
+        margin-bottom: 16px;
+        padding-left: 8px;
+        position: relative;
+        font-size: 14px;
+        line-height: 18px;
+
+        strong {
+            font-weight: 600;
+        }
+
+        &:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            height: 4px;
+            width: 4px;
+            border-radius: 50%;
+            background-color: $warning;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__footer {
+        border-top: 1px solid $border;
+        margin-top: auto;
+        padding: 24px;
+
+        > * {
+            margin-bottom: 16px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    &__price {
+        h4 {
+            font-weight: 500;
+            font-size: 32px;
+            line-height: 40px;
+        }
+    }
+}
+
+@import './modificators/prefooter';

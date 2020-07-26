@@ -1,28 +1,64 @@
 'use strict';
 
 document.addEventListener('DOMContentLoaded', function() {
+  let tabHandler = new Event('tabHandler');
+
+  let swipers = initSwiper();
   svg4everybody();
-  initSwiper();
   initMainSwiper();
-  tab();
+  tab(tabHandler);
+
+  document.addEventListener('tabHandler', function() {
+    if ( !swipers.length ) {
+      return;
+    }
+
+    swipers.forEach(swiper => {
+      swiper.update();
+    });
+
+  }, false);
+
+  if ( window.innerWidth < 768 ) {
+    initMainCardsSlider();
+  }
 });
 
 function initSwiper() {
   var mySwiper = new Swiper('.js-swiper-container', {
     speed: 400,
     slidesPerView: 6,
+    spaceBetween: 40,
+    loop: true,
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
     },
+    breakpoints: {
+      459: {
+        slidesPerView: 1,
+      },
+      599: {
+        slidesPerView: 2,
+      },
+      767: {
+        slidesPerView: 3,
+      },
+      1199: {
+        slidesPerView: 4,
+      },
+    }
   });
 
   return mySwiper;
 }
+
 function initMainSwiper() {
   var mySwiper = new Swiper('.js-main-swiper-container', {
     speed: 400,
     slidesPerView: 1,
+    loop: true,
+    spaceBetween: 12,
     pagination: {
       el: '.swiper-pagination',
       type: 'bullets',
@@ -37,7 +73,22 @@ function initMainSwiper() {
   return mySwiper;
 }
 
-function tab() {
+function initMainCardsSlider() {
+  var mySwiper = new Swiper('.js-main-card-slider', {
+    speed: 400,
+    slidesPerView: 1,
+    loop: true,
+    spaceBetween: 12,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+
+  return mySwiper;
+}
+
+function tab(tabHandler) {
     let tabsContainer = document.querySelector(".js-tab-container");
 
     if ( tabsContainer ) {
@@ -69,6 +120,10 @@ function tab() {
           if ( underline ) {
             currentTabAccent(underline, menuItem);
           }
+
+          if ( tabHandler ) {
+            document.dispatchEvent(tabHandler);
+          }
         };
       });
     }
@@ -77,10 +132,8 @@ function tab() {
     let trueStyles = window.getComputedStyle(menuItem);
     let itemPosition = menuItem.offsetLeft;
     let itemWidth = Number(trueStyles.width.split("px")[0]);
-    let itemPaddingLeft = Number(trueStyles.paddingLeft.split("px")[0]);
-    let itemPaddingRight = Number(trueStyles.paddingRight.split("px")[0]);
 
-    return underline.setAttribute("style", `left: ${itemPosition + itemPaddingLeft}px; width: ${itemWidth - itemPaddingLeft - itemPaddingRight}px;`);
+    return underline.setAttribute("style", `left: ${itemPosition}px; width: ${itemWidth}px;`);
   }
 
   function getActiveTab(element) {

@@ -1,0 +1,65 @@
+.card {
+    &_prefooter {
+        border: 0;
+
+        &:hover {
+            box-shadow: none;
+        }
+
+        .card {
+            &__header {
+                picture {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+
+                    img {
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: center;
+                    }
+                }
+            }
+
+            &__content {
+                display: flex;
+                flex-direction: column;
+                flex: 1 0 auto;
+            }
+
+            &__title {
+                margin-bottom: 16px;
+                color: $dark;
+                text-align: left;
+                flex: 0 0 auto;
+            }
+
+            &__desc {
+                flex: 0 0 auto;
+                margin-bottom: 18px;
+                font-size: 14px;
+                line-height: 18px;
+                color: $secondary-case2;
+
+                a {
+                    color: $link;
+
+                    &[href^="tel"] {
+                        font-weight: 600;
+                        color: $dark;
+                        text-decoration: none;
+                    }
+                }
+            }
+
+            &__btn {
+                flex: 0 0 auto;
+                margin-top: auto;
+            }
+        }
+    }
+}

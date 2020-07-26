@@ -1,0 +1,94 @@
+.space-article {
+    padding-top: 80px;
+    padding-bottom: 80px;
+
+    @include respondTo(max-lg) {
+        padding-top: 64px;
+        padding-bottom: 64px;
+    }
+
+    @include respondTo(max-md) {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    &_top {
+        padding-bottom: 0;
+    }
+}
+
+.space-title {
+    margin-bottom: 40px;
+
+    @include respondTo(max-lg) {
+        margin-bottom: 32px;
+    }
+}
+
+.space-page {
+    margin-bottom: 64px;
+
+    @include respondTo(max-lg) {
+        margin-bottom: 40px;
+    }
+
+    @include respondTo(max-md) {
+        margin-bottom: 32px;
+    }
+}
+
+.space-card-steps {
+    margin-top: 32px;
+
+    &:first-child {
+        margin-top: 0;
+    }
+
+    @include respondTo(md) {
+        &:nth-child(-n+2) {
+            margin-top: 0;
+        }
+    }
+
+    @include respondTo(lg) {
+        margin-top: 0;
+    }
+}
+
+.space-card-albums {
+    @include respondTo(md) {
+        margin-top: 40px;
+
+        &:nth-child(-n+2) {
+            margin-top: 0;
+        }
+    }
+
+    @include respondTo(xl) {
+        &:nth-child(-n+4) {
+            margin-top: 0;
+        }
+    }
+}
+
+.space-preference {
+    margin-top: 32px;
+
+    &:first-child {
+        margin-top: 0;
+    }
+
+    @include respondTo(md) {
+        margin-top: 40px;
+
+        &:nth-child(-n+2) {
+            margin-top: 0;
+        }
+    }
+
+    @include respondTo(lg) {
+        &:nth-child(-n+3) {
+            margin-top: 0;
+        }
+    }
+}

@@ -1,19 +1,31 @@
-mixin card(item)
-    .card
-        a(href="#").card__header
-            img(src=item.img, alt=item.title)
-            .card__header-hover Посмотреть примеры альбомов
-        .card__content
-            h3.card__title!= item.title
-            ul.card__list
-                each itemList in item.list
-                    li.card__list-item!= itemList
-        .card__footer
-            label.input.input_xl-half
-                p.caption Кол-во альбомов
-                input(type="number" value="20")
-                span шт.
-            p.caption Стоимость альбома
-            h4.card__price!= item.price + ' ₽'
-            a(href="#").btn.btn_primary Рассчитать стоимость
-            a(href="#").btn.btn_thin Подробнее
+mixin card(item, prefooter=false)
+    if ( prefooter )
+        .card.card_prefooter
+            .card__header
+                picture
+                    img(src=item.img, alt=item.title)
+            .card__content
+                h3.card__title!= item.title
+                p.card__desc!= item.desc
+                a(href="#").card__btn.btn.btn_full.btn_thin!= item.btnText
+
+    else
+        .card
+            a(href="#").card__header
+                img(src=item.img, alt=item.title)
+                .card__header-hover Посмотреть примеры <br>альбомов
+            .card__content
+                h3.card__title!= item.title
+                ul.card__list
+                    each itemList in item.list
+                        li.card__list-item!= itemList
+            .card__footer
+                label.input.input_xl-half
+                    p.caption Кол-во альбомов
+                    input(type="number" value="20")
+                    span шт.
+                .card__price
+                    p.caption Стоимость альбома
+                    h4!= item.price + ' ₽'
+                a(href="#").btn.btn_full.btn_warning Рассчитать стоимость
+                a(href="#").btn.btn_full.btn_thin Подробнее

@@ -1,0 +1,7 @@
+.input {
+    &_xl-half {
+        @include respondTo(md) {
+            width: 50%;
+        }
+    }
+}

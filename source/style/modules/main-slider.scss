@@ -1,10 +1,23 @@
 .main-slider {
-    height: 460px;
+    &__wrapper {
+        position: relative;
+
+        @include respondTo(max-md) {
+            margin: 0 -12px;
+        }
+    }
 
     &__slide {
         position: relative;
         padding: 64px 80px;
         color: white;
+        height: auto;
+        min-height: 460px;
+
+        @include respondTo(max-md) {
+            padding: 32px 12px 40px;
+            min-height: 360px;
+        }
     }
 
     &__slide-bg {
@@ -25,16 +38,129 @@
 
     &__title {
         margin-bottom: 32px;
+
+        @include respondTo(max-md) {
+            margin-bottom: 12px;
+        }
     }
 
     &__desc {
         font-size: 18px;
         line-height: 24px;
         font-weight: 500;
+
+        @include respondTo(max-md) {
+            font-size: 16px;
+            line-height: 20px;
+        }
     }
 
     &__btn {
         height: 64px;
         width: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: $clean;
+        box-shadow: $def-shadow;
+        position: absolute;
+        top: 50%;
+        margin-top: 0;
+
+        @include respondTo(max-lg) {
+            height: 40px;
+            width: 24px;
+        }
+
+        @include respondTo(max-lg) {
+            svg {
+                transform: scale(0.6);
+            }
+        }
+
+        @include respondTo(max-md) {
+            display: none;
+        }
+
+        &.swiper-button-prev {
+            left: 0;
+            transform: translate(-50%, -50%);
+
+            @include respondTo(max-lg) {
+                transform: translateY(-50%);
+                border-radius: 24px;
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                padding-right: 8px;
+            }
+        }
+
+        &.swiper-button-next {
+            right: 0;
+            transform: translate(50%, -50%);
+
+            @include respondTo(max-lg) {
+                transform: translateY(-50%);
+                border-radius: 24px;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                padding-left: 8px;
+            }
+
+            svg {
+                transform: rotate(180deg);
+
+                @include respondTo(max-lg) {
+                    transform: scale(0.6) rotate(180deg);
+                }
+            }
+        }
+    }
+
+    .swiper-pagination-bullets {
+        bottom: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @include respondTo(max-md) {
+            bottom: 8px;
+        }
+    }
+
+    .swiper-pagination-bullet {
+        height: 16px;
+        width: 16px;
+        background-color: $clean;
+        opacity: 0.8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: opacity .3s ease;
+
+        @include respondTo(max-md) {
+            width: 10px;
+            height: 10px;
+        }
+
+        &:before {
+            content: '';
+            height: 0;
+            width: 0;
+            flex: 0 0 auto;
+            background-color: $warning;
+            border-radius: 50%;
+            transition: height .3s ease, width .3s ease;
+        }
+
+        &.swiper-pagination-bullet-active {
+            opacity: 1;
+
+            &:before {
+                height: 50%;
+                width: 50%;
+            }
+        }
     }
 }

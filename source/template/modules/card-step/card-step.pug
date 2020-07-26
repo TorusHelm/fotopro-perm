@@ -1,7 +1,8 @@
 mixin card-step(item)
     .card-step
         .card-step__header
-            img(src=item.img, alt=item.title)
+            .card-step__image
+                img(src=item.img, alt=item.title)
             h4.card-step__title!= item.title
         .card-step__content
             ul.card-step__list

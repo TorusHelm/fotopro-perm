@@ -1,0 +1,8 @@
+.link {
+    color: $link;
+    font-size: 14px;
+    line-height: 18px;
+    text-decoration: none;
+}
+
+@import './modificators/inline';
