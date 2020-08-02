@@ -22,13 +22,17 @@ html
 		//- <!--[if lt IE 9]>
 		//- script(src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js")
 		//- <![endif]-->
+		block head
 
 	body
 
 		include common/svg-use
 
-	.page-wrap
-		block content
+		.page-wrap.js-page-wrap
+			include ./parts/header
+			block content
+			include ./parts/footer
 
+		block scripts
 	script(src='js/libs.js' defer)
 	script(src='js/app.js' defer)

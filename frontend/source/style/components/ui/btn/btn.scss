@@ -13,6 +13,7 @@
     display: inline-block;
     text-align: center;
     transition: all .3s ease;
+    cursor: pointer;
 
     &:hover {
         background-color: $link-hover;

@@ -1,0 +1,47 @@
+.toggler {
+    position: relative;
+    width: 24px;
+    height: 24px;
+
+    &__row {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+        height: 2px;
+        background-color: $warning;
+        display: block;
+        transition: background-color .3s ease;
+
+        @at-root .toggler.is-active & {
+            background-color: transparent;
+        }
+
+        &:after, &:before {
+            content: '';
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            background-color: $warning;
+            display: block;
+            transform-origin: 0;
+            transition: transform .3s ease;
+        }
+
+        &:before {
+            top: -8px;
+
+            @at-root .toggler.is-active & {
+                transform: rotate(45deg);
+            }
+        }
+
+        &:after {
+            top: 8px;
+
+            @at-root .toggler.is-active & {
+                transform: rotate(-45deg);
+            }
+        }
+    }
+}

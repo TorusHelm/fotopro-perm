@@ -4,13 +4,10 @@ block variables
 
 block content
 
-	body
-
-	include ../parts/header
-	include ../modules/card-step/card-step
-	include ../modules/card/card
-
 	main
+		include ../modules/card-step/card-step
+		include ../modules/card/card
+
 		article.container
 			.row
 				.col
@@ -336,5 +333,3 @@ block content
 					+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')
 				.main-page-cardset__btn.swiper-button-next
 					+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')
-
-	include ../parts/footer

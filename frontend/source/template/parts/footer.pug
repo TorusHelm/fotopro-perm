@@ -1,1 +1,22 @@
-footer footer here
+-
+    let footerMenu = [
+        {
+            title: 'Главная',
+            href: '/'
+        },
+        {
+            title: 'О компании',
+            href: '#'
+        },
+        {
+            title: 'Услуги',
+            href: '#'
+        },
+    ]
+
+footer.footer
+    .footer__menu
+        ul.footer-menu
+            each item in footerMenu
+                li.footer-menu__item
+                    a(href=item.href)!= item.title

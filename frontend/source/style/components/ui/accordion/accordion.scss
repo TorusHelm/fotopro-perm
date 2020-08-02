@@ -1,0 +1,159 @@
+.accordion {
+    $root: #{&};
+
+    color: $dark;
+
+    &__item {
+        margin-top: 32px;
+        margin-bottom: 24px;
+        overflow: hidden;
+        position: relative;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    &__hr {
+        height: 2px;
+        width: 100%;
+        background-color: $border;
+        display: block;
+    }
+
+    &__subitem {
+        overflow: hidden;
+        position: relative;
+        background-color: $clean;
+        border-radius: 16px;
+
+        @include respondTo(max-md) {
+            border-radius: 12px;
+        }
+
+        &:not(:first-child) {
+            margin-top: 16px;
+
+            @include respondTo(max-md) {
+                margin-top: 12px;
+            }
+        }
+
+        #{$root}__content {
+            ul {
+                padding: 32px 148px 32px 32px;
+
+                @include respondTo(max-lg) {
+                    padding: 32px;
+                }
+
+                @include respondTo(max-lg) {
+                    padding: 24px 16px;
+                }
+            }
+        }
+
+        #{$root}__btn {
+            position: absolute;
+            top: 36px;
+            right: 32px;
+            margin: 0;
+
+            @include respondTo(max-md) {
+                right: 16px;
+                top: 24px;
+            }
+        }
+    }
+
+    &__subtitle {
+        cursor: pointer;
+        font-size: 18px;
+        line-height: 24px;
+        font-weight: 500;
+        padding: 17px 64px 17px 32px;
+        min-height: 80px;
+        transition: border-radius .3s ease;
+        display: flex;
+        align-items: center;
+
+        @include respondTo(max-md) {
+            padding: 16px 44px 16px 16px;
+        }
+
+        @at-root .accordion__subitem.is-active & {
+            border-bottom: 1px solid $border-case3;
+        }
+    }
+
+    &__title {
+        cursor: pointer;
+        transition: color .3s ease, margin-bottom .3s ease;
+        display: flex;
+        align-items: center;
+        font-size: 32px;
+        line-height: 40px;
+        font-weight: 600;
+
+        @include respondTo(max-md) {
+            font-size: 20px;
+            line-height: 26px;
+        }
+
+        @at-root .accordion__item.is-active & {
+            color: $subtitle;
+            margin-bottom: 24px;
+        }
+    }
+
+    &__content {
+        transition: max-height .3s ease;
+        max-height: 0;
+    }
+
+    &__btn {
+        display: block;
+        cursor: pointer;
+        margin-left: 24px;
+        height: auto;
+    }
+
+    &__toggler {
+        width: 25.109px;
+        height: 10.034px;
+
+        @include respondTo(max-md) {
+            height: 8px;
+        }
+
+        svg {
+            display: block;
+            transition: transform .3s ease, fill .3s ease;
+            transform: scaleY(1);
+
+            @at-root .accordion__subitem.is-active & {
+                transform: scaleY(-1);
+            }
+        }
+
+        &_main {
+            svg {
+                @at-root .accordion__item.is-active & {
+                    transform: scaleY(-1);
+                }
+            }
+        }
+    }
+}
+
+.questions-list {
+    &__item {
+        &:not(:first-child) {
+            margin-top: 24px;
+
+            @include respondTo(max-md) {
+                margin-top: 16px;
+            }
+        }
+    }
+}

@@ -1,0 +1,26 @@
+mixin input(incomeData)
+    -
+        let defData = {
+            caption: 'Caption',
+            type: 'text',
+            value: '20',
+            postfix: false,
+            placeholder: '',
+            name: '',
+            require: false
+        };
+
+    -
+        let data = Object.assign(defData, incomeData);
+
+    if ( incomeData.type == 'textarea')
+        label.input&attributes(attributes)
+            p.caption!= data.caption
+            textarea(rows="4" placeholder=data.placeholder name=data.name)
+        -return
+
+    label.input(class=`${data.postfix ? 'input_postfix' : ''}`)&attributes(attributes)
+        p.caption!= data.caption
+        input(type=data.type value=data.value placeholder=data.placeholder name=data.name require=data.require)
+        if ( data.postfix )
+            span шт.

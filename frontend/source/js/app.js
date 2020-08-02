@@ -6,6 +6,10 @@ document.addEventListener('DOMContentLoaded', function() {
   let swipers = initSwiper();
   svg4everybody();
   initMainSwiper();
+  initHeaderToggler();
+  initAlbumsCardSlider();
+  accordion();
+  initAlbumsTypeSlider();
   tab(tabHandler);
 
   document.addEventListener('tabHandler', function() {
@@ -23,6 +27,40 @@ document.addEventListener('DOMContentLoaded', function() {
     initMainCardsSlider();
   }
 });
+
+function initHeaderToggler() {
+  let toggler = document.querySelector('.js-header-toggler');
+  let header = document.querySelector('.js-header');
+  let pageWrap = document.querySelector('.js-page-wrap');
+  let darkness = document.querySelector('.js-header-darkness');
+
+  if ( toggler && header && pageWrap && darkness ) {
+    toggler.addEventListener('click', function() {
+      header.classList.toggle('is-open');
+      toggler.classList.toggle('is-active');
+      pageWrap.classList.toggle('scroll-blocked-mobile');
+    });
+
+    darkness.addEventListener('click', function() {
+      header.classList.remove('is-open');
+      toggler.classList.remove('is-active');
+      pageWrap.classList.remove('scroll-blocked-mobile');
+    });
+  }
+}
+
+function initAlbumsCardSlider() {
+  var mySwiper = new Swiper('.js-albums-card-slider', {
+    speed: 400,
+    slidesPerView: 1,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+
+  return mySwiper;
+}
 
 function initSwiper() {
   var mySwiper = new Swiper('.js-swiper-container', {
@@ -73,6 +111,20 @@ function initMainSwiper() {
   return mySwiper;
 }
 
+function initAlbumsTypeSlider() {
+  var mySwiper = new Swiper('.js-type-albums-swiper', {
+    speed: 400,
+    slidesPerView: 'auto',
+    spaceBetween: 24,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+
+  return mySwiper;
+}
+
 function initMainCardsSlider() {
   var mySwiper = new Swiper('.js-main-card-slider', {
     speed: 400,
@@ -97,7 +149,9 @@ function tab(tabHandler) {
 
       menuItems.forEach( (menuItem) => {
         if ( underline && menuItem.classList.contains("is-active") ) {
-          currentTabAccent(underline, menuItem);
+          setTimeout(() => {
+            currentTabAccent(underline, menuItem);
+          }, 100);
         }
 
         menuItem.onclick = () => {
@@ -129,9 +183,8 @@ function tab(tabHandler) {
     }
 
   function currentTabAccent(underline, menuItem) {
-    let trueStyles = window.getComputedStyle(menuItem);
     let itemPosition = menuItem.offsetLeft;
-    let itemWidth = Number(trueStyles.width.split("px")[0]);
+    let itemWidth = Number(menuItem.scrollWidth);
 
     return underline.setAttribute("style", `left: ${itemPosition}px; width: ${itemWidth}px;`);
   }
@@ -139,4 +192,84 @@ function tab(tabHandler) {
   function getActiveTab(element) {
     return element.classList.contains("is-active");
   }
+}
+
+function accordion() {
+  let wrapper = document.querySelectorAll('.js-accordion');
+  wrapper.forEach(wrapperItem => {
+    let items = wrapperItem.querySelectorAll('.js-accordion-item');
+    let individual = wrapperItem.getAttribute('individual') && wrapperItem.getAttribute('individual') !== 'false';
+
+    items.forEach(item => {
+      if ( item.classList.contains('is-active') ) {
+        setTimeout(() => {
+          let readyContent = item.querySelector('.js-accordion-content');
+          let readyContentHeight = readyContent.scrollHeight;
+
+          readyContent.style.maxHeight = readyContentHeight + 'px';
+        }, 100);
+      }
+
+      let subItems = item.querySelectorAll('.js-accordion-subitem');
+
+      for (const subItem of subItems) {
+        if ( subItem.classList.contains('is-active') ) {
+          setTimeout(() => {
+            let readyContent = subItem.querySelector('.js-accordion-content');
+            let readyContentHeight = readyContent.scrollHeight;
+  
+            readyContent.style.maxHeight = readyContentHeight + 'px';
+          }, 100);
+        }
+      }
+
+      itemIteration(item, items, individual);
+
+      subItems.forEach(subitem => {
+        itemIteration(subitem, subItems, individual, true)
+      });
+    })
+  })
+}
+
+function itemIteration(item, items, individual, isSubitem) {
+  let init = item.querySelector('.js-accordion-init');
+  let content = item.querySelector('.js-accordion-content');
+
+  if ( isSubitem === true ) {
+    content.addEventListener('transitionend', function() {
+      let parentItem = item.closest('.js-accordion-item');
+      let parentContentHeight = parentItem.scrollHeight + 'px';
+      let parentContent = parentItem.querySelector('.js-accordion-content');
+
+      parentContent.setAttribute('style', `max-height: ${parentContentHeight}`);
+    });
+  }
+
+  init.addEventListener('click', function() {
+    if ( item.classList.contains('is-active') ) {
+      item.classList.remove('is-active');
+      content.style.maxHeight = '0px';
+
+      return false
+    }
+
+    if ( isSubitem === true ) {
+      let parentItem = item.closest('.js-accordion-item');
+      let parentContent = parentItem.querySelector('.js-accordion-content');
+
+      parentContent.setAttribute('style', `max-height: none`);
+    }
+
+    if ( individual ) {
+      items.forEach((elem) => {
+        let elemContent = elem.querySelector('.js-accordion-content');
+        elem.classList.remove('is-active');
+        elemContent.style.maxHeight = 0 + 'px';
+      })
+    }
+
+    item.classList.add('is-active');
+    content.style.maxHeight = content.scrollHeight + 'px';
+  });
 }

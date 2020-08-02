@@ -3,6 +3,8 @@
     font-size: 14px;
     line-height: 18px;
     text-decoration: none;
+    transition: color .3s ease;
 }
 
 @import './modificators/inline';
+@import './modificators/hide';

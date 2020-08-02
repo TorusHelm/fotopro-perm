@@ -1,0 +1,11 @@
+include ../../components/input/input
+
+mixin form-mini(data)
+    form.form-mini&attributes(attributes)
+        h3.form-mini__row.form-mini__title.subtitle!= data.title
+        h4.form-mini__row.form-mini__subtitle!= data.subtitle
+        each input in data.inputs
+            .form-mini__row
+                +input(input)
+        .form-mini__row
+            button.btn.btn_warning.btn_full!= data.btnText

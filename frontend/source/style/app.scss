@@ -45,6 +45,13 @@ main { // для отбивки футера
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  padding-top: 130px; //header-gap
+  position: relative;
+  z-index: 1;
+
+  @include respondTo(max-lg) {
+    padding-top: 72px;
+  }
 
   @supports (display:grid) {
       min-height: 100%;

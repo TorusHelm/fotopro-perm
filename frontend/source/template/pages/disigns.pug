@@ -1,0 +1,194 @@
+extends ../_template
+block variables
+	- var title = 'Варианты дизайна'
+
+block content
+	include ../modules/card-album/card-album
+	include ../components/checkmark/checkmark
+
+	-
+		let typeAlbums = [
+			{
+				text: 'Все виды альбомов',
+				checked: false
+			},
+			{
+				text: 'Эконом',
+				checked: true
+			},
+			{
+				text: 'Стандарт',
+				checked: false
+			},
+			{
+				text: 'Стандарт-Flatbook',
+				checked: false
+			},
+			{
+				text: 'Премиум',
+				checked: true
+			},
+			{
+				text: 'Премиум-Flatbook',
+				checked: true
+			},
+			{
+				text: 'На пружине',
+				checked: false
+			},
+			{
+				text: 'На пружине',
+				checked: false
+			},
+			{
+				text: 'На пружине',
+				checked: false
+			},
+		]
+
+	main.tab.tab_design.js-tab-container
+		article.space-article.article-dirty.container
+			h1.title.space-page Варианты дизайна
+			.row
+				.col-12
+					ul.tab-list.tab-list_high-gap
+						li.tab-list__item.js-tab-menu-item.is-active(data-target="#target0")
+							h4.tab-list__title Детский сад
+						li.tab-list__item.js-tab-menu-item(data-target="#target1")
+							h4.tab-list__title Начальная школа
+						li.tab-list__item.js-tab-menu-item(data-target="#target2")
+							h4.tab-list__title Выпускные классы, ВУЗ
+						.js-tab-underline.tab-list__underline
+				.col-12
+					.tab-list.mb-0.swiper-container.js-type-albums-swiper
+						.swiper-wrapper
+							each item in typeAlbums
+								.tab-list__item.swiper-slide
+									+checkmark(item)
+
+		article
+			.tab__content.is-active#target0
+				.block-disign
+					.container
+						.swiper-header
+							.swiper-header__icon
+								img(src="./img/albums/album-icon.png", alt="")
+							h2.swiper-header__title Дизайн альбомов Эконом
+						.tab__container
+							.tab__shelf
+								img(src="./img/shelf.svg", alt="")
+							.swiper-container.js-swiper-container
+								.swiper-wrapper
+									-
+										let lengthSlides0 = 0;
+									while lengthSlides0 < 10
+										.swiper-slide
+											img(src="img/albums/album.jpg", alt=`album${lengthSlides0++}`)
+							.swiper-button-prev.swiper-button
+								+svg-use('slider-arrow-thin', '')
+							.swiper-button-next.swiper-button
+								+svg-use('slider-arrow-thin', '')
+				.block-disign
+					.container
+						.swiper-header
+							.swiper-header__icon
+								img(src="./img/albums/album-icon.png", alt="")
+							h2.swiper-header__title Дизайн альбомов Премиум
+						.tab__container
+							.tab__shelf
+								img(src="./img/shelf.svg", alt="")
+							.swiper-container.js-swiper-container
+								.swiper-wrapper
+									-
+										let lengthSlides01 = 0;
+									while lengthSlides01 < 10
+										.swiper-slide
+											img(src="img/albums/album.jpg", alt=`album${lengthSlides01++}`)
+							.swiper-button-prev.swiper-button
+								+svg-use('slider-arrow-thin', '')
+							.swiper-button-next.swiper-button
+								+svg-use('slider-arrow-thin', '')
+				.block-disign
+					.container
+						.swiper-header
+							.swiper-header__icon
+								img(src="./img/albums/album-icon.png", alt="")
+							h2.swiper-header__title Дизайн альбомов Премиум-Flatbook
+						.tab__container
+							.tab__shelf
+								img(src="./img/shelf.svg", alt="")
+							.swiper-container.js-swiper-container
+								.swiper-wrapper
+									-
+										let lengthSlides02 = 0;
+									while lengthSlides02 < 10
+										.swiper-slide
+											img(src="img/albums/album.jpg", alt=`album${lengthSlides02++}`)
+							.swiper-button-prev.swiper-button
+								+svg-use('slider-arrow-thin', '')
+							.swiper-button-next.swiper-button
+								+svg-use('slider-arrow-thin', '')
+
+			.tab__content#target1
+				.block-disign
+					.container
+						.swiper-header
+							.swiper-header__icon
+								img(src="./img/albums/album-icon.png", alt="")
+							h2.swiper-header__title Дизайн альбомов Эконом
+						.tab__container
+							.tab__shelf
+								img(src="./img/shelf.svg", alt="")
+							.swiper-container.js-swiper-container
+								.swiper-wrapper
+									-
+										let lengthSlides1 = 0;
+									while lengthSlides1 < 10
+										.swiper-slide
+											img(src="img/albums/album.jpg", alt=`album${lengthSlides1++}`)
+							.swiper-button-prev.swiper-button
+								+svg-use('slider-arrow-thin', '')
+							.swiper-button-next.swiper-button
+								+svg-use('slider-arrow-thin', '')
+				.block-disign
+					.container
+						.swiper-header
+							.swiper-header__icon
+								img(src="./img/albums/album-icon.png", alt="")
+							h2.swiper-header__title Дизайн альбомов Премиум
+						.tab__container
+							.tab__shelf
+								img(src="./img/shelf.svg", alt="")
+							.swiper-container.js-swiper-container
+								.swiper-wrapper
+									-
+										let lengthSlides11 = 0;
+									while lengthSlides11 < 10
+										.swiper-slide
+											img(src="img/albums/album.jpg", alt=`album${lengthSlides11++}`)
+							.swiper-button-prev.swiper-button
+								+svg-use('slider-arrow-thin', '')
+							.swiper-button-next.swiper-button
+								+svg-use('slider-arrow-thin', '')
+
+			.tab__content#target2
+				.block-disign
+					.container
+						.swiper-header
+							.swiper-header__icon
+								img(src="./img/albums/album-icon.png", alt="")
+							h2.swiper-header__title Дизайн альбомов Эконом
+						.tab__container
+							.tab__shelf
+								img(src="./img/shelf.svg", alt="")
+							.swiper-container.js-swiper-container
+								.swiper-wrapper
+									-
+										let lengthSlides12 = 0;
+									while lengthSlides12 < 10
+										.swiper-slide
+											img(src="img/albums/album.jpg", alt=`album${lengthSlides12++}`)
+							.swiper-button-prev.swiper-button
+								+svg-use('slider-arrow-thin', '')
+							.swiper-button-next.swiper-button
+								+svg-use('slider-arrow-thin', '')

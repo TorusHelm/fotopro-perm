@@ -1,0 +1,5 @@
+.scroll-blocked-mobile {
+    @include respondTo(max-lg) {
+        overflow: hidden;
+    }
+}

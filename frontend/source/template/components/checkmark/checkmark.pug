@@ -1,0 +1,6 @@
+mixin checkmark(data)
+    label.checkmark
+        input(type="checkbox" checked=data.checked)
+        span.checkmark__mark
+            +svg-use('checked')
+        != data.text

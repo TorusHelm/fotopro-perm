@@ -1,3 +1,13 @@
+include ../../components/input/input
+
+-
+    inputData = {
+        caption: 'Кол-во альбомов',
+        type: 'number',
+        value: '20',
+        postfix: true
+    };
+
 mixin card(item, prefooter=false)
     if ( prefooter )
         .card.card_prefooter
@@ -20,10 +30,7 @@ mixin card(item, prefooter=false)
                     each itemList in item.list
                         li.card__list-item!= itemList
             .card__footer
-                label.input.input_xl-half
-                    p.caption Кол-во альбомов
-                    input(type="number" value="20")
-                    span шт.
+                +input(inputData)(class="input_xl-half")
                 .card__price
                     p.caption Стоимость альбома
                     h4!= item.price + ' ₽'

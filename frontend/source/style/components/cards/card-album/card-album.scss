@@ -1,0 +1,133 @@
+.card-album {
+    background-color: $clean;
+    overflow: hidden;
+    border-radius: 16px;
+
+    &__image {
+        height: 360px;
+
+        @include respondTo(max-sm) {
+            height: 300px;
+        }
+
+        @include respondTo(lg) {
+            height: 100%;
+        }
+
+        .swiper-container {
+            height: 100%;
+        }
+
+        .swiper-button-next {
+            svg {
+                transform: scaleX(-1);
+            }
+        }
+
+        .swiper-slide {
+            img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+
+        .swiper-button-next, .swiper-button-prev {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            svg {
+                display: block;
+                width: 12.068px;
+                height: 26.219px;
+            }
+        }
+    }
+
+    &__content {
+        height: 100%;
+        padding: 32px;
+        border-top-right-radius: 16px;
+        border-bottom-right-radius: 16px;
+        background-color: $clean;
+
+        @include respondTo(max-sm) {
+            padding: 24px 16px;
+        }
+    }
+
+    &__title {
+        margin-bottom: 16px;
+    }
+
+    &__price {
+        margin-bottom: 16px;
+
+        h4 {
+            font-weight: 500;
+            font-size: 32px;
+            line-height: 40px;
+        }
+    }
+
+    &__desc {
+        margin-bottom: 16px;
+        font-size: 12px;
+        line-height: 15px;
+        font-weight: 500;
+        color: $subtitle;
+    }
+
+    &__list {
+        margin-bottom: 24px;
+    }
+
+    &__list-item {
+        padding-left: 8px;
+        position: relative;
+        font-size: 14px;
+        line-height: 18px;
+
+        strong {
+            font-weight: 600;
+        }
+
+        &:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            height: 4px;
+            width: 4px;
+            border-radius: 50%;
+            background-color: $warning;
+        }
+
+        &:not(:first-child) {
+            margin-top: 8px;
+        }
+    }
+
+    &__btn-set {
+        .btn {
+            &:first-child {
+                margin-bottom: 16px;
+
+                @include respondTo(md) {
+                    margin-right: 24px;
+                    margin-bottom: 0;
+                }
+            }
+
+            @include respondTo(max-md) {
+                width: 100%;
+                display: block;
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+    }
+}

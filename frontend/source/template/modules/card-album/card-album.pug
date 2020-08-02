@@ -1,0 +1,26 @@
+mixin card-album(data)
+    .card-album.row.no-gutters&attributes(attributes)
+        .col-lg-4
+            .card-album__image
+                .swiper-container.js-albums-card-slider
+                    .swiper-wrapper
+                        each item in data.slides
+                            .swiper-slide
+                                img(src=item, alt="")
+                    .swiper-button-prev
+                        +svg-use('album-arrow')
+                    .swiper-button-next
+                        +svg-use('album-arrow')
+        .col-lg-8
+            .card-album__content
+                h3.card-album__title.subtitle!= data.title
+                .card-album__price
+                    p.caption Стоимость альбома
+                    h4!= data.price + ' ₽'
+                .card-album__desc!= data.desc
+                ul.card-album__list
+                    each itemList in data.list
+                        li.card-album__list-item!= itemList
+                .card-album__btn-set
+                    button.btn.btn_warning Скачать PSD-шаблон
+                    button.btn Создать в Онлайн-редакторе

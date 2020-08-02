@@ -1,0 +1,68 @@
+extends ../_template
+block variables
+	- var title = 'Контакты'
+
+block content
+	include ../modules/form-mini/form-mini
+
+	-
+		let formMini = {
+			title: 'Написать нам',
+			subtitle: 'Оставьте нам заявку и&nbsp;мы&nbsp;ответим в&nbsp;ближайшее время',
+			inputs: [
+				{
+					caption: 'Представьтесь, пожалуйста',
+					type: 'text',
+					name: 'name',
+					value: 'Иванов Иван',
+					placeholder: 'ФИО',
+					require: true
+				},
+				{
+					caption: 'Ваш E-mail',
+					type: 'email',
+					name: 'email',
+					value: 'Ivanov@ma|',
+					placeholder: 'example@gmail.com',
+					require: true
+				},
+				{
+					caption: 'Телефон',
+					type: 'tel',
+					name: 'phone',
+					value: '',
+					placeholder: 'Номер телефона',
+					require: true
+				},
+				{
+					caption: 'Ваш вопрос',
+					type: 'textarea',
+					name: 'question',
+					value: '',
+					placeholder: 'Введите сообщение...'
+				},
+			],
+			btnText: 'Отправить заявку'
+		};
+
+	main
+		article.space-contacts.article-dirty.container
+			h1.title.space-page Контакты
+			.row
+				.col-xl-4
+					h2.subtitle.space-subtitle Наш адрес
+					p.text г. Пермь, ул. Крупской, 75
+					p.text.text_secondary (вход со двора)
+				.col-xl-4
+					h2.subtitle.space-subtitle Мы открыты
+					p.text пн-пт 10:00-17:00
+				.col-xl-4
+					h2.subtitle.space-subtitle Наш телефон
+					a(href="tel:+73422032300").text.link.link_hide +7 (342) 203-23-00
+		article.map
+			iframe(src="https://yandex.ru/map-widget/v1/?um=constructor%3Abbbf8feb6348fe55355d880b6838e879f25a6641b4caed35278b311aae97ecf6&amp;source=constructor" width="100%" height="604" frameborder="0")
+			.map__aside
+				.container
+					.row
+						.col-xl-4.ml-auto
+							+form-mini(formMini)

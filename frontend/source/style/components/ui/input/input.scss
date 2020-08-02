@@ -3,20 +3,34 @@
     display: block;
     position: relative;
 
-    input {
+    input, textarea {
         border: 0;
         font-size: 16px;
         line-height: 19px;
         font-weight: 500;
         padding-bottom: 4px;
-        padding-right: 32px;
         border-bottom: 2px solid $border-case2;
         transition: border-color .3s ease;
         width: 100%;
+        font: inherit;
+
+        &::placeholder {
+            color: $subtitle;
+        }
 
         &:focus {
             border-color: $warning;
             outline: none;
+        }
+    }
+
+    textarea {
+        resize: none;
+    }
+
+    &_postfix {
+        input {
+            padding-right: 32px;
         }
     }
 

@@ -1,0 +1,10 @@
+.link {
+    &_hide {
+        color: inherit;
+        text-decoration: none;
+
+        &:hover {
+            color: $link;
+        }
+    }
+}

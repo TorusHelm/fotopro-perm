@@ -12,3 +12,12 @@
         z-index: -1;
     }
 }
+
+.block-disign {
+    background: linear-gradient($clean, $dirty);
+    padding: 64px 0;
+
+    .container {
+        position: relative;
+    }
+}

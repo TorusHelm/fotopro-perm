@@ -1,4 +1,6 @@
 .tab-list {
+    $root: #{&};
+
     display: flex;
     position: relative;
     border-bottom: 2px solid $border;
@@ -10,6 +12,26 @@
         margin-left: -12px;
         margin-right: -12px;
         border-bottom: 0;
+    }
+
+    &_high-gap {
+        margin-bottom: 64px;
+
+        @include respondTo(max-md) {
+            margin-bottom: 40px;
+        }
+    }
+
+    &_checkmars {
+        border-bottom: 0;
+
+        #{$root}__item {
+            flex: 0 0 auto;
+            padding: 0;
+            transition: color .3s ease;
+            cursor: pointer;
+            user-select: none;
+        }
     }
 
     &__item {
