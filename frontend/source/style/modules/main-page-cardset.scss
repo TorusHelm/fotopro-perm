@@ -44,6 +44,10 @@
             right: 0;
             top: 50%;
             transform: translateY(-50%) scaleX(-1);
+
+            svg {
+                transform: scale(0.6);
+            }
         }
     }
 }

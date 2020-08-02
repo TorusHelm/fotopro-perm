@@ -17,21 +17,29 @@
             position: absolute;
             top: 50%;
             margin: 0;
+            transform: translateY(-50%);
 
             &.swiper-button-prev {
                 left: 0;
-                transform: translateY(-50%);
             }
 
             &.swiper-button-next {
                 right: 0;
-                transform: translateY(-50%) scaleX(-1);
             }
         }
     }
 
     &__container {
-        padding: 0 60px 20px;
         position: relative;
+
+        .tab {
+            &__shelf {
+                top: 220px;
+            }
+        }
+
+        .swiper-container {
+            padding: 40px 40px 20px;
+        }
     }
 }

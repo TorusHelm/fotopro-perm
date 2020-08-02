@@ -56,4 +56,13 @@
     <symbol id="checked" width="14.121" height="11.182" viewBox="0 0 14.121 11.182">
         <path d="M-11,2l-4,4,8,8" transform="translate(-0.939 -5.939) rotate(-90)" fill="none" stroke="currentColor" stroke-width="3"/>
     </symbol>
+    <symbol id="def-arrow" width="16" height="16" viewBox="0 0 16 16">
+        <g transform="translate(-438 -297)">
+            <rect width="16" height="16" transform="translate(438 297)" fill="none"/>
+            <g transform="translate(-2.5 -4.5)">
+                <line x1="12" transform="translate(442.5 309.5)" fill="none" stroke="#0ba6c1" stroke-width="2"/>
+                <path d="M0,0-4,5l4,5" transform="translate(446.5 304.5)" fill="none" stroke="#0ba6c1" stroke-width="2"/>
+            </g>
+        </g>
+    </symbol>
 </svg>

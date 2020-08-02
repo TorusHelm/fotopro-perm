@@ -1,0 +1,19 @@
+extends ../_template
+block variables
+	- var title = 'Расчитать стоимость'
+
+block content
+	main
+		article.space-article.article-dirty.container
+			h1.title.space-page Варианты дизайна
+			.row.calculate
+				.col-xl-8
+					.calculate-header
+						.calculate-header__title
+						.calculate-types
+							.calculate-types__item
+				.col-xl-4
+					.calculate-content
+						.calculate__row
+							.calculate-slider
+								input(type="range" min="1" max="50" value="31").range

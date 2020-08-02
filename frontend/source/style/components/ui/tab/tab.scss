@@ -9,9 +9,10 @@
 
     &__shelf {
         position: absolute;
-        bottom: 0;
+        top: 180px;
         left: 0;
         width: 100%;
+        transform: translateY(-50%);
 
         img {
             display: block;

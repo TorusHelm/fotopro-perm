@@ -24,6 +24,36 @@
 
     &_checkmars {
         border-bottom: 0;
+        padding-right: 24px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+
+        @include respondTo(max-md) {
+            overflow: hidden;
+            padding-left: 16px;
+        }
+
+        &:after, &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 64px;
+            z-index: 1;
+            transition: opacity .3s ease, z-index .3s ease;
+        }
+
+        &:after {
+            right: 0;
+            background: linear-gradient(to right, transparent, #F7F7F7);
+        }
+
+        &:before {
+            opacity: 0;
+            z-index: -1;
+            left: 0;
+            background: linear-gradient(to left, transparent, #F7F7F7);
+        }
 
         #{$root}__item {
             flex: 0 0 auto;
@@ -31,6 +61,37 @@
             transition: color .3s ease;
             cursor: pointer;
             user-select: none;
+        }
+
+        .swiper-button {
+            height: 100%;
+            transition: opacity .3s ease, z-index .3s ease;
+
+            &.swiper-button-prev {
+                opacity: 0;
+                z-index: -1;
+            }
+
+            &.swiper-button-next {
+                &.swiper-button-disabled {
+                    opacity: 0;
+                    z-index: -1;
+                }
+            }
+        }
+
+        &.not-on-start {
+            &:before {
+                opacity: 1;
+                z-index: 2;
+            }
+
+            .swiper-button {
+                &.swiper-button-prev {
+                    opacity: 1;
+                    z-index: 3;
+                }
+            }
         }
     }
 

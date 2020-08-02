@@ -23,14 +23,14 @@ block content
 											picture.main-slider__slide-bg
 												img(src="img/main-banner/main-banner0.jpg", alt="")
 											.row
-												.col-xl-10.offset-xl-1
+												.col-xl-10
 													h1.main-slider__title.title Типография ФОТОПРО Типография ФОТОПРО
 													.main-slider__desc Оперативная печать и&nbsp;изготовление выпускных <br>альбомов для родителей, выпускников <br>и&nbsp;профессиональных фотографов в&nbsp;любом количестве Оперативная печать и&nbsp;изготовление выпускных <br>альбомов для родителей, выпускников <br>и&nbsp;профессиональных фотографов в&nbsp;любом количестве
 										else
 											picture.main-slider__slide-bg
 												img(src="img/main-banner/main-banner1.jpg", alt="")
 											.row
-												.col-xl-10.offset-xl-1
+												.col-xl-10
 													h2.main-slider__title.title Типография ФОТОПРО
 													.main-slider__desc Оперативная печать и&nbsp;изготовление выпускных <br>альбомов для родителей, выпускников <br>и&nbsp;профессиональных фотографов в&nbsp;любом количестве
 							.swiper-pagination
@@ -48,16 +48,16 @@ block content
 							img: 'img/card-step/card-step1.png',
 							title: 'Выбираете',
 							list: [
-								'Выбираете <a class="link link_inline" href="#">вариант альбома</a>',
-								'Или получаете <a class="link link_inline" href="#">образец для презентации родителям</a>'
+								'Выбираете <a class="link link_inline" href="/albums.html">вариант альбома</a>',
+								'Или получаете образец для презентации родителям<span data-tooltip="Всем новым клиентам-фотографам предоставляем комплект бесплатных образцов альбомов."></span>'
 							]
 						},
 						{
 							img: 'img/card-step/card-step2.png',
 							title: 'Создаете альбом',
 							list: [
-								'Создаёте альбом  в <a class="link link_inline" href="#">онлайн-редакторе (Инструкция)</a>',
-								'Или создаёте альбом в Ps <a class="link link_inline" href="#">скачать шаблоны</a>'
+								'Создаёте альбом  в <a class="link link_inline" href="https://online.fotopro-perm.ru/create/book" target="_blank">онлайн-редакторе</a> (<a class="link link_inline" href="https://online.fotopro-perm.ru/help/create#howtocreate" target="_blank">Инструкция</a>)',
+								'Или создаёте альбом в Ps <a class="link link_inline" href="https://cloud.mail.ru/public/5gad/297kJMtxV/" target="_blank">скачать шаблоны</a>'
 							]
 						},
 						{
@@ -260,11 +260,14 @@ block content
 									let lengthSlides = 0;
 								while lengthSlides < 10
 									.swiper-slide
-										img(src="img/albums/album.jpg", alt=`album${lengthSlides++}`)
-						.swiper-button-prev.swiper-button
-							+svg-use('slider-arrow-thin', '')
-						.swiper-button-next.swiper-button
-							+svg-use('slider-arrow-thin', '')
+										a(href="/album-inside.html").album-preview.album-preview_no-hover
+											picture.album-preview__image
+												img(data-src="img/albums/album.jpg" alt=`album${lengthSlides++}`).swiper-lazy
+												.swiper-lazy-preloader
+							.swiper-button-prev.swiper-button
+								+svg-use('slider-arrow-thin', '')
+							.swiper-button-next.swiper-button
+								+svg-use('slider-arrow-thin', '')
 					.tab__content#target1
 						.tab__shelf
 							img(src="./img/shelf.svg", alt="")
@@ -274,11 +277,14 @@ block content
 									let lengthSlides1 = 0;
 								while lengthSlides1 < 10
 									.swiper-slide
-										img(src="img/albums/album.jpg", alt=`album${lengthSlides1++}`)
-						.swiper-button-prev.swiper-button
-							+svg-use('slider-arrow-thin', '')
-						.swiper-button-next.swiper-button
-							+svg-use('slider-arrow-thin', '')
+										a(href="/album-inside.html").album-preview.album-preview_no-hover
+											picture.album-preview__image
+												img(data-src="img/albums/album.jpg" alt=`album${lengthSlides1++}`).swiper-lazy
+												.swiper-lazy-preloader
+							.swiper-button-prev.swiper-button
+								+svg-use('slider-arrow-thin', '')
+							.swiper-button-next.swiper-button
+								+svg-use('slider-arrow-thin', '')
 					.tab__content#target2
 						.tab__shelf
 							img(src="./img/shelf.svg", alt="")
@@ -288,11 +294,14 @@ block content
 									let lengthSlides2 = 0;
 								while lengthSlides2 < 10
 									.swiper-slide
-										img(src="img/albums/album.jpg", alt=`album${lengthSlides2++}`)
-						.swiper-button-prev.swiper-button
-							+svg-use('slider-arrow-thin', '')
-						.swiper-button-next.swiper-button
-							+svg-use('slider-arrow-thin', '')
+										a(href="/album-inside.html").album-preview.album-preview_no-hover
+											picture.album-preview__image
+												img(data-src="img/albums/album.jpg" alt=`album${lengthSlides2++}`).swiper-lazy
+												.swiper-lazy-preloader
+							.swiper-button-prev.swiper-button
+								+svg-use('slider-arrow-thin', '')
+							.swiper-button-next.swiper-button
+								+svg-use('slider-arrow-thin', '')
 
 		article.space-article.article-dirty.container
 			.swiper-container.js-main-card-slider

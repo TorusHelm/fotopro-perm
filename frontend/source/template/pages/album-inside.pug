@@ -1,0 +1,65 @@
+extends ../_template
+block variables
+	- var title = 'Варианты дизайна'
+
+block content
+	main
+		article.space-article.article-dirty.container
+			h1.title.space-page Варианты дизайна
+			button(onClick="window.history.back();").btn.btn_inline.space-page
+				+svg-use('def-arrow')
+				| Вернуться назад
+			.row
+				.col-12
+					.block-disign.block-disign_no-bg.pt-0
+						.container
+							.swiper-header.mb-3
+								.swiper-header__icon
+									img(src="./img/albums/album-icon.png", alt="")
+								h2.swiper-header__title Дизайн альбомов Эконом
+							.tab__container
+								.tab__shelf
+									img(src="./img/shelf.svg", alt="")
+								.swiper-container.js-swiper-container-statick
+									.swiper-wrapper
+										-
+											let lengthSlides0 = 0;
+										while lengthSlides0 < 6
+											.swiper-slide
+												a(href="/album-inside.html").album-preview(class=`${ lengthSlides0 == 2 ? 'is-active' : '' }`)
+													picture.album-preview__image
+														img(data-src="img/albums/album.jpg" alt=`album${lengthSlides0++}`).swiper-lazy
+														.swiper-lazy-preloader
+													h3.album-preview__text Название дизайна
+
+			.row
+				.col-12
+					.album
+						.album__slider.space-page
+							.swiper-container.js-swiper-album
+								.swiper-wrapper
+									-
+										let lengthSlides1 = 0;
+									while lengthSlides1 < 6
+										.swiper-slide
+											picture.album__image
+												img(data-src="img/albums/album-inside@2x.jpg" alt=`album${lengthSlides1++}`).swiper-lazy
+												.swiper-lazy-preloader
+							.swiper-button-prev.main-slider__btn
+								+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')
+							.swiper-button-next.main-slider__btn
+								+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')
+						.album__contents
+							.card-album.card-album_naked
+								h3.card-album__title.subtitle Название дизайна альбома
+								.card-album__price
+									p.caption Стоимость альбома
+									h4 1 234 ₽
+								.card-album__desc Значимость этих проблем настолько очевидна, что постоянное информационно-пропагандистское обеспечение нашей деятельности позволяет оценить значение системы обучения кадров, соответствует насущным потребностям.
+								ul.card-album__list
+									li.card-album__list-item твёрдый переплёт, фабричная нередактируемая обложка
+									li.card-album__list-item глянцевые листы, плотность 190гр
+									li.card-album__list-item от 10 стр.
+								.card-album__btn-set
+									button.btn.btn_warning Скачать PSD-шаблон
+									button.btn Создать в Онлайн-редакторе

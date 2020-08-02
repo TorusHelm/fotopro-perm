@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
   initAlbumsCardSlider();
   accordion();
   initAlbumsTypeSlider();
+  initSwiperStatick();
+  initAlbumSlider();
   tab(tabHandler);
 
   document.addEventListener('tabHandler', function() {
@@ -62,16 +64,63 @@ function initAlbumsCardSlider() {
   return mySwiper;
 }
 
+function initAlbumSlider() {
+  var mySwiper = new Swiper('.js-swiper-album', {
+    speed: 400,
+    slidesPerView: 1,
+    loop: false,
+    preloadImages: false,
+    spaceBetween: 12,
+    lazy: true,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+
+  return mySwiper;
+}
+
 function initSwiper() {
   var mySwiper = new Swiper('.js-swiper-container', {
     speed: 400,
     slidesPerView: 6,
     spaceBetween: 40,
-    loop: true,
+    loop: false,
+    preloadImages: false,
+    lazy: true, 
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
     },
+    breakpoints: {
+      459: {
+        slidesPerView: 1,
+      },
+      599: {
+        slidesPerView: 2,
+      },
+      767: {
+        slidesPerView: 3,
+      },
+      1199: {
+        slidesPerView: 4,
+      },
+    }
+  });
+
+  return mySwiper;
+}
+
+function initSwiperStatick() {
+  var mySwiper = new Swiper('.js-swiper-container-statick', {
+    speed: 400,
+    slidesPerView: 6,
+    spaceBetween: 40,
+    loop: false,
+    preloadImages: false,
+    lazy: true,
+    followFinger: false,
     breakpoints: {
       459: {
         slidesPerView: 1,
@@ -115,10 +164,20 @@ function initAlbumsTypeSlider() {
   var mySwiper = new Swiper('.js-type-albums-swiper', {
     speed: 400,
     slidesPerView: 'auto',
+    slidesOffsetAfter: 100,
     spaceBetween: 24,
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
+    },
+    on: {
+      slideChange: function () {
+        if ( this.activeIndex > 0 ) {
+          this.el.classList.add('not-on-start');
+        } else {
+          this.el.classList.remove('not-on-start');
+        }
+      },
     },
   });
 

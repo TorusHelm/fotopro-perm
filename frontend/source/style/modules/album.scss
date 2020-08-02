@@ -1,0 +1,37 @@
+.album {
+    &__slider {
+        position: relative;
+    }
+
+    &__image {
+        height: 738px;
+        display: block;
+        border-radius: 16px;
+        overflow: hidden;
+
+        @include respondTo(max-lg) {
+            height: 540px;
+        }
+
+        @include respondTo(max-md) {
+            height: 400px;
+        }
+
+        @include respondTo(max-sm) {
+            height: 300px;
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+
+    .main-slider__btn {
+        @include respondTo(max-md) {
+            display: flex;
+        }
+    }
+}

@@ -1,0 +1,28 @@
+.btn {
+    &_inline {
+        padding: 0;
+        background-color: transparent;
+        font-size: 16px;
+        line-height: 18px;
+        color: $link;
+        border: none;
+        display: inline-flex;
+        align-items: center;
+
+        &:hover {
+            background-color: transparent;
+        }
+
+        &:focus {
+            box-shadow: none;
+            outline: initial;
+        }
+
+        svg {
+            width: 16px;
+            height: 16px;
+            display: block;
+            margin-right: 8px;
+        }
+    }
+}

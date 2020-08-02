@@ -60,11 +60,16 @@ block content
 							h4.tab-list__title Выпускные классы, ВУЗ
 						.js-tab-underline.tab-list__underline
 				.col-12
-					.tab-list.mb-0.swiper-container.js-type-albums-swiper
+					.tab-list.tab-list_checkmars.mb-0.swiper-container.js-type-albums-swiper
 						.swiper-wrapper
 							each item in typeAlbums
 								.tab-list__item.swiper-slide
 									+checkmark(item)
+						.swiper-button-set
+							.swiper-button-prev.swiper-button
+								+svg-use('slider-arrow-thin', '')
+							.swiper-button-next.swiper-button
+								+svg-use('slider-arrow-thin', '')
 
 		article
 			.tab__content.is-active#target0
@@ -83,11 +88,16 @@ block content
 										let lengthSlides0 = 0;
 									while lengthSlides0 < 10
 										.swiper-slide
-											img(src="img/albums/album.jpg", alt=`album${lengthSlides0++}`)
-							.swiper-button-prev.swiper-button
-								+svg-use('slider-arrow-thin', '')
-							.swiper-button-next.swiper-button
-								+svg-use('slider-arrow-thin', '')
+											a(href="/album-inside.html").album-preview
+												picture.album-preview__image
+													img(data-src="img/albums/album.jpg" alt=`album${lengthSlides0++}`).swiper-lazy
+													.swiper-lazy-preloader
+												h3.album-preview__text Название дизайна
+								.swiper-button-set
+									.swiper-button-prev.swiper-button
+										+svg-use('slider-arrow-thin', '')
+									.swiper-button-next.swiper-button
+										+svg-use('slider-arrow-thin', '')
 				.block-disign
 					.container
 						.swiper-header
@@ -103,11 +113,16 @@ block content
 										let lengthSlides01 = 0;
 									while lengthSlides01 < 10
 										.swiper-slide
-											img(src="img/albums/album.jpg", alt=`album${lengthSlides01++}`)
-							.swiper-button-prev.swiper-button
-								+svg-use('slider-arrow-thin', '')
-							.swiper-button-next.swiper-button
-								+svg-use('slider-arrow-thin', '')
+											a(href="/album-inside.html").album-preview
+												picture.album-preview__image
+													img(data-src="img/albums/album.jpg" alt=`album${lengthSlides01++}`).swiper-lazy
+													.swiper-lazy-preloader
+												h3.album-preview__text Название дизайна
+								.swiper-button-set
+									.swiper-button-prev.swiper-button
+										+svg-use('slider-arrow-thin', '')
+									.swiper-button-next.swiper-button
+										+svg-use('slider-arrow-thin', '')
 				.block-disign
 					.container
 						.swiper-header
@@ -123,11 +138,16 @@ block content
 										let lengthSlides02 = 0;
 									while lengthSlides02 < 10
 										.swiper-slide
-											img(src="img/albums/album.jpg", alt=`album${lengthSlides02++}`)
-							.swiper-button-prev.swiper-button
-								+svg-use('slider-arrow-thin', '')
-							.swiper-button-next.swiper-button
-								+svg-use('slider-arrow-thin', '')
+											a(href="/album-inside.html").album-preview
+												picture.album-preview__image
+													img(data-src="img/albums/album.jpg" alt=`album${lengthSlides02++}`).swiper-lazy
+													.swiper-lazy-preloader
+												h3.album-preview__text Название дизайна
+								.swiper-button-set
+									.swiper-button-prev.swiper-button
+										+svg-use('slider-arrow-thin', '')
+									.swiper-button-next.swiper-button
+										+svg-use('slider-arrow-thin', '')
 
 			.tab__content#target1
 				.block-disign
@@ -145,11 +165,16 @@ block content
 										let lengthSlides1 = 0;
 									while lengthSlides1 < 10
 										.swiper-slide
-											img(src="img/albums/album.jpg", alt=`album${lengthSlides1++}`)
-							.swiper-button-prev.swiper-button
-								+svg-use('slider-arrow-thin', '')
-							.swiper-button-next.swiper-button
-								+svg-use('slider-arrow-thin', '')
+											a(href="/album-inside.html").album-preview
+												picture.album-preview__image
+													img(data-src="img/albums/album.jpg" alt=`album${lengthSlides1++}`).swiper-lazy
+													.swiper-lazy-preloader
+												h3.album-preview__text Название дизайна
+								.swiper-button-set
+									.swiper-button-prev.swiper-button
+										+svg-use('slider-arrow-thin', '')
+									.swiper-button-next.swiper-button
+										+svg-use('slider-arrow-thin', '')
 				.block-disign
 					.container
 						.swiper-header
@@ -165,11 +190,16 @@ block content
 										let lengthSlides11 = 0;
 									while lengthSlides11 < 10
 										.swiper-slide
-											img(src="img/albums/album.jpg", alt=`album${lengthSlides11++}`)
-							.swiper-button-prev.swiper-button
-								+svg-use('slider-arrow-thin', '')
-							.swiper-button-next.swiper-button
-								+svg-use('slider-arrow-thin', '')
+											a(href="/album-inside.html").album-preview
+												picture.album-preview__image
+													img(data-src="img/albums/album.jpg" alt=`album${lengthSlides11++}`).swiper-lazy
+													.swiper-lazy-preloader
+												h3.album-preview__text Название дизайна
+								.swiper-button-set
+									.swiper-button-prev.swiper-button
+										+svg-use('slider-arrow-thin', '')
+									.swiper-button-next.swiper-button
+										+svg-use('slider-arrow-thin', '')
 
 			.tab__content#target2
 				.block-disign
@@ -187,8 +217,13 @@ block content
 										let lengthSlides12 = 0;
 									while lengthSlides12 < 10
 										.swiper-slide
-											img(src="img/albums/album.jpg", alt=`album${lengthSlides12++}`)
-							.swiper-button-prev.swiper-button
-								+svg-use('slider-arrow-thin', '')
-							.swiper-button-next.swiper-button
-								+svg-use('slider-arrow-thin', '')
+											a(href="/album-inside.html").album-preview
+												picture.album-preview__image
+													img(data-src="img/albums/album.jpg" alt=`album${lengthSlides12++}`).swiper-lazy
+													.swiper-lazy-preloader
+												h3.album-preview__text Название дизайна
+								.swiper-button-set
+									.swiper-button-prev.swiper-button
+										+svg-use('slider-arrow-thin', '')
+									.swiper-button-next.swiper-button
+										+svg-use('slider-arrow-thin', '')

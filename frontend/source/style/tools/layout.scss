@@ -17,6 +17,10 @@
     background: linear-gradient($clean, $dirty);
     padding: 64px 0;
 
+    &_no-bg {
+        background: transparent;
+    }
+
     .container {
         position: relative;
     }
