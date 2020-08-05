@@ -2,18 +2,171 @@ extends ../_template
 block variables
 	- var title = 'Расчитать стоимость'
 
+
 block content
+	include ../components/input/input
+
+	-
+		let inputData = {
+			caption: '',
+			type: 'number',
+			value: '31',
+			postfix: 'чел.'
+		};
+
+		let inputDataFooter = {
+			caption: 'Укажите количество',
+			type: 'number',
+			value: '31',
+		};
+
+		let inputAside1 = {
+			caption: 'Представьтесь, пожалуйста',
+			type: 'text',
+			value: 'Иванов Иван',
+		};
+
+		let inputAside2 = {
+			caption: 'Ваш E-mail',
+			type: 'email',
+			value: 'Ivanov@ma|',
+		};
+
+		let inputAside3 = {
+			caption: 'Номер телефона',
+			type: 'number',
+			value: 'Телефон',
+		};
+
+		let types = [
+			{
+				img: 'img/types-img.png',
+				title: 'Эконом'
+			},
+			{
+				img: 'img/types-img.png',
+				title: 'Стандарт'
+			},
+			{
+				img: 'img/types-img.png',
+				title: 'Стандарт-<br>Flatbook'
+			},
+			{
+				img: 'img/types-img.png',
+				title: 'Премиум'
+			},
+			{
+				img: 'img/types-img.png',
+				title: 'Премиум-<br>Flatbook'
+			},
+			{
+				img: 'img/types-img.png',
+				title: 'На пружине'
+			},
+			{
+				img: 'img/types-img.png',
+				title: 'Эконом'
+			},
+			{
+				img: 'img/types-img.png',
+				title: 'Стандарт'
+			},
+			{
+				img: 'img/types-img.png',
+				title: 'Стандарт-<br>Flatbook'
+			},
+		];
+
 	main
 		article.space-article.article-dirty.container
 			h1.title.space-page Варианты дизайна
-			.row.calculate
+			.row
 				.col-xl-8
-					.calculate-header
-						.calculate-header__title
-						.calculate-types
-							.calculate-types__item
-				.col-xl-4
-					.calculate-content
-						.calculate__row
-							.calculate-slider
-								input(type="range" min="1" max="50" value="31").range
+					.calculate
+						.calculate__header.calculate-header
+							.calculate__title Выберите вид альбома
+							.calculate-types
+								each item, index in types
+									.calculate-types__item(class=`${index == 3 ? 'is-active' : ''}`)
+										.calculate-types__image
+											img(src=item.img, alt=item.title)
+											.calculate-types__icon
+												+svg-use('checked')
+										.calculate-types__title!= item.title
+						.calculate__content.calculate-content
+							.calculate__title Выберите параметры альбомов
+							.calculate__row
+								.calculate__row-header
+									.calculate__subtitle Количество выпускников в альбоме
+									.calculate__input
+										+input(inputData)
+								.calculate__slider
+									.range.js-range(data-step="1" data-min="10" data-max="50" data-pips="5")
+							.calculate__row
+								.calculate__row-header
+									.calculate__subtitle Количество выпускников в альбоме
+								.calculate__slider
+									.range.js-range(data-step="1" data-min="1" data-max="6" data-pips="3")
+							.calculate__row
+								.calculate__row-header
+									.calculate__subtitle Количество выпускников в альбоме
+								.calculate__slider
+									.range.js-range(data-step="1" data-min="1" data-max="10" data-pips="4")
+							.calculate__row.calculate-footer
+								.calculate-footer__left-side
+									.calculate-footer__subtitle.calculate__subtitle Количество альбомов
+									.calculate-footer__input
+										+input(inputDataFooter)
+								.calculate-footer__right-side
+									.calculate-alert
+										.calculate-alert__icon
+											+svg-use('persantage')
+										.calculate-alert__content
+											.calculate-alert__title Внимание! Действуют скидки на альбомы!
+											.calculate-alert__desc Процент вашей скидки <strong>равен количеству альбомов</strong> в заказе, максимальная скидка 20%
+				.col-xl-4.mt-5.mt-xl-0
+					.calculate-aside
+						.calculate-aside__header
+							.calculate-aside__title Ваш альбом
+							.calculate-aside__list.calculate-aside-list
+								.calculate-aside-list__item
+									span Вид альбома: 
+									| планшет
+								.calculate-aside-list__item
+									span Количество страниц: 
+									| 24
+								.calculate-aside-list__item
+									span Количество альбомов: 
+									| 31
+							.calculate-aside__pricer.calculate-aside-pricer
+								.calculate-aside-pricer__item
+									.calculate-aside-pricer__title Цена за альбом: 
+									.calculate-aside-pricer__price
+										span 1200 ₽
+										| 800 ₽
+								.calculate-aside-pricer__item
+									.calculate-aside-pricer__title Скидка: 
+									.calculate-aside-pricer__price
+										| 20%
+								.calculate-aside-pricer__item
+									.calculate-aside-pricer__title Итоговая стоимость альбомов: 
+									.calculate-aside-pricer__price
+										| 24 800 ₽
+						.calculate-aside__content
+							.calculate-aside__title Оформить заказ
+							.calculate-aside__alert.calculate-aside-alert
+								.calculate-aside-alert__icon
+									+svg-use('alert')
+								.calculate-aside-alert__text Для оформления заказа, необходимо создать макеты альбома.
+							.calculate-aside__desc Воспользуйтесь <a href="#">онлайн-редактором</a> с готовыми макетами или загрузите свои макеты альбома <br><a href="#">Скачать PSD-шаблоны альбомов</a>
+							.calculate-aside__file
+								.calculate-aside-file
+							.calculate-aside__addings
+								.calculate-aside__input
+									+input(inputAside1)
+								.calculate-aside__input
+									+input(inputAside2)
+								.calculate-aside__input
+									+input(inputAside3)
+								.calculate-aside__btn
+									.btn.btn_full.btn_warning Оформить заказ

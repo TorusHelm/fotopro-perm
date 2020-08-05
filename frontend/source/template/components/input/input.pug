@@ -4,7 +4,7 @@ mixin input(incomeData)
             caption: 'Caption',
             type: 'text',
             value: '20',
-            postfix: false,
+            postfix: 'шт.',
             placeholder: '',
             name: '',
             require: false
@@ -23,4 +23,4 @@ mixin input(incomeData)
         p.caption!= data.caption
         input(type=data.type value=data.value placeholder=data.placeholder name=data.name require=data.require)
         if ( data.postfix )
-            span шт.
+            span!= data.postfix

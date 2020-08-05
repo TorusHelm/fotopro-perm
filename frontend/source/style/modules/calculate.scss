@@ -1,0 +1,385 @@
+.calculate {
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: $clean;
+
+    &__header {
+        padding: 32px 24px 8px 32px;
+        border-bottom: 1px solid $border-case3;
+
+        @include respondTo(max-md) {
+            padding: 24px 16px 8px;
+        }
+    }
+
+    &__content {
+        padding: 40px 32px;
+
+        @include respondTo(max-md) {
+            padding: 24px 16px;
+        }
+    }
+
+    &__title {
+        font-size: 32px;
+        line-height: 48px;
+        margin-bottom: 40px;
+
+        @include respondTo(max-md) {
+            font-size: 24px;
+            line-height: 32px;
+            margin-bottom: 32px;
+        }
+    }
+
+    &__subtitle {
+        font-size: 16px;
+        line-height: 19px;
+        flex: 0 1 auto;
+        font-weight: 500;
+    }
+
+    &__input {
+        flex: 0 0 auto;
+        width: 96px;
+
+        @include respondTo(max-md) {
+            margin-top: 16px;
+        }
+    }
+
+    &__row-header {
+        margin-bottom: 46px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        @include respondTo(max-md) {
+            flex-wrap: wrap;
+        }
+    }
+
+    &__row {
+        margin-bottom: 40px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__slider {
+        padding-bottom: 24px;
+    }
+}
+
+.calculate-types {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -16px;
+
+    &__item {
+        padding: 0 16px;
+        position: relative;
+        margin-bottom: 32px;
+
+        @include respondTo(max-md) {
+            margin-bottom: 16px;
+        }
+    }
+
+    &__image {
+        height: 93px;
+        width: 93px;
+        border-radius: 16px;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $coral;
+        border: 2px solid $coral;
+        overflow: hidden;
+
+        @at-root .calculate-types__item.is-active & {
+            border-color: $warning;
+        }
+
+        img {
+            display: block;
+            flex: 0 0 auto;
+        }
+    }
+
+    &__icon {
+        position: absolute;
+        top: -8px;
+        right: 8px;
+        height: 24px;
+        width: 24px;
+        border-radius: 50%;
+        background-color: $warning;
+        color: $clean;
+        display: none;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            display: block;
+            flex: 0 0 auto;
+            width: 14.121px;
+            height: 11.182px;
+        }
+
+        @at-root .calculate-types__item.is-active & {
+            display: flex;
+        }
+    }
+
+    &__title {
+        font-size: 14px;
+        line-height: 18px;
+        font-weight: 600;
+
+        @at-root .calculate-types__item.is-active & {
+            color: $warning;
+        }
+    }
+}
+
+.calculate-alert {
+    display: flex;
+
+    @include respondTo(max-md) {
+        flex-direction: column;
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 16px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        flex: 0 0 auto;
+        background-color: $link;
+
+        @include respondTo(max-md) {
+            margin-bottom: 24px;
+        }
+
+        svg {
+            width: 14.121px;
+            height: 11.182px;
+            display: block;
+            flex: 0 0 auto;
+        }
+    }
+
+    &__content {
+        flex: 0 1 auto;
+
+        @include respondTo(max-md) {
+            flex: 0 0 auto;
+        }
+    }
+
+    &__title {
+        margin-bottom: 16px;
+        font-size: 16px;
+        line-height: 19px;
+        color: $link;
+        font-weight: 500;
+    }
+
+    &__desc {
+        font-size: 12px;
+        line-height: 16px;
+        margin-bottom: 0;
+    }
+}
+
+.calculate-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    &__left-side {
+        flex: 0 0 190px;
+
+        @include respondTo(max-md) {
+            flex: 0 0 100%;
+        }
+    }
+
+    &__right-side {
+        flex: 0 0 449px;
+
+        @include respondTo(max-md) {
+            flex: 0 0 100%;
+            margin-top: 32px;
+        }
+    }
+
+    &__subtitle {
+        margin-bottom: 16px;
+    }
+
+    &__input {
+        width: 100%;
+        padding-right: 6px;
+    }
+}
+
+.calculate-aside {
+    background-color: $clean;
+    border-radius: 16px;
+
+    &__header {
+        padding: 32px;
+        border-bottom: 1px solid $border-case3;
+
+        @include respondTo(max-md) {
+            padding: 24px 16px;
+        }
+    }
+
+    &__content {
+        padding: 32px;
+
+        @include respondTo(max-md) {
+            padding: 24px 16px;
+        }
+    }
+
+    &__title {
+        font-size: 24px;
+        line-height: 29px;
+        font-weight: 600;
+        margin-bottom: 32px;
+    }
+
+    &__list {
+        margin-bottom: 32px;
+    }
+
+    &__desc {
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 500;
+        margin-bottom: 16px;
+
+        a {
+            text-decoration: underline;
+            color: $link;
+        }
+    }
+
+    &__adding {
+        margin-top: 32px;
+    }
+
+    &__input {
+        margin-bottom: 24px;
+
+        &:last-of-type {
+            margin-bottom: 32px;
+        }
+    }
+
+    &__alert {
+        margin-bottom: 32px;
+    }
+}
+
+.calculate-aside-pricer {
+    background-color: rgba($warning-hover, .2);
+    border-radius: 8px;
+    padding: 16px;
+
+    &__item {
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__title {
+        font-size: 12px;
+        line-height: 19px;
+        font-weight: 500;
+        flex: 0 1 auto;
+    }
+
+    &__price {
+        color: $warning;
+        font-size: 16px;
+        line-height: 19px;
+        font-weight: 600;
+        flex: 0 1 auto;
+        text-align: right;
+        display: flex;
+        align-items: center;
+
+        span {
+            color: $dark;
+            font-size: 12px;
+            line-height: 19px;
+            margin-right: 8px;
+            text-decoration: line-through;
+            flex: 0 0 auto;
+        }
+    }
+}
+
+.calculate-aside-alert {
+    display: flex;
+
+    &__icon {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        background-color: $subtitle;
+        margin-right: 16px;
+
+        svg {
+            display: block;
+            flex: 0 0 auto;
+            width: 14.121px;
+            height: 11.182px;
+        }
+    }
+
+    &__text {
+        flex: 0 1 auto;
+        color: $subtitle;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 500;
+    }
+}
+
+.calculate-aside-list {
+    &__item {
+        font-size: 16px;
+        line-height: 19px;
+        font-weight: 600;
+        margin-bottom: 16px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        span {
+            font-weight: 400;
+            color: $subtitle;
+        }
+    }
+}

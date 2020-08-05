@@ -26,7 +26,7 @@ block content
 											let lengthSlides0 = 0;
 										while lengthSlides0 < 6
 											.swiper-slide
-												a(href="/album-inside.html").album-preview(class=`${ lengthSlides0 == 2 ? 'is-active' : '' }`)
+												a(href="/album-inside.html" class=`${ lengthSlides0 == 2 ? 'is-active' : '' }`).album-preview
 													picture.album-preview__image
 														img(data-src="img/albums/album.jpg" alt=`album${lengthSlides0++}`).swiper-lazy
 														.swiper-lazy-preloader

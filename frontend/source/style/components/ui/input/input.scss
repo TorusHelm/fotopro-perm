@@ -13,6 +13,7 @@
         transition: border-color .3s ease;
         width: 100%;
         font: inherit;
+        background-color: transparent;
 
         &::placeholder {
             color: $subtitle;

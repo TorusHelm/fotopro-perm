@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initSwiperStatick();
   initAlbumSlider();
   tab(tabHandler);
+  initRange();
 
   document.addEventListener('tabHandler', function() {
     if ( !swipers.length ) {
@@ -29,6 +30,47 @@ document.addEventListener('DOMContentLoaded', function() {
     initMainCardsSlider();
   }
 });
+
+function initRange() {
+  var sliders = document.querySelectorAll('.js-range');
+
+  if ( sliders.length ) {
+    for (const slider of sliders) {
+      let sliderStep = Number(slider.dataset.step);
+      let sliderMin = Number(slider.dataset.min);
+      let sliderMax = Number(slider.dataset.max);
+      let sliderPips = Number(slider.dataset.pips);
+
+      noUiSlider.create(slider, {
+        start: [0],
+        step: sliderStep,
+        range: {
+          'min': sliderMin,
+          'max': sliderMax
+        },
+        connect: 'lower',
+        tooltips: true,
+        format: wNumb({
+          decimals: 3,
+          thousand: '.',
+        }),
+        pips: {
+          mode: 'count',
+          values: sliderPips,
+          stepped: false
+        }
+      });
+
+      let miniMarkers = slider.querySelectorAll('.noUi-marker-horizontal.noUi-marker');
+
+      if ( miniMarkers.length ) {
+        for ( const miniMarker of miniMarkers ) {
+          miniMarker.remove();
+        }
+      }
+    }
+  }
+}
 
 function initHeaderToggler() {
   let toggler = document.querySelector('.js-header-toggler');
