@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initAlbumSlider();
   tab(tabHandler);
   initRange();
+  initDragNDrop();
 
   document.addEventListener('tabHandler', function() {
     if ( !swipers.length ) {
@@ -30,6 +31,107 @@ document.addEventListener('DOMContentLoaded', function() {
     initMainCardsSlider();
   }
 });
+
+function initDragNDrop() {
+  let container = document.querySelector('.js-calculate-file');
+  let dropArea = document.querySelector('.js-calculate-file-droparea');
+  let fileElem = document.querySelector('.js-calculate-file-input');
+  let addings = document.querySelector('.js-calculate-file-addings');
+  let fileName = document.querySelector('.js-calculate-file-name');
+  let remover = document.querySelector('.js-calculate-file-remover');
+
+  if ( !container && !dropArea && !fileElem && !addings && !fileName && !remover ) {
+    return;
+  }
+
+  function preventDefaults (e) {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  function highlight() {
+    container.classList.add('highlight');
+  };
+
+  function unhighlight() {
+    container.classList.remove('highlight');
+  };
+
+  function handleFiles(files) {
+    addings.classList.add('is-show');
+    container.classList.add('has-result');
+    fileName.textContent = files[0].name;
+  };
+
+  function handleRemoveFiles() {
+    addings.classList.remove('is-show');
+    container.classList.remove('has-result');
+    fileName.textContent = '';
+    fileElem.value = '';
+  };
+
+  function handleDrop(e) {
+    let dt = e.dataTransfer;
+    let files = dt.files;
+
+    if ( Validate(this) ) {
+      handleFiles(files);
+    }
+  };
+
+  fileElem.addEventListener('change', function() {
+    if ( Validate(this) ) {
+      handleFiles(this.files);
+    }
+  });
+
+  remover.addEventListener('click', function() {
+    handleRemoveFiles();
+  });
+
+  ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+    dropArea.addEventListener(eventName, preventDefaults, false);
+  });
+
+  ['dragenter', 'dragover'].forEach(eventName => {
+    dropArea.addEventListener(eventName, highlight, false);
+  });
+  
+  ['dragleave', 'drop'].forEach(eventName => {
+    dropArea.addEventListener(eventName, unhighlight, false);
+  });
+
+  dropArea.addEventListener('drop', handleDrop, false);
+
+  var _validFileExtensions = ['.zip', '.rar'];
+
+  function Validate(input) {
+    var sFileName = input.value;
+
+    if (sFileName.length > 0) {
+      var blnValid = false;
+      for (var j = 0; j < _validFileExtensions.length; j++) {
+        var sCurExtension = _validFileExtensions[j];
+        if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+          blnValid = true;
+          break;
+        }
+      }
+
+      if (!blnValid) {
+        container.classList.add('has-error');
+
+        setTimeout(function() {
+          container.classList.remove('has-error');
+        }, 2000)
+
+        return false;
+      }
+    }
+
+    return true;
+  }
+}
 
 function initRange() {
   var sliders = document.querySelectorAll('.js-range');

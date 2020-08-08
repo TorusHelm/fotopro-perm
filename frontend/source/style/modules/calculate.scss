@@ -73,6 +73,8 @@
 }
 
 .calculate-types {
+    $root: #{&};
+
     display: flex;
     flex-wrap: wrap;
     margin: 0 -16px;
@@ -87,6 +89,20 @@
         }
     }
 
+    &__wrapper {
+        cursor: pointer;
+
+        &:hover {
+            #{$root}__image {
+                border-color: $warning;
+            }
+
+            #{$root}__title {
+                color: $warning;
+            }
+        }
+    }
+
     &__image {
         height: 93px;
         width: 93px;
@@ -98,8 +114,9 @@
         background-color: $coral;
         border: 2px solid $coral;
         overflow: hidden;
+        transition: border-color .3s ease;
 
-        @at-root .calculate-types__item.is-active & {
+        @at-root .calculate-types__wrapper.is-active & {
             border-color: $warning;
         }
 
@@ -129,7 +146,7 @@
             height: 11.182px;
         }
 
-        @at-root .calculate-types__item.is-active & {
+        @at-root .calculate-types__wrapper.is-active & {
             display: flex;
         }
     }
@@ -138,8 +155,9 @@
         font-size: 14px;
         line-height: 18px;
         font-weight: 600;
+        transition: color .3s ease;
 
-        @at-root .calculate-types__item.is-active & {
+        @at-root .calculate-types__wrapper.is-active & {
             color: $warning;
         }
     }
@@ -274,8 +292,13 @@
         }
     }
 
-    &__adding {
+    &__addings {
         margin-top: 32px;
+        display: none;
+
+        &.is-show {
+            display: block;
+        }
     }
 
     &__input {
@@ -380,6 +403,114 @@
         span {
             font-weight: 400;
             color: $subtitle;
+        }
+    }
+}
+
+.calculate-aside-file {
+    $root: #{&};
+
+    font-family: sans-serif;
+    padding: 19px 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    &.highlight {
+        #{$root}__label {
+            border-color: $warning;
+        }
+    }
+
+    &.has-error {
+        #{$root}__label {
+            border-color: $danger;
+        }
+
+        #{$root}__title {
+            color: $danger;
+        }
+    }
+
+    &.has-result {
+        justify-content: flex-start;
+        padding: 16px 8px 16px 16px;
+        background-color: $border;
+        border-radius: 8px;
+    }
+
+    &__title {
+        font-size: 16px;
+        line-height: 19px;
+        color: $warning;
+        margin-bottom: 0;
+        text-align: center;
+
+        span {
+            display: block;
+            margin-top: 8px;
+            font-size: 12px;
+            line-height: 15px;
+            color: $subtitle;
+        }
+    }
+
+    &__label {
+        display: block;
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 2;
+        border: 2px dashed $secondary-case3;
+        transition: border-color .3s ease;
+        border-radius: 8px;
+
+        &:hover {
+            border-color: $warning;
+        }
+    }
+
+    &__input {
+        display: none;
+    }
+
+    &__file-row {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__name {
+        flex: 0 1 auto;
+    }
+
+    &__close {
+        flex: 0 0 auto;
+        cursor: pointer;
+
+        svg {
+            display: block;
+            width: 10.414px;
+            height: 10.414px;
+        }
+    }
+
+    &__drop-area {
+        display: block;
+
+        @at-root .calculate-aside-file.has-result & {
+            display: none;
+        }
+    }
+
+    &__result {
+        display: none;
+        width: 100%;
+
+        @at-root .calculate-aside-file.has-result & {
+            display: block;
         }
     }
 }

@@ -87,12 +87,13 @@ block content
 							.calculate__title Выберите вид альбома
 							.calculate-types
 								each item, index in types
-									.calculate-types__item(class=`${index == 3 ? 'is-active' : ''}`)
-										.calculate-types__image
-											img(src=item.img, alt=item.title)
-											.calculate-types__icon
-												+svg-use('checked')
-										.calculate-types__title!= item.title
+									.calculate-types__item
+										.calculate-types__wrapper(class=`${index == 3 ? 'is-active' : ''}`)
+											.calculate-types__image
+												img(src=item.img, alt=item.title)
+												.calculate-types__icon
+													+svg-use('checked')
+											.calculate-types__title!= item.title
 						.calculate__content.calculate-content
 							.calculate__title Выберите параметры альбомов
 							.calculate__row
@@ -159,9 +160,21 @@ block content
 									+svg-use('alert')
 								.calculate-aside-alert__text Для оформления заказа, необходимо создать макеты альбома.
 							.calculate-aside__desc Воспользуйтесь <a href="#">онлайн-редактором</a> с готовыми макетами или загрузите свои макеты альбома <br><a href="#">Скачать PSD-шаблоны альбомов</a>
-							.calculate-aside__file
-								.calculate-aside-file
-							.calculate-aside__addings
+							.calculate-aside__file.calculate-aside-file.js-calculate-file
+								.calculate-aside-file__drop-area.js-calculate-file-droparea
+									p.calculate-aside-file__title Прикрепить файлы
+										span Один архив: zip, rar
+									label.calculate-aside-file__label
+										input.calculate-aside-file__input.js-calculate-file-input(type="file" accept=".zip,.rar")
+
+								.calculate-aside-file__result
+									.caption Прикрепленные файлы:
+									.calculate-aside-file__file-row
+										.calculate-aside-file__name.js-calculate-file-name
+										.calculate-aside-file__close.js-calculate-file-remover
+											+svg-use('close')
+
+							.calculate-aside__addings.js-calculate-file-addings
 								.calculate-aside__input
 									+input(inputAside1)
 								.calculate-aside__input
