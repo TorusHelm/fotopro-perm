@@ -5,18 +5,73 @@
             href: '/'
         },
         {
-            title: 'О компании',
+            title: 'Виды альбомов',
+            href: '/albums.html'
+        },
+        {
+            title: 'Варианты дизайна',
+            href: '/disigns.html'
+        },
+        {
+            title: 'Онлайн-редактор',
             href: '#'
         },
         {
-            title: 'Услуги',
-            href: '#'
+            title: 'Вопросы и ответы',
+            href: '/questions.html'
+        },
+        {
+            title: 'Контакты',
+            href: '/contacts.html'
+        },
+    ]
+
+    let addressMenu = [
+        {
+            title: 'Написать нам',
+            href: '#',
+        },
+        {
+            title: 'Политика конфиденциальности',
+            href: '#',
+        },
+        {
+            title: 'Пользовательское соглашение',
+            href: '#',
+        },
+        {
+            title: 'Оплата и доставка',
+            href: '#',
+        },
+        {
+            title: 'Возврат',
+            href: '#',
         },
     ]
 
 footer.footer
-    .footer__menu
-        ul.footer-menu
-            each item in footerMenu
-                li.footer-menu__item
-                    a(href=item.href)!= item.title
+    .footer__header.container
+        .row
+            .col-xl-8
+                .row.footer-menu
+                    each item in footerMenu
+                        .col-sm-6.col-md-4.col-xl-3.footer-menu__item
+                            a(href=item.href)!= item.title
+            .col-xl-4.mt-3.mt-xl-0
+                .row.footer-contacts
+                    .col-sm-6.col-md-4.col-xl-6.footer-contacts__item
+                        .caption Звоните нам:
+                        a.footer-contacts__phone(href="tel:+73422032300") +7 (342) 203 23 00
+                    .col-sm-6.col-md-4.col-xl-6.footer-contacts__item.px-xl-0
+                        .caption Приходите к нам:
+                        p.footer-contacts__address г. Пермь, ул. Крупской, 75
+    .footer__address
+        .footer-address.container
+            .footer-address__set
+                .footer-address__item
+                    .footer-address__copyr © 2017, ООО «Фото ПРО»
+                each item in addressMenu
+                    .footer-address__item
+                        a(href=item.href).footer-address__link!= item.title
+            a(href="#").footer-address__logo
+                +svg-use('visa')

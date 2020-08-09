@@ -1,0 +1,171 @@
+.footer {
+    &__header {
+        padding-top: 32px;
+        padding-bottom: 32px;
+
+        @include respondTo(max-md) {
+            padding-top: 21px;
+            padding-bottom: 21px;
+        }
+    }
+
+    &__address {
+        background-color: $dirty;
+        padding: 21px 0;
+    }
+}
+
+.footer-menu {
+    color: $secondary;
+    font-size: 14px;
+    line-height: 1;
+
+    a {
+        text-decoration: none;
+        color: inherit;
+        transition: color .3s ease;
+
+        &:hover {
+            color: $link;
+        }
+    }
+
+    &__item {
+        margin-top: 16px;
+
+        @include respondTo(md) {
+            &:nth-child(-n+3) {
+                margin-top: 0;
+            }
+        }
+
+        @include respondTo(xl) {
+            &:nth-child(-n+4) {
+                margin-top: 0;
+            }
+        }
+    }
+}
+
+.footer-contacts {
+    &__phone {
+        font-size: 16px;
+        line-height: 28px;
+        font-weight: bold;
+        color: $dark-case2;
+        text-decoration: none;
+        transition: color .3s ease;
+
+        &:hover {
+            color: $link;
+        }
+    }
+
+    &__address {
+        font-size: 14px;
+        line-height: 28px;
+        color: $secondary;
+        font-weight: bold;
+    }
+
+    &__item {
+        @include respondTo(max-sm) {
+            margin-top: 12px;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+    }
+}
+
+.footer-address {
+    display: flex;
+    flex-wrap: wrap;
+
+    &__set {
+        display: flex;
+        align-items: center;
+        margin: 0 -16px;
+        flex: 0 1 auto;
+
+        @include respondTo(max-xl) {
+            flex-wrap: wrap;
+            margin: 0 -12px;
+            align-items: flex-start;
+        }
+    }
+
+    &__item {
+        flex: 0 0 auto;
+        padding: 0 16px;
+
+        @include respondTo(max-xl) {
+            flex: 0 0 33.33333%;
+            max-width: 33.33333%;
+            padding: 0 12px;
+
+            &:not(:nth-child(-n+3)) {
+                margin-top: 16px;
+            }
+        }
+
+        @include respondTo(max-md) {
+            flex: 0 0 50%;
+            max-width: 50%;
+
+            &:not(:nth-child(-n+2)) {
+                margin-top: 16px;
+            }
+        }
+
+        @include respondTo(max-sm) {
+            flex: 0 0 100%;
+            max-width: 100%;
+
+            &:not(:nth-child(-n+2)) {
+                margin-top: 12px;
+            }
+        }
+    }
+
+    &__logo {
+        color: $subtitle;
+        transition: color .3s ease;
+        flex: 0 0 auto;
+        margin-left: auto;
+
+        @include respondTo(max-xl) {
+            margin-left: 0;
+            margin-top: 24px;
+        }
+
+        &:hover {
+            color: $link;
+        }
+
+        svg {
+            width: 51.128px;
+            height: 16px;
+        }
+    }
+
+    &__copyr {
+        font-size: 14px;
+        line-height: 18px;
+        font-weight: 500;
+        color: $secondary-case3;
+    }
+
+    &__link {
+        font-size: 14px;
+        line-height: 18px;
+        color: $subtitle;
+        text-decoration: underline;
+        transition: color .3s ease;
+
+        &:hover {
+            color: $link;
+        }
+    }
+}
