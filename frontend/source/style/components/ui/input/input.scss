@@ -23,6 +23,10 @@
             border-color: $warning;
             outline: none;
         }
+
+        &.has-error {
+            border-color: $danger;
+        }
     }
 
     textarea {

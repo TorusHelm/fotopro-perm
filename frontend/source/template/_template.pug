@@ -27,11 +27,59 @@ html
 	body
 
 		include common/svg-use
+		include ./modules/modal/modal
+		include ./components/input/input
 
 		.page-wrap.js-page-wrap
 			include ./parts/header
 			block content
 			include ./parts/footer
+
+		-
+			let input1 = {
+				caption: 'Представьтесь, пожалуйста',
+				type: 'text',
+				value: 'Иванов Иван',
+				postfix: '',
+				placeholder: '',
+				name: 'name',
+				require: true
+			};
+
+			let input2 = {
+				caption: 'Телефон',
+				type: 'tel',
+				value: '',
+				postfix: '',
+				placeholder: '',
+				name: 'phone',
+				require: true
+			};
+
+			let modal = {
+				id: 'getCall'
+			}
+
+		+modal(modal)
+			.container
+				.row.justify-content-center
+					.col-lg-6
+						form.modal-container
+							.modal__close.js-modal-close
+								+svg-use('close-modal')
+							.modal-container__title Перезвонить вам?
+							.row.modal-container__fields
+								.col-md-6
+									+input(input1)
+								.col-md-6.mt-3.mt-md-0
+									+input(input2)
+								.col-md-6.mt-4.mt-md-5
+									button.btn.btn_warning.btn_full(type="submit") Отправить
+							.row.modal-container__success
+								.col-12
+									p.modal-container__desc Спасибо за&nbsp;Ваше обращение! Мы&nbsp;рассмотрим Вашу заявку в&nbsp;ближайшее время и&nbsp;перезвоним по&nbsp;указанному номеру.
+								.col-md-6.mt-4.mt-md-5
+									button.btn.btn_warning.btn_full(type="submit") Ок, спасибо
 
 		block scripts
 	script(src='js/libs.js' defer)

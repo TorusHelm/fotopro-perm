@@ -87,4 +87,14 @@
             <path d="M9.1,102.3a2.68,2.68,0,0,0-2.668-2.056H.066l-.066.3c4.964,1.224,9.131,4.99,10.483,8.532Z" transform="translate(0 -0.015)" fill="currentColor"/>
         </g>
     </symbol>
+    <symbol id="close-modal" viewBox="0 0 32 32">
+        <g transform="translate(-1280 -276)">
+            <rect width="32" height="32" transform="translate(1280 276)" fill="none"/>
+            <g transform="translate(69.558 -15.444)">
+            <rect width="4" height="32" transform="translate(1236.07 294.444) rotate(45)" fill="#b8b8b8"/>
+            <rect width="4" height="32" transform="translate(1238.899 317.071) rotate(135)" fill="#b8b8b8"/>
+            </g>
+        </g>
+    </symbol>
+
 </svg>

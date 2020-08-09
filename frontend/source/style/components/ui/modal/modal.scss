@@ -1,0 +1,89 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    z-index: 2;
+    backdrop-filter: blur(20px);
+    background-color: rgba($dark, 0.5);
+    transition: backdrop-filter .3s ease;
+
+    @supports (not (backdrop-filter: blur())) {
+        background-color: rgba($dark, 0.5);
+    }
+
+    &.is-active {
+        display: flex;
+    }
+
+    &__close {
+        top: 40px;
+        right: 40px;
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+
+        @include respondTo(max-md) {
+            top: 24px;
+            right: 16px;
+            height: 24px;
+            width: 24px;
+        }
+
+        svg {
+            display: block;
+        }
+    }
+}
+
+.modal-container {
+    $root: #{&};
+
+    padding: 40px;
+    background-color: $clean;
+    box-shadow: $modal-shadow;
+    border-radius: 16px;
+    position: relative;
+
+    @include respondTo(max-md) {
+        padding: 24px 16px;
+    }
+
+    &__title {
+        font-size: 32px;
+        line-height: 40px;
+        margin-bottom: 40px;
+        padding-right: 32px;
+
+        @include respondTo(max-md) {
+            margin-bottom: 24px;
+            font-size: 28px;
+            line-height: 32px;
+        }
+    }
+
+    &__desc {
+        font-size: 16px;
+        line-height: 22px;
+        margin-bottom: 0;
+    }
+
+    &__success {
+        display: none;
+    }
+
+    &.success {
+        #{$root}__fields {
+            display: none;
+        }
+
+        #{$root}__success {
+            display: block;
+        }
+    }
+}

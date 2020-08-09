@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
   tab(tabHandler);
   initRange();
   initDragNDrop();
+  initModal();
+  validateFrom();
 
   document.addEventListener('tabHandler', function() {
     if ( !swipers.length ) {
@@ -31,6 +33,155 @@ document.addEventListener('DOMContentLoaded', function() {
     initMainCardsSlider();
   }
 });
+
+function validateFrom() {
+  let forms = document.querySelectorAll('.js-form-validate');
+
+  if ( forms.length ) {
+    for (const form of forms) {
+      let fields = form.querySelectorAll('.js-form-validate-input input');
+      let file = form.querySelector('.js-calculate-file-input');
+      let validForm = false;
+
+      for (const field of fields) {
+        field.addEventListener('change', function() {
+          if ( !validateField(field) ) {
+            field.classList.add('has-error');
+            validForm = false;
+          } else {
+            field.classList.remove('has-error');
+            validForm = true;
+          }
+        });
+      }
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        for (const field of fields) {
+          if ( !validateField(field) ) {
+            field.classList.add('has-error');
+            validForm = false;
+
+            return
+          } else {
+            field.classList.remove('has-error');
+            validForm = true;
+          }
+        }
+
+        if ( validForm ) {
+          let formData = new FormData(form);
+
+          if ( file ) {
+            formData.append('file', file.files[0]);
+          }
+
+          let success = function() {
+            form.classList.add('success');
+          };
+
+          sendData(formData, '/', success);
+
+        } else {
+          console.log('unvalid form')
+        }
+      })
+    }
+  }
+}
+
+function validateField(input) {
+  let value = input.value;
+  let type = input.type;
+  let result = false;
+
+  if ( type == 'tel' ) {
+    result = validatePhone(value);
+  } else if ( type == 'email' ) {
+    result = validateMail(value);
+  } else {
+    result = !isEmpty(value);
+  }
+
+  return result;
+}
+
+function isEmpty(str) {
+  return str == '' && true;
+}
+
+function validatePhone(str) {
+  let reg = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+  return testReg(reg, removeSpaces(str));
+}
+
+function validateMail(str) {
+  let result = false;
+  const reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  result = testReg(reg, str)
+  return result;
+}
+
+function removeSpaces(str) {
+  return str.replace(/\s/g, '');;
+}
+
+function testReg(re, str){
+  if (re.test(str)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function sendData(data, url, success) {
+  if ( !data || !url ) {
+    return console.log('error, have no data or url');
+  }
+
+  let xhr = new XMLHttpRequest();
+
+  xhr.onloadend = function() {
+    if (xhr.status == 200) {
+      let successFu = success;
+
+      successFu();
+      console.log("Успех");
+    } else {
+      console.log("Ошибка " + this.status);
+    }
+  };
+
+  xhr.open("POST", url);
+  xhr.send(data);
+}
+
+function initModal() {
+  let inits = document.querySelectorAll('.js-modal-init');
+  let body = document.body;
+
+  if ( inits.length ) {
+    for (const init of inits) {
+      let target = document.querySelector(init.dataset.target);
+      let close = target.querySelector('.js-modal-close');
+
+      if ( close ) {
+        close.addEventListener('click', function() {
+          target.classList.remove('is-active');
+          body.classList.remove('modal-is-active');
+        });
+      }
+
+      if ( target ) {
+        init.addEventListener('click', function() {
+          target.classList.add('is-active');
+          body.classList.add('modal-is-active');
+        });
+      }
+    }
+  }
+}
 
 function initDragNDrop() {
   let container = document.querySelector('.js-calculate-file');

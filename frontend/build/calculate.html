@@ -29,7 +29,7 @@
           <div class="header__contacts">
             <div class="header__address"> <a href="tel:+73422032300">+7 (342) <strong>203 23 00</strong></a>г. Пермь, ул. Крупской, 75</div>
             <div class="header__btn">
-              <button class="btn btn_warning">Перезвонить вам?</button>
+              <button class="btn btn_warning js-modal-init" data-target="#getCall">Перезвонить вам?</button>
             </div>
           </div>
           <div class="header__menu">
@@ -43,7 +43,7 @@
             <div class="header__menu-footer">
               <div class="header__address"> <a href="tel:+73422032300">+7 (342) <strong>203 23 00</strong></a>г. Пермь, ул. Крупской, 75</div>
               <div class="header__btn">
-                <button class="btn btn_warning">Перезвонить вам?</button>
+                <button class="btn btn_warning js-modal-init" data-target="#getCall">Перезвонить вам?</button>
               </div>
             </div>
           </div>
@@ -205,9 +205,9 @@
                     <div class="calculate-footer__left-side">
                       <div class="calculate-footer__subtitle calculate__subtitle">Количество альбомов</div>
                       <div class="calculate-footer__input">
-                              <label class="input input_postfix">
+                              <label class="input">
                                 <p class="caption">Укажите количество</p>
-                                <input type="number" value="31" placeholder="" name=""><span>шт.</span>
+                                <input type="number" value="31" placeholder="" name="">
                               </label>
                       </div>
                     </div>
@@ -252,7 +252,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="calculate-aside__content">
+                <form class="calculate-aside__content js-form-validate" novalidate>
                   <div class="calculate-aside__title">Оформить заказ</div>
                   <div class="calculate-aside__alert calculate-aside-alert">
                     <div class="calculate-aside-alert__icon">
@@ -284,28 +284,28 @@
                   </div>
                   <div class="calculate-aside__addings js-calculate-file-addings">
                     <div class="calculate-aside__input">
-                            <label class="input input_postfix">
+                            <label class="input js-form-validate-input">
                               <p class="caption">Представьтесь, пожалуйста</p>
-                              <input type="text" value="Иванов Иван" placeholder="" name=""><span>шт.</span>
+                              <input type="text" value="Иванов Иван" placeholder="" name="name">
                             </label>
                     </div>
                     <div class="calculate-aside__input">
-                            <label class="input input_postfix">
+                            <label class="input js-form-validate-input">
                               <p class="caption">Ваш E-mail</p>
-                              <input type="email" value="Ivanov@ma|" placeholder="" name=""><span>шт.</span>
+                              <input type="email" value="Ivanov@ma|" placeholder="" name="email">
                             </label>
                     </div>
                     <div class="calculate-aside__input">
-                            <label class="input input_postfix">
+                            <label class="input js-form-validate-input">
                               <p class="caption">Номер телефона</p>
-                              <input type="number" value="Телефон" placeholder="" name=""><span>шт.</span>
+                              <input type="tel" value="" placeholder="" name="phone">
                             </label>
                     </div>
                     <div class="calculate-aside__btn">
-                      <div class="btn btn_full btn_warning">Оформить заказ</div>
+                      <button class="btn btn_full btn_warning" type="submit">Оформить заказ</button>
                     </div>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
           </div>
@@ -356,6 +356,47 @@
         </div>
       </footer>
     </div>
+        <div class="modal js-modal" id="getCall">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-6">
+                <form class="modal-container">
+                  <div class="modal__close js-modal-close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                          <use xlink:href="img/svg-lib.svg#close-modal"></use>
+                        </svg>
+                  </div>
+                  <div class="modal-container__title">Перезвонить вам?</div>
+                  <div class="row modal-container__fields">
+                    <div class="col-md-6">
+                            <label class="input">
+                              <p class="caption">Представьтесь, пожалуйста</p>
+                              <input type="text" value="Иванов Иван" placeholder="" name="name" require>
+                            </label>
+                    </div>
+                    <div class="col-md-6 mt-3 mt-md-0">
+                            <label class="input">
+                              <p class="caption">Телефон</p>
+                              <input type="tel" value="" placeholder="" name="phone" require>
+                            </label>
+                    </div>
+                    <div class="col-md-6 mt-4 mt-md-5">
+                      <button class="btn btn_warning btn_full" type="submit">Отправить</button>
+                    </div>
+                  </div>
+                  <div class="row modal-container__success">
+                    <div class="col-12">
+                      <p class="modal-container__desc">Спасибо за&nbsp;Ваше обращение! Мы&nbsp;рассмотрим Вашу заявку в&nbsp;ближайшее время и&nbsp;перезвоним по&nbsp;указанному номеру.</p>
+                    </div>
+                    <div class="col-md-6 mt-4 mt-md-5">
+                      <button class="btn btn_warning btn_full" type="submit">Ок, спасибо</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
   </body>
   <script src="js/libs.js" defer></script>
   <script src="js/app.js" defer></script>

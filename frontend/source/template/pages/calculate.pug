@@ -24,18 +24,24 @@ block content
 			caption: 'Представьтесь, пожалуйста',
 			type: 'text',
 			value: 'Иванов Иван',
+			requier: true,
+			name: 'name'
 		};
 
 		let inputAside2 = {
 			caption: 'Ваш E-mail',
 			type: 'email',
 			value: 'Ivanov@ma|',
+			requier: true,
+			name: 'email'
 		};
 
 		let inputAside3 = {
 			caption: 'Номер телефона',
-			type: 'number',
-			value: 'Телефон',
+			type: 'tel',
+			value: '',
+			requier: true,
+			name: 'phone'
 		};
 
 		let types = [
@@ -153,7 +159,7 @@ block content
 									.calculate-aside-pricer__title Итоговая стоимость альбомов: 
 									.calculate-aside-pricer__price
 										| 24 800 ₽
-						.calculate-aside__content
+						form.calculate-aside__content.js-form-validate(novalidate)
 							.calculate-aside__title Оформить заказ
 							.calculate-aside__alert.calculate-aside-alert
 								.calculate-aside-alert__icon
@@ -176,10 +182,10 @@ block content
 
 							.calculate-aside__addings.js-calculate-file-addings
 								.calculate-aside__input
-									+input(inputAside1)
+									+input(inputAside1).js-form-validate-input
 								.calculate-aside__input
-									+input(inputAside2)
+									+input(inputAside2).js-form-validate-input
 								.calculate-aside__input
-									+input(inputAside3)
+									+input(inputAside3).js-form-validate-input
 								.calculate-aside__btn
-									.btn.btn_full.btn_warning Оформить заказ
+									button.btn.btn_full.btn_warning(type="submit") Оформить заказ

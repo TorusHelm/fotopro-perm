@@ -4,7 +4,7 @@ mixin input(incomeData)
             caption: 'Caption',
             type: 'text',
             value: '20',
-            postfix: 'шт.',
+            postfix: '',
             placeholder: '',
             name: '',
             require: false
@@ -13,7 +13,7 @@ mixin input(incomeData)
     -
         let data = Object.assign(defData, incomeData);
 
-    if ( incomeData.type == 'textarea')
+    if ( incomeData && incomeData.type == 'textarea' )
         label.input&attributes(attributes)
             p.caption!= data.caption
             textarea(rows="4" placeholder=data.placeholder name=data.name)
