@@ -121,6 +121,7 @@
     &__toggler {
         width: 25.109px;
         height: 10.034px;
+        flex: 0 0 auto;
 
         @include respondTo(max-md) {
             height: 8px;
