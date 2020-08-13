@@ -2,7 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
   let tabHandler = new Event('tabHandler');
-
+  let modalSwiper = initModalSwiper();
   let swipers = initSwiper();
   svg4everybody();
   initMainSwiper();
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
   tab(tabHandler);
   initRange();
   initDragNDrop();
-  initModal();
+  initModal(modalSwiper);
   validateFrom();
 
   document.addEventListener('tabHandler', function() {
@@ -157,26 +157,32 @@ function sendData(data, url, success) {
   xhr.send(data);
 }
 
-function initModal() {
+function initModal(modalSwiper) {
   let inits = document.querySelectorAll('.js-modal-init');
   let body = document.body;
 
   if ( inits.length ) {
     for (const init of inits) {
       let target = document.querySelector(init.dataset.target);
-      let close = target.querySelector('.js-modal-close');
+      let closes = target.querySelectorAll('.js-modal-close');
 
-      if ( close ) {
-        close.addEventListener('click', function() {
-          target.classList.remove('is-active');
-          body.classList.remove('modal-is-active');
-        });
+      if ( closes.length ) {
+        for (const close of closes) {
+          close.addEventListener('click', function() {
+            target.classList.remove('is-active');
+            body.classList.remove('modal-is-active');
+          });
+        }
       }
 
       if ( target ) {
         init.addEventListener('click', function() {
           target.classList.add('is-active');
           body.classList.add('modal-is-active');
+
+          if ( target.dataset.slider == 'true' ) {
+            modalSwiper.update();
+          }
         });
       }
     }
@@ -437,6 +443,26 @@ function initSwiperStatick() {
 
 function initMainSwiper() {
   var mySwiper = new Swiper('.js-main-swiper-container', {
+    speed: 400,
+    slidesPerView: 1,
+    loop: true,
+    spaceBetween: 12,
+    pagination: {
+      el: '.swiper-pagination',
+      type: 'bullets',
+      clickable: true
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+
+  return mySwiper;
+}
+
+function initModalSwiper() {
+  var mySwiper = new Swiper('.js-main-swiper-modal', {
     speed: 400,
     slidesPerView: 1,
     loop: true,

@@ -91,8 +91,8 @@
         <g transform="translate(-1280 -276)">
             <rect width="32" height="32" transform="translate(1280 276)" fill="none"/>
             <g transform="translate(69.558 -15.444)">
-            <rect width="4" height="32" transform="translate(1236.07 294.444) rotate(45)" fill="#b8b8b8"/>
-            <rect width="4" height="32" transform="translate(1238.899 317.071) rotate(135)" fill="#b8b8b8"/>
+            <rect width="4" height="32" transform="translate(1236.07 294.444) rotate(45)" fill="currentColor"/>
+            <rect width="4" height="32" transform="translate(1238.899 317.071) rotate(135)" fill="currentColor"/>
             </g>
         </g>
     </symbol>

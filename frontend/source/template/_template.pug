@@ -56,11 +56,7 @@ html
 				require: true
 			};
 
-			let modal = {
-				id: 'getCall'
-			}
-
-		+modal(modal)
+		+modal('getCall')
 			.container
 				.row.justify-content-center
 					.col-lg-6
@@ -79,7 +75,42 @@ html
 								.col-12
 									p.modal-container__desc Спасибо за&nbsp;Ваше обращение! Мы&nbsp;рассмотрим Вашу заявку в&nbsp;ближайшее время и&nbsp;перезвоним по&nbsp;указанному номеру.
 								.col-md-6.mt-4.mt-md-5
-									button.btn.btn_warning.btn_full(type="submit") Ок, спасибо
+									button.btn.btn_warning.btn_full.js-modal-close(type="button") Ок, спасибо
+
+		+modal('types')(data-slider="true")
+			.container
+				.row.justify-content-center
+					.col-12
+						.modal-container.modal-container_no-space
+							.modal__close.js-modal-close
+								+svg-use('close-modal')
+							.main-slider__wrapper
+								.swiper-container.main-slider.js-main-swiper-modal
+									.swiper-wrapper
+										-
+											let length = 0;
+
+										while length < 6
+											.swiper-slide.main-slider__slide(data-slider=length++)
+												if ( length == 1 )
+													picture.main-slider__slide-bg
+														img(src="img/main-banner/main-banner0.jpg", alt="")
+													.row
+														.col-xl-10
+															h1.main-slider__title.title Типография ФОТОПРО Типография ФОТОПРО
+															.main-slider__desc Оперативная печать и&nbsp;изготовление выпускных <br>альбомов для родителей, выпускников <br>и&nbsp;профессиональных фотографов в&nbsp;любом количестве Оперативная печать и&nbsp;изготовление выпускных <br>альбомов для родителей, выпускников <br>и&nbsp;профессиональных фотографов в&nbsp;любом количестве
+												else
+													picture.main-slider__slide-bg
+														img(src="img/main-banner/main-banner1.jpg", alt="")
+													.row
+														.col-xl-10
+															h2.main-slider__title.title Типография ФОТОПРО
+															.main-slider__desc Оперативная печать и&nbsp;изготовление выпускных <br>альбомов для родителей, выпускников <br>и&nbsp;профессиональных фотографов в&nbsp;любом количестве
+									.swiper-pagination
+								.swiper-button-prev.main-slider__btn
+									+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')
+								.swiper-button-next.main-slider__btn
+									+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')
 
 		block scripts
 	script(src='js/libs.js' defer)

@@ -21,7 +21,10 @@ mixin card(item, prefooter=false)
 
     else
         .card
-            a(href="#").card__header
+            if ( item.modal )
+                .card__header.js-modal-init(data-target=item.modal)
+            else
+                .card__header
                 img(src=item.img, alt=item.title)
                 .card__header-hover Посмотреть примеры <br>альбомов
             .card__content

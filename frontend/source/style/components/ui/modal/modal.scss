@@ -27,6 +27,7 @@
         width: 32px;
         height: 32px;
         cursor: pointer;
+        z-index: 2;
 
         @include respondTo(max-md) {
             top: 24px;
@@ -37,6 +38,7 @@
 
         svg {
             display: block;
+            color: #b8b8b8;
         }
     }
 }
@@ -52,6 +54,24 @@
 
     @include respondTo(max-md) {
         padding: 24px 16px;
+    }
+
+    &_no-space {
+        padding: 0;
+
+        .modal__close {
+            right: 8px;
+            top: 8px;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            background-color: $clean;
+            padding: 10px;
+
+            svg {
+                color: $link;
+            }
+        }
     }
 
     &__title {
