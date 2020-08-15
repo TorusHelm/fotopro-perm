@@ -86,11 +86,11 @@ html
 								+svg-use('close-modal')
 							.main-slider__wrapper
 								.swiper-container.main-slider.js-main-swiper-modal
-									.swiper-wrapper
-										-
-											let length = 0;
+									.swiper-wrapper.js-main-swiper-modal-container
+										//- -
+										//- 	let length = 0;
 
-										while length < 6
+										//- while length < 6
 											.swiper-slide.main-slider__slide(data-slider=length++)
 												if ( length == 1 )
 													picture.main-slider__slide-bg

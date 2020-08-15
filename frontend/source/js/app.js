@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initDragNDrop();
   initModal(modalSwiper);
   validateFrom();
+  cardHeaderHandle(modalSwiper, 'http://f36350975817.ngrok.io/api/album/images_slider?id=');
 
   document.addEventListener('tabHandler', function() {
     if ( !swipers.length ) {
@@ -33,6 +34,57 @@ document.addEventListener('DOMContentLoaded', function() {
     initMainCardsSlider();
   }
 });
+
+function cardHeaderHandle(modalSwiper, url) {
+  let targets = document.querySelectorAll('.js-modal-init');
+
+  if ( targets.length ) {
+    targets.forEach(target => {
+      let targetId = target.dataset.id;
+      target.addEventListener('click', function() {
+        getSlidersData(modalSwiper, `${url + targetId}`);
+      });
+    });
+  }
+}
+
+function getSlidersData(container, url) {
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', url);
+  xhr.send();
+
+  if ( !container ) {
+    return;
+  }
+
+  xhr.onload = function() {
+    if (xhr.status != 200) {
+      console.log(`Ошибка ${xhr.status}: ${xhr.statusText}`);
+    } else {
+      let data = JSON.parse(xhr.response);
+      container.removeAllSlides();
+
+      data.forEach(item => {
+        let slideContent = createSlide(item);
+        container.appendSlide(slideContent);
+      });
+    }
+  };
+
+  xhr.onerror = function() {
+    console.log("Запрос не удался");
+  };
+}
+
+function createSlide(str) {
+  let img = document.createElement('img');
+  let slide = document.createElement('div');
+  slide.classList.add('swiper-slide', 'main-slider__slide');
+  img.src = 'http://f36350975817.ngrok.io' + str;
+  slide.appendChild(img);
+
+  return slide;
+}
 
 function validateFrom() {
   let forms = document.querySelectorAll('.js-form-validate');
@@ -467,6 +519,8 @@ function initModalSwiper() {
     slidesPerView: 1,
     loop: true,
     spaceBetween: 12,
+    preloadImages: false,
+    lazy: true,
     pagination: {
       el: '.swiper-pagination',
       type: 'bullets',
