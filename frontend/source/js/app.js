@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
   cardHeaderHandle(modalSwiper, 'http://f36350975817.ngrok.io/api/album/images_slider?id=');
   choiceType();
   setHandlersPrice();
+  getTruePriceCard();
 
   document.addEventListener('tabHandler', function() {
     if ( !swipers.length ) {
@@ -36,6 +37,25 @@ document.addEventListener('DOMContentLoaded', function() {
     initMainCardsSlider();
   }
 });
+
+function getTruePriceCard() {
+  let targets = document.querySelectorAll('.js-card-price-wrapper');
+
+  if ( targets.length ) {
+    for (const target of targets) {
+      let input = target.querySelector('.js-card-price input');
+      let output = target.querySelector('.js-card-price-output');
+      let basePrice = +output.dataset.price;
+
+      input.addEventListener('input', function () {
+        let percantage = getDiscountPercent(+input.value);
+        let discountPrice = getDiscountSumm(basePrice, percantage);
+
+        output.textContent = (basePrice - discountPrice) + ' ₽';
+      });
+    }
+  }
+}
 
 function choiceType() {
   let types = document.querySelectorAll('.js-choice-type');
