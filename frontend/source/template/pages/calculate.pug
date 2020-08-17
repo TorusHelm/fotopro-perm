@@ -5,6 +5,7 @@ block variables
 
 block content
 	include ../components/input/input
+	include ../components/checkmark/checkmark
 
 	-
 		let inputData = {
@@ -93,13 +94,29 @@ block content
 							.calculate__title Выберите вид альбома
 							.calculate-types
 								each item, index in types
-									.calculate-types__item
-										.calculate-types__wrapper(class=`${index == 3 ? 'is-active' : ''}`)
+									.calculate-types__item.js-choice-type
+										if ( index == 0 )
+											ul.d-none.js-choice-type-list
+												li Тип 1
+										else if ( index == 1 )
+											ul.d-none.js-choice-type-list
+												li Тип 1
+												li 123123Тип 2
+										else
+											ul.d-none.js-choice-type-list
+												li Тип 1
+												li Тип 2
+												li Тип 3
+										.calculate-types__wrapper
 											.calculate-types__image
 												img(src=item.img, alt=item.title)
 												.calculate-types__icon
 													+svg-use('checked')
 											.calculate-types__title!= item.title
+						.calculate__addings.calculate-addings.js-choice-type-addings
+							.calculate-addings__title.calculate__title Выберите формат альбома
+							.row.js-choice-type-output
+
 						.calculate__content.calculate-content
 							.calculate__title Выберите параметры альбомов
 							.calculate__row
@@ -138,7 +155,7 @@ block content
 							.calculate-aside__list.calculate-aside-list
 								.calculate-aside-list__item
 									span Вид альбома: 
-									| планшет
+									| Премиум
 								.calculate-aside-list__item
 									span Количество страниц: 
 									| 24

@@ -1,6 +1,12 @@
 mixin checkmark(data)
-    label.checkmark
-        input(type="checkbox" checked=data.checked)
-        span.checkmark__mark
-            +svg-use('checked')
-        != data.text
+
+    if ( data.radio )
+        label.checkmark
+            input(type="radio" name=data.radio checked=data.checked)
+            span.checkmark__mark
+            p!= data.text
+    else
+        label.checkmark
+            input(type="checkbox" checked=data.checked)
+            span.checkmark__mark
+            p!= data.text

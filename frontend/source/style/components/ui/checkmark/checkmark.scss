@@ -1,7 +1,7 @@
 .checkmark {
     $root: #{&};
 
-    display: flex;
+    display: inline-flex;
     align-items: center;
     position: relative;
     color: $dark;
@@ -22,8 +22,8 @@
             #{$root}__mark {
                 background-color: $warning;
 
-                svg {
-                    color: $clean;
+                &:before {
+                    display: block;
                 }
             }
         }
@@ -40,12 +40,13 @@
         justify-content: center;
         margin-right: 8px;
 
-        svg {
+        &:before {
+            content: '';
             width: 14.121px;
             height: 11.182px;
-            display: block;
-            color: $border-case2;
-            transition: color .3s ease;
+            display: none;
+            color: $clean;
+            background: url('../img/check.svg');
         }
     }
 }

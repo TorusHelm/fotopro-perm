@@ -12,6 +12,20 @@
         }
     }
 
+    &__addings {
+        padding: 40px 32px;
+        border-bottom: 1px solid $border-case3;
+        display: none;
+
+        @include respondTo(max-md) {
+            padding: 24px 16px;
+        }
+
+        &.is-active {
+            display: block;
+        }
+    }
+
     &__content {
         padding: 40px 32px;
 

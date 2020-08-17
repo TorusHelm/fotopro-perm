@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initModal(modalSwiper);
   validateFrom();
   cardHeaderHandle(modalSwiper, 'http://f36350975817.ngrok.io/api/album/images_slider?id=');
+  choiceType();
 
   document.addEventListener('tabHandler', function() {
     if ( !swipers.length ) {
@@ -34,6 +35,91 @@ document.addEventListener('DOMContentLoaded', function() {
     initMainCardsSlider();
   }
 });
+
+function choiceType() {
+  let types = document.querySelectorAll('.js-choice-type');
+  let container = document.querySelector('.js-choice-type-addings');
+  let outputContainer = document.querySelector('.js-choice-type-output');
+
+  if ( !types.length || !container ) {
+    return
+  }
+
+  for (const type of types) {
+    let wrapper = type.querySelector('.calculate-types__wrapper');
+    let list = type.querySelectorAll('.js-choice-type-list li');
+    let arrList = [];
+
+    for (const item of list) {
+      arrList.push(item.textContent);
+    }
+
+    type.addEventListener('click', function() {
+      for (const typeIn of types) {
+        let wrap = typeIn.querySelector('.calculate-types__wrapper');
+        wrap.classList.remove('is-active');
+      }
+
+      if ( !list.length || list.length < 2 ) {
+        container.classList.remove('is-active');
+
+        return
+      }
+
+      wrapper.classList.add('is-active');
+      container.classList.add('is-active');
+      outputContainer.innerHTML = '';
+
+      list.forEach((item, idx) => {
+        if ( idx === 0 ) {
+          outputContainer.appendChild(createCheckmark(item.textContent, true));
+        } else {
+          outputContainer.appendChild(createCheckmark(item.textContent, false));
+        }
+      });
+    });
+  }
+}
+
+function createCheckmark(text, first) {
+  let checkmarkWrapper;
+
+  if ( first ) {
+    checkmarkWrapper = createElement('div', 'col-12');
+  } else {
+    checkmarkWrapper = createElement('div', 'col-12 mt-3');
+  }
+
+  let checkmark = createElement('label', 'checkmark');
+  let input = createElement('input', '');
+  setAttributes(input, {
+    'type': 'radio',
+    'name': 'types'
+  });
+  let mark = createElement('span', 'checkmark__mark');
+  let varText = createElement('p', '');
+
+  varText.textContent = text;
+  checkmark.appendChild(input);
+  checkmark.appendChild(mark);
+  checkmark.appendChild(varText);
+  checkmarkWrapper.appendChild(checkmark);
+
+  return checkmarkWrapper;
+}
+
+function createElement(tag, className) {
+  let elem = document.createElement(tag);
+  elem.classList = className;
+
+  return elem;
+}
+
+function setAttributes(el, attrs) {
+  for(var key in attrs) {
+    el.setAttribute(key, attrs[key]);
+  }
+}
 
 function cardHeaderHandle(modalSwiper, url) {
   let targets = document.querySelectorAll('.js-modal-init');
