@@ -23,7 +23,7 @@
                 background-color: $warning;
 
                 &:before {
-                    display: block;
+                    opacity: 1;
                 }
             }
         }
@@ -44,9 +44,11 @@
             content: '';
             width: 14.121px;
             height: 11.182px;
-            display: none;
+            display: block;
+            opacity: 0;
             color: $clean;
             background: url('../img/check.svg');
+            transition: opacity .3s ease;
         }
     }
 }

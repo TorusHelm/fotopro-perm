@@ -97,9 +97,29 @@
         padding: 0 16px;
         position: relative;
         margin-bottom: 32px;
+        flex: 0 0 16.66666%;
+        max-width: 16.66666%;
+
+        @include respondTo(max-xl) {
+            flex: 0 0 14.28571%;
+            max-width: 14.28571%;
+            text-align: center;
+        }
+
+        @include respondTo(max-lg) {
+            flex: 0 0 20%;
+            max-width: 20%;
+        }
 
         @include respondTo(max-md) {
-            margin-bottom: 16px;
+            margin-bottom: 24px;
+            flex: 0 0 25%;
+            max-width: 25%;
+        }
+
+        @include respondTo(max-sm) {
+            flex: 0 0 50%;
+            max-width: 50%;
         }
     }
 
@@ -121,7 +141,7 @@
         height: 93px;
         width: 93px;
         border-radius: 16px;
-        margin-bottom: 8px;
+        margin: 0 auto 8px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -130,7 +150,7 @@
         overflow: hidden;
         transition: border-color .3s ease;
 
-        @at-root .calculate-types__wrapper.is-active & {
+        @at-root .calculate-types__item.is-active & {
             border-color: $warning;
         }
 
@@ -160,7 +180,7 @@
             height: 11.182px;
         }
 
-        @at-root .calculate-types__wrapper.is-active & {
+        @at-root .calculate-types__item.is-active & {
             display: flex;
         }
     }
@@ -171,7 +191,7 @@
         font-weight: 600;
         transition: color .3s ease;
 
-        @at-root .calculate-types__wrapper.is-active & {
+        @at-root .calculate-types__item.is-active & {
             color: $warning;
         }
     }
@@ -417,6 +437,11 @@
         span {
             font-weight: 400;
             color: $subtitle;
+        }
+
+        p {
+            display: inline;
+            margin-left: 4px;
         }
     }
 }

@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
   validateFrom();
   cardHeaderHandle(modalSwiper, 'http://f36350975817.ngrok.io/api/album/images_slider?id=');
   choiceType();
+  setHandlersPrice();
 
   document.addEventListener('tabHandler', function() {
     if ( !swipers.length ) {
@@ -46,7 +47,6 @@ function choiceType() {
   }
 
   for (const type of types) {
-    let wrapper = type.querySelector('.calculate-types__wrapper');
     let list = type.querySelectorAll('.js-choice-type-list li');
     let arrList = [];
 
@@ -55,41 +55,141 @@ function choiceType() {
     }
 
     type.addEventListener('click', function() {
-      for (const typeIn of types) {
-        let wrap = typeIn.querySelector('.calculate-types__wrapper');
-        wrap.classList.remove('is-active');
+      if ( type.classList.contains('is-active') ) {
+        return;
       }
+
+      for (const typeIn of types) {
+        typeIn.classList.remove('is-active');
+      }
+
+      container.classList.add('is-active');
 
       if ( !list.length || list.length < 2 ) {
         container.classList.remove('is-active');
-
-        return
       }
 
-      wrapper.classList.add('is-active');
-      container.classList.add('is-active');
+      type.classList.add('is-active');
       outputContainer.innerHTML = '';
 
       list.forEach((item, idx) => {
         if ( idx === 0 ) {
-          outputContainer.appendChild(createCheckmark(item.textContent, true));
+          outputContainer.appendChild(createCheckmark(item.textContent, true, item.dataset.basePrice));
         } else {
-          outputContainer.appendChild(createCheckmark(item.textContent, false));
+          outputContainer.appendChild(createCheckmark(item.textContent, false, item.dataset.basePrice));
         }
       });
+
+      let checkmarks = outputContainer.querySelectorAll('.checkmark input');
+
+      if ( checkmarks.length ) {
+        checkmarks[0].click();
+      }
     });
   }
 }
 
-function createCheckmark(text, first) {
-  let checkmarkWrapper;
+function setHandlersPrice() {
+  let targets = document.querySelectorAll('.js-calc-change');
 
-  if ( first ) {
-    checkmarkWrapper = createElement('div', 'col-12');
-  } else {
-    checkmarkWrapper = createElement('div', 'col-12 mt-3');
+  for (const target of targets) {
+    if ( target.noUiSlider ) {
+      target.noUiSlider.on('change', function() {
+        changePriceHandle();
+      });
+    }
+
+    target.addEventListener('change', function() {
+      changePriceHandle();
+    });
+  }
+}
+
+function changePriceHandle() {
+  let basePrices = document.querySelectorAll('.js-choice-type-output input');
+  let basePriceItem = getBasePrice(basePrices);
+  let outputPrice = document.querySelector('.js-calc-price');
+  let outputDiscountPrice = document.querySelector('.js-calc-discount-price');
+  let typeOutput = document.querySelector('.js-calc-type-output');
+  let listsOutput = document.querySelector('.js-calc-lists-output');
+  let albumsOutput = document.querySelector('.js-calc-albums-output');
+  let persantageOutput = document.querySelector('.js-calc-discount-persantage-output');
+  let discountSummOutput = document.querySelector('.js-calc-discount-summ-output');
+  let albums = +document.querySelector('.js-calc-albums-length input').value;
+  let peoples = +document.querySelector('.js-calc-peoples').noUiSlider.get();
+  let peoplesOnTurn = +document.querySelector('.js-calc-peoples-on-turn').noUiSlider.get();
+  let historyTurns = +document.querySelector('.js-calc-history-turns').noUiSlider.get();
+  let activeChoice = document.querySelector('.js-choice-type.is-active');
+
+  if ( !activeChoice ) {
+    return
   }
 
+  let baseLists = +activeChoice.dataset.baseLists;
+  let baseTurn = +activeChoice.dataset.baseTurn;
+  let baseTurnPrice = +activeChoice.dataset.turnPrice;
+  let basePrice = +basePriceItem.dataset.basePrice;
+  let albumLists = getListInAlbum(peoples, peoplesOnTurn, historyTurns, baseTurn);
+  let albumPrice = getPriceForAlbum(basePrice, albumLists, baseLists, baseTurnPrice);
+  let percentage = getDiscountPercent(albums);
+  let discountSumm = getDiscountSumm(albumPrice, percentage);
+  let albumPriceWithDiscount = getPriceForAlbumDiscount(albumPrice, discountSumm);
+
+  outputPrice.textContent = albumPrice;
+  outputDiscountPrice.textContent = albumPriceWithDiscount;
+  typeOutput.textContent = activeChoice.querySelector('.calculate-types__title').textContent;
+  listsOutput.textContent = albumLists;
+  albumsOutput.textContent = albums;
+  persantageOutput.textContent = percentage + '%';
+  discountSummOutput.textContent = (albums * albumPriceWithDiscount) + ' ₽';
+}
+
+function getBasePrice(arr) {
+  if ( arr.length ) {
+    for (const item of arr) {
+      if ( item.checked ) {
+        return item;
+      }
+    }
+  }
+}
+
+function getPriceForAlbum(basePrice, albumLists, baseLists, baseTurnPrice) {
+  let some = 0;
+
+  if ( albumLists - baseLists > 0 ) {
+    some = albumLists - baseLists;
+  }
+
+  return basePrice + some * baseTurnPrice;
+}
+
+function getDiscountPercent(albums) {
+  if ( albums < 5 ) {
+    return 0;
+  }
+
+  if ( albums > 20 ) {
+    return 20;
+  }
+
+  return albums;
+}
+
+function getPriceForAlbumDiscount(albumPrice, discountSumm) {
+  return albumPrice - discountSumm;
+}
+
+function getDiscountSumm(albumPrice, percentage) {
+  return Math.ceil(albumPrice * percentage / 100);
+}
+
+function getListInAlbum(peoples, peoplesOnTurn, historyTurns, baseTurn) {
+  return Math.ceil(peoples / peoplesOnTurn) + historyTurns + baseTurn;
+}
+
+function createCheckmark(text, first, basePrice) {
+  let checkmarkWrapper;
   let checkmark = createElement('label', 'checkmark');
   let input = createElement('input', '');
   setAttributes(input, {
@@ -99,6 +199,17 @@ function createCheckmark(text, first) {
   let mark = createElement('span', 'checkmark__mark');
   let varText = createElement('p', '');
 
+  input.addEventListener('change', function() {
+    changePriceHandle();
+  });
+
+  if ( first ) {
+    checkmarkWrapper = createElement('div', 'col-12');
+  } else {
+    checkmarkWrapper = createElement('div', 'col-12 mt-3');
+  }
+
+  input.dataset.basePrice = basePrice ? basePrice : 0;
   varText.textContent = text;
   checkmark.appendChild(input);
   checkmark.appendChild(mark);
