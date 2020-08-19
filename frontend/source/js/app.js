@@ -17,10 +17,18 @@ document.addEventListener('DOMContentLoaded', function() {
   initDragNDrop();
   initModal(modalSwiper);
   validateFrom();
-  cardHeaderHandle(modalSwiper, 'http://f36350975817.ngrok.io/api/album/images_slider?id=');
+  cardHeaderHandle(modalSwiper, '/api/album/images_slider?id=');
   choiceType();
   setHandlersPrice();
   getTruePriceCard();
+
+  if ( window.location.hash ) {
+    let target = document.querySelector(`[data-target="${window.location.hash}"]`);
+
+    if ( target ) {
+      target.click();
+    }
+  }
 
   document.addEventListener('tabHandler', function() {
     if ( !swipers.length ) {
@@ -297,7 +305,7 @@ function createSlide(str) {
   let img = document.createElement('img');
   let slide = document.createElement('div');
   slide.classList.add('swiper-slide', 'main-slider__slide');
-  img.src = 'http://f36350975817.ngrok.io' + str;
+  img.src = str;
   slide.appendChild(img);
 
   return slide;
@@ -652,34 +660,69 @@ function initAlbumSlider() {
 }
 
 function initSwiper() {
-  var mySwiper = new Swiper('.js-swiper-container', {
-    speed: 400,
-    slidesPerView: 6,
-    spaceBetween: 40,
-    loop: false,
-    preloadImages: false,
-    lazy: true, 
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    breakpoints: {
-      459: {
-        slidesPerView: 1,
-      },
-      599: {
-        slidesPerView: 2,
-      },
-      767: {
-        slidesPerView: 3,
-      },
-      1199: {
+  let targets = document.querySelectorAll('.js-swiper-container');
+
+  if ( !targets.length ) {
+    return;
+  }
+
+  let swipers = [];
+
+  targets.forEach( (target, index) => {
+    if ( index == 0 || !target.classList.contains('swiper-container-fat') ) {
+      var mySwiper = new Swiper(target, {
+        speed: 400,
+        slidesPerView: 6,
+        spaceBetween: 30,
+        loop: false,
+        preloadImages: false,
+        lazy: true, 
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+          459: {
+            slidesPerView: 1,
+          },
+          599: {
+            slidesPerView: 2,
+          },
+          767: {
+            slidesPerView: 3,
+          },
+          1199: {
+            slidesPerView: 4,
+          },
+        }
+      });
+    } else {
+      var mySwiper = new Swiper(target, {
+        speed: 400,
         slidesPerView: 4,
-      },
+        spaceBetween: 30,
+        loop: false,
+        preloadImages: false,
+        lazy: true, 
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+          767: {
+            slidesPerView: 1,
+          },
+          1199: {
+            slidesPerView: 2,
+          },
+        }
+      });
     }
+
+    swipers.push(mySwiper);
   });
 
-  return mySwiper;
+  return swipers;
 }
 
 function initSwiperStatick() {
@@ -722,8 +765,8 @@ function initMainSwiper() {
       clickable: true
     },
     navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+      nextEl: '.js-swiper-main-next',
+      prevEl: '.js-swiper-main-prev',
     },
   });
 
@@ -744,8 +787,8 @@ function initModalSwiper() {
       clickable: true
     },
     navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+      nextEl: '.js-modal-swiper-next',
+      prevEl: '.js-modal-swiper-prev',
     },
   });
 
@@ -796,14 +839,8 @@ function tab(tabHandler) {
 
     if ( tabsContainer ) {
       let menuItems = tabsContainer.querySelectorAll(".js-tab-menu-item");
-      let underline = tabsContainer.querySelector(".js-tab-underline");
 
       menuItems.forEach( (menuItem) => {
-        if ( underline && menuItem.classList.contains("is-active") ) {
-          setTimeout(() => {
-            currentTabAccent(underline, menuItem);
-          }, 100);
-        }
 
         menuItem.onclick = () => {
           let activeMenuItem = Array.from(menuItems).find(getActiveTab);
@@ -822,23 +859,12 @@ function tab(tabHandler) {
 
           menuItem.classList.add("is-active");
 
-          if ( underline ) {
-            currentTabAccent(underline, menuItem);
-          }
-
           if ( tabHandler ) {
             document.dispatchEvent(tabHandler);
           }
         };
       });
     }
-
-  function currentTabAccent(underline, menuItem) {
-    let itemPosition = menuItem.offsetLeft;
-    let itemWidth = Number(menuItem.scrollWidth);
-
-    return underline.setAttribute("style", `left: ${itemPosition}px; width: ${itemWidth}px;`);
-  }
 
   function getActiveTab(element) {
     return element.classList.contains("is-active");

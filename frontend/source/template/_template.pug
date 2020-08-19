@@ -87,10 +87,10 @@ html
 							.main-slider__wrapper
 								.swiper-container.main-slider.js-main-swiper-modal
 									.swiper-wrapper.js-main-swiper-modal-container
-										//- -
-										//- 	let length = 0;
+										-
+											let length = 0;
 
-										//- while length < 6
+										while length < 6
 											.swiper-slide.main-slider__slide(data-slider=length++)
 												if ( length == 1 )
 													picture.main-slider__slide-bg
@@ -106,10 +106,9 @@ html
 														.col-xl-10
 															h2.main-slider__title.title Типография ФОТОПРО
 															.main-slider__desc Оперативная печать и&nbsp;изготовление выпускных <br>альбомов для родителей, выпускников <br>и&nbsp;профессиональных фотографов в&nbsp;любом количестве
-									.swiper-pagination
-								.swiper-button-prev.main-slider__btn
+								.swiper-button-prev.main-slider__btn.js-modal-swiper-prev
 									+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')
-								.swiper-button-next.main-slider__btn
+								.swiper-button-next.main-slider__btn.js-modal-swiper-next
 									+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')
 
 		block scripts

@@ -247,7 +247,6 @@ block content
 						each part, index in dataRender
 							li.tab-list__item.js-tab-menu-item(data-target=`#target${index}` class=`${part.isActive ? 'is-active' : ''}`)
 								h4.tab-list__title!= part.tabTitle
-						.js-tab-underline.tab-list__underline
 			.row
 				.col-12
 					each part, index in dataRender
@@ -269,7 +268,7 @@ block content
 																.accordion__content.js-accordion-content
 																	ul.questions-list
 																		each textContent in accordionSubitem.list
-																			li.questions-list__item!= textContent
+																			li.questions-list__item.text!= textContent
 																.accordion__btn.accordion__toggler
 																	+svg-use('bird')
 

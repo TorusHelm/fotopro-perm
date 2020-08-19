@@ -17,7 +17,7 @@ mixin card(item, prefooter=false)
             .card__content
                 h3.card__title!= item.title
                 p.card__desc!= item.desc
-                a(href="#").card__btn.btn.btn_full.btn_thin!= item.btnText
+                a(href=item.href).card__btn.btn.btn_full.btn_thin!= item.btnText
 
     else
         .card

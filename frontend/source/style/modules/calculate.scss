@@ -190,6 +190,7 @@
         line-height: 18px;
         font-weight: 600;
         transition: color .3s ease;
+        text-align: center;
 
         @at-root .calculate-types__item.is-active & {
             color: $warning;

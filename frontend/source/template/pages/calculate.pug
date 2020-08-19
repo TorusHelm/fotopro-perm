@@ -86,7 +86,10 @@ block content
 
 	main
 		article.space-article.article-dirty.container
-			h1.title.space-page Варианты дизайна
+			h1.title.space-page Рассчитать стоимость альбома
+			button(onClick="window.history.back();").btn.btn_inline.space-page
+				+svg-use('def-arrow')
+				| Вернуться назад
 			.row
 				.col-xl-8
 					.calculate
