@@ -148,6 +148,7 @@ function changePriceHandle() {
   let peoplesOnTurn = +document.querySelector('.js-calc-peoples-on-turn').noUiSlider.get();
   let historyTurns = +document.querySelector('.js-calc-history-turns').noUiSlider.get();
   let activeChoice = document.querySelector('.js-choice-type.is-active');
+  let rangesCanBeDisabled = document.querySelectorAll('.js-range-can-be-disabled');
 
   if ( !activeChoice ) {
     return
@@ -162,6 +163,18 @@ function changePriceHandle() {
   let percentage = getDiscountPercent(albums);
   let discountSumm = getDiscountSumm(albumPrice, percentage);
   let albumPriceWithDiscount = getPriceForAlbumDiscount(albumPrice, discountSumm);
+
+  if ( baseLists === 0 && rangesCanBeDisabled.length ) {
+    rangesCanBeDisabled.forEach(item => {
+      let range = item.querySelector('.js-range');
+      item.classList.add('disabled');
+      range.noUiSlider.set(0);
+    });
+  } else {
+    rangesCanBeDisabled.forEach(item => {
+      item.classList.remove('disabled');
+    });
+  }
 
   outputPrice.textContent = albumPrice;
   outputDiscountPrice.textContent = albumPriceWithDiscount;
@@ -273,12 +286,12 @@ function cardHeaderHandle(modalSwiper, url) {
   }
 }
 
-function getSlidersData(container, url) {
+function getSlidersData(modalSwiper, url) {
   let xhr = new XMLHttpRequest();
   xhr.open('GET', url);
   xhr.send();
 
-  if ( !container ) {
+  if ( !modalSwiper ) {
     return;
   }
 
@@ -287,12 +300,16 @@ function getSlidersData(container, url) {
       console.log(`Ошибка ${xhr.status}: ${xhr.statusText}`);
     } else {
       let data = JSON.parse(xhr.response);
-      container.removeAllSlides();
+      modalSwiper.removeAllSlides();
 
       data.forEach(item => {
         let slideContent = createSlide(item);
-        container.appendSlide(slideContent);
+        modalSwiper.appendSlide(slideContent);
       });
+
+      setTimeout(() => {
+        modalSwiper.update();
+      }, 100);
     }
   };
 
@@ -443,22 +460,24 @@ function initModal(modalSwiper) {
       let target = document.querySelector(init.dataset.target);
       let closes = target.querySelectorAll('.js-modal-close');
 
-      if ( closes.length ) {
-        for (const close of closes) {
-          close.addEventListener('click', function() {
-            target.classList.remove('is-active');
-            body.classList.remove('modal-is-active');
-          });
-        }
-      }
-
       if ( target ) {
+        if ( closes.length ) {
+          for (const close of closes) {
+            close.addEventListener('click', function() {
+              target.classList.remove('is-active');
+              body.classList.remove('modal-is-active');
+            });
+          }
+        }
+
         init.addEventListener('click', function() {
           target.classList.add('is-active');
           body.classList.add('modal-is-active');
 
           if ( target.dataset.slider == 'true' ) {
-            modalSwiper.update();
+            setTimeout(() => {
+              modalSwiper.update();
+            }, 100);
           }
         });
       }
@@ -572,18 +591,29 @@ function initRange() {
 
   if ( sliders.length ) {
     for (const slider of sliders) {
-      let sliderStep = Number(slider.dataset.step);
+      let sliderRange;
       let sliderMin = Number(slider.dataset.min);
       let sliderMax = Number(slider.dataset.max);
+      let sliderStep = Number(slider.dataset.step);
       let sliderPips = Number(slider.dataset.pips);
+
+      if ( slider.dataset.individual ) {
+        sliderRange = {
+          'min': [0],
+          '10%': [2, 2],
+          'max': [8]
+        };
+      } else {
+        sliderRange = {
+          'min': sliderMin,
+          'max': sliderMax
+        };
+      }
 
       noUiSlider.create(slider, {
         start: [0],
         step: sliderStep,
-        range: {
-          'min': sliderMin,
-          'max': sliderMax
-        },
+        range: sliderRange,
         connect: 'lower',
         tooltips: true,
         format: wNumb({
@@ -759,6 +789,7 @@ function initMainSwiper() {
     slidesPerView: 1,
     loop: true,
     spaceBetween: 12,
+    autoHeight: true,
     pagination: {
       el: '.swiper-pagination',
       type: 'bullets',
@@ -781,6 +812,7 @@ function initModalSwiper() {
     spaceBetween: 12,
     preloadImages: false,
     lazy: true,
+    autoHeight: true,
     pagination: {
       el: '.swiper-pagination',
       type: 'bullets',

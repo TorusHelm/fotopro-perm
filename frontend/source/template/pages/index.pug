@@ -21,14 +21,14 @@ block content
 									.swiper-slide.main-slider__slide(data-slider=length++)
 										if ( length == 1 )
 											picture.main-slider__slide-bg
-												img(src="img/main-banner/main-banner0.jpg", alt="")
+												img(src="http://fotopro-perm.ru/storage/images/banners/2788815980096831.jpg", alt="")
 											.row
 												.col-xl-10
 													h1.main-slider__title.title Типография ФОТОПРО Типография ФОТОПРО
 													.main-slider__desc Оперативная печать и&nbsp;изготовление выпускных <br>альбомов для родителей, выпускников <br>и&nbsp;профессиональных фотографов в&nbsp;любом количестве Оперативная печать и&nbsp;изготовление выпускных <br>альбомов для родителей, выпускников <br>и&nbsp;профессиональных фотографов в&nbsp;любом количестве
 										else
 											picture.main-slider__slide-bg
-												img(src="img/main-banner/main-banner1.jpg", alt="")
+												img(src="http://fotopro-perm.ru/storage/images/banners/2788815980096831.jpg", alt="")
 											.row
 												.col-xl-10
 													h2.main-slider__title.title Типография ФОТОПРО
@@ -269,7 +269,7 @@ block content
 
 					.tab__content.is-active#target0
 						.tab__shelf
-							img(src="./img/shelf.svg", alt="")
+							img(src="img/shelf.svg", alt="")
 						.swiper-container.js-swiper-container
 							.swiper-wrapper
 								-
@@ -286,7 +286,7 @@ block content
 
 					.tab__content#target1
 						.tab__shelf
-							img(src="./img/shelf.svg", alt="")
+							img(src="img/shelf.svg", alt="")
 						.swiper-container.js-swiper-container.swiper-container-fat
 							.swiper-wrapper
 								-
@@ -303,7 +303,7 @@ block content
 
 					.tab__content#target2
 						.tab__shelf
-							img(src="./img/shelf.svg", alt="")
+							img(src="img/shelf.svg", alt="")
 						.swiper-container.js-swiper-container.swiper-container-fat
 							.swiper-wrapper
 								-
@@ -361,3 +361,31 @@ block content
 					+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')
 				.main-page-cardset__btn.swiper-button-next
 					+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')
+
+
+	+modal('types')(data-slider="true")
+		.container
+			.row.justify-content-center
+				.col-12.col-xl-10
+					.modal-container.modal-container_no-space
+						.modal__close.js-modal-close
+							+svg-use('close-modal')
+						.main-slider__wrapper
+							.swiper-container.main-slider.js-main-swiper-modal
+								.swiper-wrapper.js-main-swiper-modal-container
+									-
+										let length = 0;
+
+									while length < 6
+										.swiper-slide.main-slider__slide(data-slider=length++)
+											if ( length == 1 )
+												picture.main-slider__slide-bg
+													img(src="http://fotopro-perm.ru/storage/images/albums/625061597812410ek001.JPG", alt="")
+											else
+												picture.main-slider__slide-bg
+													img(src="img/main-banner/main-banner1.jpg", alt="")
+
+							.swiper-button-prev.main-slider__btn.js-modal-swiper-prev
+								+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')
+							.swiper-button-next.main-slider__btn.js-modal-swiper-next
+								+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')

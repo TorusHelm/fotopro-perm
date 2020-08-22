@@ -323,11 +323,16 @@
               <div class="footer-address__item">
                 <div class="footer-address__copyr">© 2017, ООО «Фото ПРО»</div>
               </div>
-              <div class="footer-address__item"><a class="footer-address__link" href="#">Написать нам</a></div>
-              <div class="footer-address__item"><a class="footer-address__link" href="#">Политика конфиденциальности</a></div>
-              <div class="footer-address__item"><a class="footer-address__link" href="#">Пользовательское соглашение</a></div>
-              <div class="footer-address__item"><a class="footer-address__link" href="#">Оплата и доставка</a></div>
-              <div class="footer-address__item"><a class="footer-address__link" href="#">Возврат</a></div>
+              <div class="footer-address__item"><a class="footer-address__link" href="/contacts.html">Написать нам</a>
+              </div>
+              <div class="footer-address__item"><span class="footer-address__link js-modal-init" data-target="#confidential">Политика конфиденциальности</span>
+              </div>
+              <div class="footer-address__item"><span class="footer-address__link js-modal-init" data-target="#agreement">Пользовательское соглашение</span>
+              </div>
+              <div class="footer-address__item"><span class="footer-address__link js-modal-init" data-target="#pay">Оплата и доставка</span>
+              </div>
+              <div class="footer-address__item"><span class="footer-address__link js-modal-init" data-target="#return">Возврат</span>
+              </div>
             </div><a class="footer-address__logo" href="#">
                   <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
                     <use xlink:href="img/svg-lib.svg#visa"></use>
@@ -340,7 +345,7 @@
           <div class="container">
             <div class="row justify-content-center">
               <div class="col-lg-6">
-                <form class="modal-container">
+                <form class="modal-container js-form-validate" novalidate>
                   <div class="modal__close js-modal-close">
                         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
                           <use xlink:href="img/svg-lib.svg#close-modal"></use>
@@ -349,13 +354,13 @@
                   <div class="modal-container__title">Перезвонить вам?</div>
                   <div class="row modal-container__fields">
                     <div class="col-md-6">
-                          <label class="input">
+                          <label class="input js-form-validate-input">
                             <p class="caption">Представьтесь, пожалуйста</p>
                             <input type="text" value="Иванов Иван" placeholder="" name="name" require>
                           </label>
                     </div>
                     <div class="col-md-6 mt-3 mt-md-0">
-                          <label class="input">
+                          <label class="input js-form-validate-input">
                             <p class="caption">Телефон</p>
                             <input type="tel" value="" placeholder="" name="phone" require>
                           </label>
@@ -377,92 +382,127 @@
             </div>
           </div>
         </div>
-        <div class="modal js-modal" id="types" data-slider="true">
+        <div class="modal js-modal" id="confidential">
           <div class="container">
             <div class="row justify-content-center">
-              <div class="col-12">
-                <div class="modal-container modal-container_no-space">
+              <div class="col-lg-6">
+                <div class="modal-container">
                   <div class="modal__close js-modal-close">
                         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
                           <use xlink:href="img/svg-lib.svg#close-modal"></use>
                         </svg>
                   </div>
-                  <div class="main-slider__wrapper">
-                    <div class="swiper-container main-slider js-main-swiper-modal">
-                      <div class="swiper-wrapper js-main-swiper-modal-container">
-                        <div class="swiper-slide main-slider__slide" data-slider="0">
-                          <picture class="main-slider__slide-bg"><img src="img/main-banner/main-banner0.jpg" alt=""></picture>
-                          <div class="row">
-                            <div class="col-xl-10">
-                              <h1 class="main-slider__title title">Типография ФОТОПРО Типография ФОТОПРО</h1>
-                              <div class="main-slider__desc">Оперативная печать и&nbsp;изготовление выпускных <br>альбомов для родителей, выпускников <br>и&nbsp;профессиональных фотографов в&nbsp;любом количестве Оперативная печать и&nbsp;изготовление выпускных <br>альбомов для родителей, выпускников <br>и&nbsp;профессиональных фотографов в&nbsp;любом количестве</div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="swiper-slide main-slider__slide" data-slider="1">
-                          <picture class="main-slider__slide-bg"><img src="img/main-banner/main-banner1.jpg" alt=""></picture>
-                          <div class="row">
-                            <div class="col-xl-10">
-                              <h2 class="main-slider__title title">Типография ФОТОПРО</h2>
-                              <div class="main-slider__desc">Оперативная печать и&nbsp;изготовление выпускных <br>альбомов для родителей, выпускников <br>и&nbsp;профессиональных фотографов в&nbsp;любом количестве</div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="swiper-slide main-slider__slide" data-slider="2">
-                          <picture class="main-slider__slide-bg"><img src="img/main-banner/main-banner1.jpg" alt=""></picture>
-                          <div class="row">
-                            <div class="col-xl-10">
-                              <h2 class="main-slider__title title">Типография ФОТОПРО</h2>
-                              <div class="main-slider__desc">Оперативная печать и&nbsp;изготовление выпускных <br>альбомов для родителей, выпускников <br>и&nbsp;профессиональных фотографов в&nbsp;любом количестве</div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="swiper-slide main-slider__slide" data-slider="3">
-                          <picture class="main-slider__slide-bg"><img src="img/main-banner/main-banner1.jpg" alt=""></picture>
-                          <div class="row">
-                            <div class="col-xl-10">
-                              <h2 class="main-slider__title title">Типография ФОТОПРО</h2>
-                              <div class="main-slider__desc">Оперативная печать и&nbsp;изготовление выпускных <br>альбомов для родителей, выпускников <br>и&nbsp;профессиональных фотографов в&nbsp;любом количестве</div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="swiper-slide main-slider__slide" data-slider="4">
-                          <picture class="main-slider__slide-bg"><img src="img/main-banner/main-banner1.jpg" alt=""></picture>
-                          <div class="row">
-                            <div class="col-xl-10">
-                              <h2 class="main-slider__title title">Типография ФОТОПРО</h2>
-                              <div class="main-slider__desc">Оперативная печать и&nbsp;изготовление выпускных <br>альбомов для родителей, выпускников <br>и&nbsp;профессиональных фотографов в&nbsp;любом количестве</div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="swiper-slide main-slider__slide" data-slider="5">
-                          <picture class="main-slider__slide-bg"><img src="img/main-banner/main-banner1.jpg" alt=""></picture>
-                          <div class="row">
-                            <div class="col-xl-10">
-                              <h2 class="main-slider__title title">Типография ФОТОПРО</h2>
-                              <div class="main-slider__desc">Оперативная печать и&nbsp;изготовление выпускных <br>альбомов для родителей, выпускников <br>и&nbsp;профессиональных фотографов в&nbsp;любом количестве</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="swiper-button-prev main-slider__btn js-modal-swiper-prev">
-                          <svg class="main-banner__arrow" xmlns="http://www.w3.org/2000/svg" width="12.068" height="26.219">
-                            <use xlink:href="img/svg-lib.svg#slider-arrow"></use>
-                          </svg>
-                    </div>
-                    <div class="swiper-button-next main-slider__btn js-modal-swiper-next">
-                          <svg class="main-banner__arrow" xmlns="http://www.w3.org/2000/svg" width="12.068" height="26.219">
-                            <use xlink:href="img/svg-lib.svg#slider-arrow"></use>
-                          </svg>
-                    </div>
-                  </div>
+                  <div class="modal-container__title">Политика конфиденциальности</div>
+                  <p class="text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <div class="modal js-modal" id="agreement">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-6">
+                <div class="modal-container">
+                  <div class="modal__close js-modal-close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                          <use xlink:href="img/svg-lib.svg#close-modal"></use>
+                        </svg>
+                  </div>
+                  <div class="modal-container__title">Пользовательское соглашение</div>
+                  <p class="text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal js-modal" id="pay">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-6">
+                <div class="modal-container">
+                  <div class="modal__close js-modal-close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                          <use xlink:href="img/svg-lib.svg#close-modal"></use>
+                        </svg>
+                  </div>
+                  <div class="modal-container__title">Оплата и доставка</div>
+                  <p class="text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal js-modal" id="return">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-6">
+                <div class="modal-container">
+                  <div class="modal__close js-modal-close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                          <use xlink:href="img/svg-lib.svg#close-modal"></use>
+                        </svg>
+                  </div>
+                  <div class="modal-container__title">Возврат</div>
+                  <p class="text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.<br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto pariatur minus commodi placeat labore illo enim. Dolorem enim sunt, eius cumque dolor deleniti, quo numquam illo, consequatur sed cupiditate animi.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    <script src="js/libs.js" defer></script>
+    <script src="js/app.js" defer></script>
   </body>
-  <script src="js/libs.js" defer></script>
-  <script src="js/app.js" defer></script>
 </html>

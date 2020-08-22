@@ -1,0 +1,20 @@
+.list {
+    padding-left: 0;
+    margin-bottom: 0;
+
+    &__item {
+        padding-left: 16px;
+        position: relative;
+
+        &:before {
+            content: '';
+            height: 4px;
+            width: 4px;
+            border-radius: 50%;
+            background-color: $dark-case2;
+            position: absolute;
+            left: 0;
+            top: 8px;
+        }
+    }
+}

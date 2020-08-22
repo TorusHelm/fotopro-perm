@@ -24,7 +24,7 @@ block content
 		let inputAside1 = {
 			caption: 'Представьтесь, пожалуйста',
 			type: 'text',
-			value: 'Иванов Иван',
+			value: '',
 			requier: true,
 			name: 'name'
 		};
@@ -32,7 +32,7 @@ block content
 		let inputAside2 = {
 			caption: 'Ваш E-mail',
 			type: 'email',
-			value: 'Ivanov@ma|',
+			value: '',
 			requier: true,
 			name: 'email'
 		};
@@ -97,19 +97,19 @@ block content
 							.calculate__title Выберите вид альбома
 							.calculate-types
 								each item, index in types
-									.calculate-types__item.js-choice-type(data-base-lists="5" data-base-turn="2" data-turn-price="30")
+									.calculate-types__item.js-choice-type(data-base-lists=`${index === 0 ? '0': '5'}` data-base-turn="2" data-turn-price="30")
 										if ( index == 0 )
 											ul.d-none.js-choice-type-list
-												li(data-base-price="200" ) Тип 1
+												li(data-base-price="200") Тип 1
 										else if ( index == 1 )
 											ul.d-none.js-choice-type-list
-												li(data-base-price="200" ) Тип 1
-												li(data-base-price="210" ) 123123Тип 2
+												li(data-base-price="200") Тип 1
+												li(data-base-price="210") 123123Тип 2
 										else
 											ul.d-none.js-choice-type-list
-												li(data-base-price="200" ) Тип 1
-												li(data-base-price="210" ) Тип 2
-												li(data-base-price="220" ) Тип 3
+												li(data-base-price="200") Тип 1
+												li(data-base-price="210") Тип 2
+												li(data-base-price="220") Тип 3
 										.calculate-types__wrapper
 											.calculate-types__image
 												img(src=item.img, alt=item.title)
@@ -127,14 +127,14 @@ block content
 									.calculate__subtitle Количество выпускников в&nbsp;альбоме
 								.calculate__slider
 									.range.js-range(data-step="1" data-min="10" data-max="50" data-pips="5").js-calc-peoples.js-calc-change
-							.calculate__row
+							.calculate__row.js-range-can-be-disabled
 								.calculate__row-header
 									.calculate__subtitle Количество человек на&nbsp;одном развороте
 								.calculate__slider
-									.range.js-range(data-step="1" data-min="1" data-max="6" data-pips="2").js-calc-peoples-on-turn.js-calc-change
-							.calculate__row
+									.range.js-range(data-step="1" data-min="1" data-max="8" data-pips="2" data-individual="true").js-calc-peoples-on-turn.js-calc-change
+							.calculate__row.js-range-can-be-disabled
 								.calculate__row-header
-									.calculate__subtitle Количествово страниц с&nbsp;фотоисторией
+									.calculate__subtitle Количествово разворотов с&nbsp;фотоисторией
 								.calculate__slider
 									.range.js-range(data-step="1" data-min="0" data-max="10" data-pips="3").js-calc-history-turns.js-calc-change
 							.calculate__row.calculate-footer
@@ -183,10 +183,14 @@ block content
 								.calculate-aside-alert__icon
 									+svg-use('alert')
 								.calculate-aside-alert__text Для оформления заказа, необходимо создать макеты альбома.
-							.calculate-aside__desc Воспользуйтесь <a href="#">онлайн-редактором</a> с готовыми макетами или загрузите свои макеты альбома <br><a href="#">Скачать PSD-шаблоны альбомов</a>
+							.calculate-aside__desc
+								ul.list
+									li.list__item Создайте альбом в&nbsp;<a href="#">онлайн-редакторе</a> с готовыми макетами
+										strong.d-block.pl-9 или
+									li.list__item <a href="#">Скачайте шаблоны страниц с&nbsp;размерами</a>, создайте свой дизайн альбома в&nbsp;PS, далее
 							.calculate-aside__file.calculate-aside-file.js-calculate-file
 								.calculate-aside-file__drop-area.js-calculate-file-droparea
-									p.calculate-aside-file__title Прикрепить файлы
+									p.calculate-aside-file__title Загрузите Ваш альбом
 										span Один архив: zip, rar
 									label.calculate-aside-file__label
 										input.calculate-aside-file__input.js-calculate-file-input(type="file" accept=".zip,.rar")

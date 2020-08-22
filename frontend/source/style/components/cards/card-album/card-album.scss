@@ -58,6 +58,8 @@
         border-top-right-radius: 16px;
         border-bottom-right-radius: 16px;
         background-color: $clean;
+        display: flex;
+        flex-direction: column;
 
         @include respondTo(max-sm) {
             padding: 24px 16px;
@@ -137,6 +139,8 @@
     }
 
     &__btn-set {
+        margin-top: auto;
+
         .btn {
             &:not(:first-child) {
                 margin-top: 16px;

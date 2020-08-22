@@ -7,10 +7,13 @@
     height: 100vh;
     width: 100vw;
     position: fixed;
-    z-index: 2;
+    z-index: 20;
     backdrop-filter: blur(20px);
     background-color: rgba($dark, 0.5);
     transition: backdrop-filter .3s ease;
+    padding: 8vh 0 0;
+    max-height: 100vh;
+    overflow: auto;
 
     @supports (not (backdrop-filter: blur())) {
         background-color: rgba($dark, 0.5);
@@ -18,6 +21,10 @@
 
     &.is-active {
         display: flex;
+    }
+
+    > .container {
+        max-height: 100%;
     }
 
     &__close {
@@ -51,6 +58,7 @@
     box-shadow: $modal-shadow;
     border-radius: 16px;
     position: relative;
+    margin-bottom: 8vh;
 
     @include respondTo(max-md) {
         padding: 24px 16px;

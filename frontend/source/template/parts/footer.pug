@@ -29,23 +29,23 @@
     let addressMenu = [
         {
             title: 'Написать нам',
-            href: '#',
+            href: '/contacts.html',
         },
         {
             title: 'Политика конфиденциальности',
-            href: '#',
+            modal: '#confidential',
         },
         {
             title: 'Пользовательское соглашение',
-            href: '#',
+            modal: '#agreement',
         },
         {
             title: 'Оплата и доставка',
-            href: '#',
+            modal: '#pay',
         },
         {
             title: 'Возврат',
-            href: '#',
+            modal: '#return',
         },
     ]
 
@@ -57,6 +57,7 @@ footer.footer
                     each item in footerMenu
                         .col-sm-6.col-md-4.col-xl-3.footer-menu__item
                             a(href=item.href)!= item.title
+
             .col-xl-4.mt-3.mt-xl-0
                 .row.footer-contacts
                     .col-sm-6.col-md-4.col-xl-6.footer-contacts__item
@@ -72,6 +73,9 @@ footer.footer
                     .footer-address__copyr © 2017, ООО «Фото ПРО»
                 each item in addressMenu
                     .footer-address__item
-                        a(href=item.href).footer-address__link!= item.title
+                        if ( item.href )
+                            a(href=item.href).footer-address__link!= item.title
+                        else
+                            span(data-target=item.modal).footer-address__link.js-modal-init!= item.title
             a(href="#").footer-address__logo
                 +svg-use('visa')
