@@ -164,6 +164,8 @@ function changePriceHandle() {
   let discountSumm = getDiscountSumm(albumPrice, percentage);
   let albumPriceWithDiscount = getPriceForAlbumDiscount(albumPrice, discountSumm);
 
+  console.log('albumLists', albumLists);
+
   if ( baseLists === 0 && rangesCanBeDisabled.length ) {
     rangesCanBeDisabled.forEach(item => {
       let range = item.querySelector('.js-range');
@@ -356,8 +358,6 @@ function validateFrom() {
           if ( !validateField(field) ) {
             field.classList.add('has-error');
             validForm = false;
-
-            return
           } else {
             field.classList.remove('has-error');
             validForm = true;
@@ -375,10 +375,15 @@ function validateFrom() {
             form.classList.add('success');
           };
 
-          sendData(formData, '/', success);
+          for (var pair of formData.entries()) {
+            console.log(pair[0]+ ', ' + pair[1]); 
+          }
+
+          sendData(formData, '/send_message', success);
 
         } else {
-          console.log('unvalid form')
+          console.log('unvalid form');
+          return;
         }
       })
     }
@@ -599,7 +604,7 @@ function initRange() {
 
       if ( slider.dataset.individual ) {
         sliderRange = {
-          'min': [0],
+          'min': [1],
           '10%': [2, 2],
           'max': [8]
         };

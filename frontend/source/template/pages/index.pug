@@ -96,8 +96,6 @@ block content
 						let data1 = [
 							{
 								img: 'img/card/card-header.png',
-								modal: '#types',
-								id: '3',
 								title: 'Альбом-эконом Альбом-эконом',
 								list: [
 									'твёрдый переплёт, фабричная <strong>нередактируемая</strong> обложка твёрдый переплёт, фабричная <strong>нередактируемая</strong> обложка',
@@ -108,8 +106,6 @@ block content
 							},
 							{
 								img: 'img/card/card-header.png',
-								modal: '#types',
-								id: '3',
 								title: 'Альбом-эконом',
 								list: [
 									'твёрдый переплёт, фабричная <strong>нередактируемая</strong> обложка',
@@ -120,8 +116,6 @@ block content
 							},
 							{
 								img: 'img/card/card-header.png',
-								modal: '#types',
-								id: '3',
 								title: 'Альбом-эконом',
 								list: [
 									'твёрдый переплёт, фабричная <strong>нередактируемая</strong> обложка',
@@ -132,8 +126,6 @@ block content
 							},
 							{
 								img: 'img/card/card-header.png',
-								modal: '#types',
-								id: '3',
 								title: 'Альбом-эконом',
 								list: [
 									'твёрдый переплёт, фабричная <strong>нередактируемая</strong> обложка',
@@ -144,8 +136,6 @@ block content
 							},
 							{
 								img: 'img/card/card-header.png',
-								modal: '#types',
-								id: '3',
 								title: 'Альбом-эконом',
 								list: [
 									'твёрдый переплёт, фабричная <strong>нередактируемая</strong> обложка',
@@ -156,8 +146,6 @@ block content
 							},
 							{
 								img: 'img/card/card-header.png',
-								modal: '#types',
-								id: '3',
 								title: 'Альбом-эконом',
 								list: [
 									'твёрдый переплёт, фабричная <strong>нередактируемая</strong> обложка',
@@ -168,8 +156,6 @@ block content
 							},
 							{
 								img: 'img/card/card-header.png',
-								modal: '#types',
-								id: '3',
 								title: 'Альбом-эконом',
 								list: [
 									'твёрдый переплёт, фабричная <strong>нередактируемая</strong> обложка',
@@ -180,8 +166,6 @@ block content
 							},
 							{
 								img: 'img/card/card-header.png',
-								modal: '#types',
-								id: '3',
 								title: 'Альбом-эконом',
 								list: [
 									'твёрдый переплёт, фабричная <strong>нередактируемая</strong> обложка',
@@ -361,31 +345,3 @@ block content
 					+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')
 				.main-page-cardset__btn.swiper-button-next
 					+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')
-
-
-	+modal('types')(data-slider="true")
-		.container
-			.row.justify-content-center
-				.col-12.col-xl-10
-					.modal-container.modal-container_no-space
-						.modal__close.js-modal-close
-							+svg-use('close-modal')
-						.main-slider__wrapper
-							.swiper-container.main-slider.js-main-swiper-modal
-								.swiper-wrapper.js-main-swiper-modal-container
-									-
-										let length = 0;
-
-									while length < 6
-										.swiper-slide.main-slider__slide(data-slider=length++)
-											if ( length == 1 )
-												picture.main-slider__slide-bg
-													img(src="http://fotopro-perm.ru/storage/images/albums/625061597812410ek001.JPG", alt="")
-											else
-												picture.main-slider__slide-bg
-													img(src="img/main-banner/main-banner1.jpg", alt="")
-
-							.swiper-button-prev.main-slider__btn.js-modal-swiper-prev
-								+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')
-							.swiper-button-next.main-slider__btn.js-modal-swiper-next
-								+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')

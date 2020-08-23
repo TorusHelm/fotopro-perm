@@ -82,6 +82,10 @@
         }
     }
 
+    &_no-bg {
+        background-color: transparent;
+    }
+
     &__title {
         font-size: 32px;
         line-height: 40px;

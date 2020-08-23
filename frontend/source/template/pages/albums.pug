@@ -8,8 +8,10 @@ block content
 		let data = [
 			{
 				slides: [
-					'./img/albums/albums-card.jpg',
+					'http://fotopro/storage/images/albums/415121597502841image_2020-08-06_18-08-10.png',
 				],
+				modal: '#types',
+				id: '3',
 				title: 'Название альбома',
 				price: '1 234 ₽',
 				desc: 'Значимость этих проблем настолько очевидна, что постоянное информационно-пропагандистское обеспечение нашей деятельности позволяет оценить значение системы обучения кадров, соответствует насущным потребностям.',
@@ -25,22 +27,8 @@ block content
 					'./img/albums/albums-card.jpg',
 					'./img/albums/albums-card.jpg',
 				],
-				title: 'Название альбома',
-				caption: 'Стоимость альбома',
-				price: '1 234 ₽',
-				desc: 'Значимость этих проблем настолько очевидна, что постоянное информационно-пропагандистское обеспечение нашей деятельности позволяет оценить значение системы обучения кадров, соответствует насущным потребностям.',
-				list: [
-					'твёрдый переплёт, фабричная <strong>нередактируемая</strong> обложка',
-					'глянцевые листы, плотность 190гр',
-					'от 10 стр.',
-				]
-			},
-			{
-				slides: [
-					'./img/albums/albums-card.jpg',
-					'./img/albums/albums-card.jpg',
-					'./img/albums/albums-card.jpg',
-				],
+				modal: '#types',
+				id: '3',
 				title: 'Название альбома',
 				caption: 'Стоимость альбома',
 				price: '1 234 ₽',
@@ -57,6 +45,8 @@ block content
 					'./img/albums/albums-card.jpg',
 					'./img/albums/albums-card.jpg',
 				],
+				modal: '#types',
+				id: '3',
 				title: 'Название альбома',
 				caption: 'Стоимость альбома',
 				price: '1 234 ₽',
@@ -73,6 +63,8 @@ block content
 					'./img/albums/albums-card.jpg',
 					'./img/albums/albums-card.jpg',
 				],
+				modal: '#types',
+				id: '3',
 				title: 'Название альбома',
 				caption: 'Стоимость альбома',
 				price: '1 234 ₽',
@@ -89,6 +81,26 @@ block content
 					'./img/albums/albums-card.jpg',
 					'./img/albums/albums-card.jpg',
 				],
+				modal: '#types',
+				id: '3',
+				title: 'Название альбома',
+				caption: 'Стоимость альбома',
+				price: '1 234 ₽',
+				desc: 'Значимость этих проблем настолько очевидна, что постоянное информационно-пропагандистское обеспечение нашей деятельности позволяет оценить значение системы обучения кадров, соответствует насущным потребностям.',
+				list: [
+					'твёрдый переплёт, фабричная <strong>нередактируемая</strong> обложка',
+					'глянцевые листы, плотность 190гр',
+					'от 10 стр.',
+				]
+			},
+			{
+				slides: [
+					'./img/albums/albums-card.jpg',
+					'./img/albums/albums-card.jpg',
+					'./img/albums/albums-card.jpg',
+				],
+				modal: '#types',
+				id: '3',
 				title: 'Название альбома',
 				caption: 'Стоимость альбома',
 				price: '1 234 ₽',
@@ -108,3 +120,30 @@ block content
 				.col-12
 					each item in data
 						+card-album(item).space-album-cards
+
+	+modal('types')(data-slider="true")
+		.container
+			.row.justify-content-center
+				.col-12.col-xl-10
+					.modal-container.modal-container_no-space.modal-container_no-bg
+						.modal__close.js-modal-close
+							+svg-use('close-modal')
+						.main-slider__wrapper
+							.swiper-container.main-slider.js-main-swiper-modal
+								.swiper-wrapper.js-main-swiper-modal-container
+									-
+										let length = 0;
+
+									while length < 6
+										.swiper-slide.main-slider__slide(data-slider=length++)
+											if ( length == 1 )
+												picture.main-slider__slide-bg
+													img(src="http://fotopro-perm.ru/storage/images/albums/625061597812410ek001.JPG", alt="")
+											else
+												picture.main-slider__slide-bg
+													img(src="img/main-banner/main-banner1.jpg", alt="")
+
+							.swiper-button-prev.main-slider__btn.js-modal-swiper-prev
+								+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')
+							.swiper-button-next.main-slider__btn.js-modal-swiper-next
+								+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')

@@ -1,55 +1,63 @@
 .card-album {
+    $root: #{&};
+
     background-color: $clean;
     overflow: hidden;
     border-radius: 16px;
     position: relative;
 
     &__image {
-        height: 360px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        cursor: pointer;
 
-        @include respondTo(max-sm) {
-            height: 300px;
+        img {
+            display: block;
+            max-width: 100%;
+            flex: 0 0 auto;
+            width: 100%;
         }
 
-        @include respondTo(lg) {
-            height: 100%;
-        }
-
-        .swiper-container {
-            height: 100%;
-        }
-
-        .swiper-button-next {
-            svg {
-                transform: scaleX(-1);
+        &:hover {
+            #{$root}__image-hover {
+                opacity: 1;
+                z-index: 1;
             }
         }
+    }
 
-        .swiper-slide {
-            img {
-                display: block;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                object-position: center;
-            }
-        }
+    &__image-hover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba($dark, 0.7);
+        text-decoration: underline;
+        color: $clean;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        opacity: 0;
+        z-index: -1;
+        transition: opacity .3s ease, z-index .3s ease;
+    }
 
-        .swiper-button-next, .swiper-button-prev {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 32px;
-            width: 32px;
-            background-color: #00000082;
-            border-radius: 50%;
-
-            svg {
-                display: block;
-                width: 8.068px;
-                height: 26.219px;
-            }
-        }
+    &__fullscreen {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        height: 32px;
+        width: 32px;
+        border-radius: 2px;
+        background-color: rgba($dark, 0.3);
+        background-image: url('../img/fullscreen.svg');
+        background-position: center;
+        background-size: 70%;
+        background-repeat: no-repeat;
+        cursor: pointer;
     }
 
     &__content {

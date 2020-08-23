@@ -1,16 +1,10 @@
 mixin card-album(data)
     .card-album.row.no-gutters&attributes(attributes)
         .col-lg-4.position-static
-            .card-album__image
-                .swiper-container.js-albums-card-slider
-                    .swiper-wrapper
-                        each item in data.slides
-                            .swiper-slide
-                                img(src=item, alt="")
-                    .swiper-button-prev
-                        +svg-use('album-arrow')
-                    .swiper-button-next
-                        +svg-use('album-arrow')
+            .card-album__image.js-modal-init(data-target=data.modal data-id=data.id)
+                img(src=data.slides[0], alt="")
+                .card-album__fullscreen
+                .card-album__image-hover Посмотреть примеры <br>альбомов
         .col-lg-8.position-static
             .card-album__content
                 a(href="#").btn.btn_warning.btn_download.card-album__psd
