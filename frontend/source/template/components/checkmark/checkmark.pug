@@ -7,6 +7,6 @@ mixin checkmark(data)
             p!= data.text
     else
         label.checkmark
-            input(type="checkbox" checked=data.checked)
+            input(type="checkbox" checked=data.checked)&attributes(attributes)
             span.checkmark__mark
             p!= data.text

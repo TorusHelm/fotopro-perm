@@ -10,15 +10,15 @@ block content
 		let typeAlbums = [
 			{
 				text: 'Все виды альбомов',
-				checked: false
-			},
-			{
-				text: 'Эконом',
 				checked: true
 			},
 			{
-				text: 'Стандарт',
+				text: 'Эконом',
 				checked: false
+			},
+			{
+				text: 'Стандарт',
+				checked: true
 			},
 			{
 				text: 'Стандарт-Flatbook',
@@ -30,7 +30,7 @@ block content
 			},
 			{
 				text: 'Премиум-Flatbook',
-				checked: true
+				checked: false
 			},
 			{
 				text: 'На пружине',
@@ -62,14 +62,16 @@ block content
 				.col-12
 					.tab-list.tab-list_checkmars.mb-0.swiper-container.js-type-albums-swiper
 						.swiper-wrapper
-							each item in typeAlbums
-								.tab-list__item.swiper-slide
-									+checkmark(item)
+							each item, index in typeAlbums
+								.tab-list__item.swiper-slide.js-sort
+									+checkmark(item)(data-id=`${index === 0 ? 'all' : index}`)
 						.swiper-button-set
 							.swiper-button-prev.swiper-button
 								+svg-use('slider-arrow-thin', '')
 							.swiper-button-next.swiper-button
 								+svg-use('slider-arrow-thin', '')
+				.col-12.mt-3
+					button(type="button").btn.btn_thin.js-sort-accept Применить фильтр
 
 		article
 			each item in typeAlbums

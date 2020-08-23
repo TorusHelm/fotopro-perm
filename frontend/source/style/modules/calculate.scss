@@ -307,6 +307,7 @@
 
     &__content {
         padding: 32px;
+        position: relative;
 
         @include respondTo(max-md) {
             padding: 24px 16px;
@@ -355,6 +356,22 @@
 
     &__alert {
         margin-bottom: 32px;
+    }
+
+    &__success {
+        display: none;
+        background-color: $clean;
+        height: 100%;
+        width: 100%;
+        z-index: 2;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: inherit;
+
+        @at-root .calculate-aside__content.success & {
+            display: block;
+        }
     }
 }
 

@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
   choiceType();
   setHandlersPrice();
   getTruePriceCard();
+  sortDesignsPage();
 
   if ( window.location.hash ) {
     let target = document.querySelector(`[data-target="${window.location.hash}"]`);
@@ -31,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   document.addEventListener('tabHandler', function() {
-    if ( !swipers.length ) {
+    if ( !swipers ) {
       return;
     }
 
@@ -45,6 +46,51 @@ document.addEventListener('DOMContentLoaded', function() {
     initMainCardsSlider();
   }
 });
+
+function sortDesignsPage() {
+  let targets = document.querySelectorAll('.js-sort input');
+  let acceptBtn = document.querySelector('.js-sort-accept');
+
+  if ( !targets.length ) {
+    return;
+  }
+
+  let arr = [];
+  let all = false;
+
+  targets.forEach( target => {
+    let id = target.dataset.id;
+
+    target.addEventListener('change', function() {
+      if ( target.checked ) {
+        id === 'all' ? all = true : arr.push(id);
+      } else {
+        id === 'all' ? all = false : arr.find( (item, index) => item == id && arr.splice(index, 1) );
+      }
+    });
+
+    if ( id !== 'all' ) {
+      target.checked && arr.push(id);
+    } else if ( id === 'all' && target.checked ) {
+      all = true;
+    }
+  });
+
+  acceptBtn.addEventListener('click', function() {
+    if ( targets.length - 1 === arr.length ) {
+      all = true;
+    }
+
+    setUrl(arr, all);
+  });
+}
+
+function setUrl(arr, all) {
+  let url = location.protocol + '//' + location.host + location.pathname;
+  let params = all ? '' : arr.join();
+
+  return window.location.href = url + '?id=' + params;
+}
 
 function getTruePriceCard() {
   let targets = document.querySelectorAll('.js-card-price-wrapper');
@@ -164,8 +210,6 @@ function changePriceHandle() {
   let discountSumm = getDiscountSumm(albumPrice, percentage);
   let albumPriceWithDiscount = getPriceForAlbumDiscount(albumPrice, discountSumm);
 
-  console.log('albumLists', albumLists);
-
   if ( baseLists === 0 && rangesCanBeDisabled.length ) {
     rangesCanBeDisabled.forEach(item => {
       let range = item.querySelector('.js-range');
@@ -185,6 +229,8 @@ function changePriceHandle() {
   albumsOutput.textContent = albums;
   persantageOutput.textContent = percentage + '%';
   discountSummOutput.textContent = (albums * albumPriceWithDiscount) + ' ₽';
+
+  window.calcData = `Вид альбома: ${typeOutput.textContent},\n Количество страниц: ${albumLists},\n Количество альбомов: ${albums},\n Количество выпускников в альбоме: ${peoples},\n Количество человек на одном развороте: ${peoplesOnTurn},\n Количествово разворотов с фотоисторией: ${historyTurns},\n Цена за альбом: ${albumPrice},\n Скидка: ${percentage + '%'},\n Итоговая стоимость альбомов: ${(albums * albumPriceWithDiscount) + ' ₽'};`
 }
 
 function getBasePrice(arr) {
@@ -276,7 +322,7 @@ function setAttributes(el, attrs) {
 }
 
 function cardHeaderHandle(modalSwiper, url) {
-  let targets = document.querySelectorAll('.js-modal-init');
+  let targets = document.querySelectorAll('.js-modal-init.js-modal-slider');
 
   if ( targets.length ) {
     targets.forEach(target => {
@@ -371,21 +417,43 @@ function validateFrom() {
             formData.append('file', file.files[0]);
           }
 
-          let success = function() {
-            form.classList.add('success');
-          };
-
-          for (var pair of formData.entries()) {
-            console.log(pair[0]+ ', ' + pair[1]); 
+          if ( form.classList.contains('js-form-calc') ) {
+            formData.append('data', window.calcData);
           }
 
-          sendData(formData, '/send_message', success);
+          let success = function() {
+            form.classList.add('success');
+            resetForm(form, formData);
+          };
 
+          sendData(formData, '/send_message', success);
         } else {
           console.log('unvalid form');
           return;
         }
       })
+    }
+  }
+}
+
+function resetForm(form, formdata) {
+  let btns = form.querySelectorAll('.js-form-calc-reset');
+  let fileRemover = form.querySelector('.js-calculate-file-remover');
+
+  if ( btns.length ) {
+    for (const btn of btns) {
+      btn.addEventListener('click', function() {
+        for (var pair of formdata.entries()) {
+          formdata.delete(pair[0]);
+        }
+
+        form.reset();
+        form.classList.remove('success');
+
+        if ( fileRemover ) {
+          fileRemover.click();
+        }
+      });
     }
   }
 }

@@ -35,6 +35,7 @@
         height: 32px;
         cursor: pointer;
         z-index: 2;
+        user-select: none;
 
         @include respondTo(max-md) {
             top: 24px;

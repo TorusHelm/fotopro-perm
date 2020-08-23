@@ -9,3 +9,8 @@ mixin form-mini(data)
                 +input(input).js-form-validate-input
         .form-mini__row
             button.btn.btn_warning.btn_full!= data.btnText
+
+        .form-mini__success.modal-container__success
+            p.modal-container__desc Спасибо за&nbsp;Ваше обращение! Мы&nbsp;рассмотрим Вашу заявку в&nbsp;ближайшее время и&nbsp;перезвоним по&nbsp;указанному номеру.
+            .mt-4.mt-md-5
+                button.btn.btn_warning.btn_full.js-form-calc-reset(type="button") Ок, спасибо

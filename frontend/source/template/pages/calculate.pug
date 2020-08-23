@@ -25,7 +25,6 @@ block content
 			caption: 'Представьтесь, пожалуйста',
 			type: 'text',
 			value: '',
-			requier: true,
 			name: 'name'
 		};
 
@@ -33,7 +32,6 @@ block content
 			caption: 'Ваш E-mail',
 			type: 'email',
 			value: '',
-			requier: true,
 			name: 'email'
 		};
 
@@ -41,7 +39,6 @@ block content
 			caption: 'Номер телефона',
 			type: 'tel',
 			value: '',
-			requier: true,
 			name: 'phone'
 		};
 
@@ -177,7 +174,7 @@ block content
 									.calculate-aside-pricer__title Итоговая стоимость альбомов: 
 									.calculate-aside-pricer__price
 										p.js-calc-discount-summ-output ----
-						form.calculate-aside__content.js-form-validate(novalidate)
+						form.calculate-aside__content.js-form-validate.js-form-calc(novalidate)
 							.calculate-aside__title Оформить заказ
 							.calculate-aside__alert.calculate-aside-alert
 								.calculate-aside-alert__icon
@@ -201,6 +198,10 @@ block content
 										.calculate-aside-file__name.js-calculate-file-name
 										.calculate-aside-file__close.js-calculate-file-remover
 											+svg-use('close')
+							.calculate-aside__success.modal-container__success
+								p.modal-container__desc Спасибо за&nbsp;Ваше обращение! Мы&nbsp;рассмотрим Вашу заявку в&nbsp;ближайшее время и&nbsp;перезвоним по&nbsp;указанному номеру.
+								.mt-4.mt-md-5
+									button.btn.btn_warning.btn_full.js-form-calc-reset(type="button") Ок, спасибо
 
 							.calculate-aside__addings.js-calculate-file-addings
 								.calculate-aside__input

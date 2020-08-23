@@ -1,7 +1,7 @@
 mixin card-album(data)
     .card-album.row.no-gutters&attributes(attributes)
         .col-lg-4.position-static
-            .card-album__image.js-modal-init(data-target=data.modal data-id=data.id)
+            .card-album__image.js-modal-init.js-modal-slider(data-target=data.modal data-id=data.id)
                 img(src=data.slides[0], alt="")
                 .card-album__fullscreen
                 .card-album__image-hover Посмотреть примеры <br>альбомов

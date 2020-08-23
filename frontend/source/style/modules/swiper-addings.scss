@@ -41,6 +41,10 @@
     }
 }
 
+.swiper-button-next, .swiper-button-prev {
+    user-select: none;
+}
+
 .swiper-button-next {
     svg {
         transform: scaleX(-1);

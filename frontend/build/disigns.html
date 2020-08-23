@@ -65,57 +65,57 @@
             <div class="col-12">
               <div class="tab-list tab-list_checkmars mb-0 swiper-container js-type-albums-swiper">
                 <div class="swiper-wrapper">
-                  <div class="tab-list__item swiper-slide">
+                  <div class="tab-list__item swiper-slide js-sort">
                           <label class="checkmark">
-                            <input type="checkbox"><span class="checkmark__mark"></span>
+                            <input type="checkbox" checked data-id="all"><span class="checkmark__mark"></span>
                             <p>Все виды альбомов</p>
                           </label>
                   </div>
-                  <div class="tab-list__item swiper-slide">
+                  <div class="tab-list__item swiper-slide js-sort">
                           <label class="checkmark">
-                            <input type="checkbox" checked><span class="checkmark__mark"></span>
+                            <input type="checkbox" data-id="1"><span class="checkmark__mark"></span>
                             <p>Эконом</p>
                           </label>
                   </div>
-                  <div class="tab-list__item swiper-slide">
+                  <div class="tab-list__item swiper-slide js-sort">
                           <label class="checkmark">
-                            <input type="checkbox"><span class="checkmark__mark"></span>
+                            <input type="checkbox" checked data-id="2"><span class="checkmark__mark"></span>
                             <p>Стандарт</p>
                           </label>
                   </div>
-                  <div class="tab-list__item swiper-slide">
+                  <div class="tab-list__item swiper-slide js-sort">
                           <label class="checkmark">
-                            <input type="checkbox"><span class="checkmark__mark"></span>
+                            <input type="checkbox" data-id="3"><span class="checkmark__mark"></span>
                             <p>Стандарт-Flatbook</p>
                           </label>
                   </div>
-                  <div class="tab-list__item swiper-slide">
+                  <div class="tab-list__item swiper-slide js-sort">
                           <label class="checkmark">
-                            <input type="checkbox" checked><span class="checkmark__mark"></span>
+                            <input type="checkbox" checked data-id="4"><span class="checkmark__mark"></span>
                             <p>Премиум</p>
                           </label>
                   </div>
-                  <div class="tab-list__item swiper-slide">
+                  <div class="tab-list__item swiper-slide js-sort">
                           <label class="checkmark">
-                            <input type="checkbox" checked><span class="checkmark__mark"></span>
+                            <input type="checkbox" data-id="5"><span class="checkmark__mark"></span>
                             <p>Премиум-Flatbook</p>
                           </label>
                   </div>
-                  <div class="tab-list__item swiper-slide">
+                  <div class="tab-list__item swiper-slide js-sort">
                           <label class="checkmark">
-                            <input type="checkbox"><span class="checkmark__mark"></span>
+                            <input type="checkbox" data-id="6"><span class="checkmark__mark"></span>
                             <p>На пружине</p>
                           </label>
                   </div>
-                  <div class="tab-list__item swiper-slide">
+                  <div class="tab-list__item swiper-slide js-sort">
                           <label class="checkmark">
-                            <input type="checkbox"><span class="checkmark__mark"></span>
+                            <input type="checkbox" data-id="7"><span class="checkmark__mark"></span>
                             <p>На пружине</p>
                           </label>
                   </div>
-                  <div class="tab-list__item swiper-slide">
+                  <div class="tab-list__item swiper-slide js-sort">
                           <label class="checkmark">
-                            <input type="checkbox"><span class="checkmark__mark"></span>
+                            <input type="checkbox" data-id="8"><span class="checkmark__mark"></span>
                             <p>На пружине</p>
                           </label>
                   </div>
@@ -133,6 +133,9 @@
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="col-12 mt-3">
+              <button class="btn btn_thin js-sort-accept" type="button">Применить фильтр</button>
             </div>
           </div>
         </article>
@@ -897,7 +900,7 @@
                     <div class="col-md-6">
                           <label class="input js-form-validate-input">
                             <p class="caption">Представьтесь, пожалуйста</p>
-                            <input type="text" value="Иванов Иван" placeholder="" name="name" require>
+                            <input type="text" value="" placeholder="" name="name" require>
                           </label>
                     </div>
                     <div class="col-md-6 mt-3 mt-md-0">
@@ -915,7 +918,7 @@
                       <p class="modal-container__desc">Спасибо за&nbsp;Ваше обращение! Мы&nbsp;рассмотрим Вашу заявку в&nbsp;ближайшее время и&nbsp;перезвоним по&nbsp;указанному номеру.</p>
                     </div>
                     <div class="col-md-6 mt-4 mt-md-5">
-                      <button class="btn btn_warning btn_full js-modal-close" type="button">Ок, спасибо</button>
+                      <button class="btn btn_warning btn_full js-modal-close js-form-calc-reset" type="button">Ок, спасибо</button>
                     </div>
                   </div>
                 </form>
