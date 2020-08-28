@@ -1,5 +1,15 @@
 'use strict';
 
+(function(ELEMENT) {
+  ELEMENT.matches = ELEMENT.matches || ELEMENT.mozMatchesSelector || ELEMENT.msMatchesSelector || ELEMENT.oMatchesSelector || ELEMENT.webkitMatchesSelector;
+  ELEMENT.closest = ELEMENT.closest || function closest(selector) {
+    if (!this) return null;
+    if (this.matches(selector)) return this;
+    if (!this.parentElement) {return null}
+    else return this.parentElement.closest(selector)
+  };
+}(Element.prototype));
+
 document.addEventListener('DOMContentLoaded', function() {
   let tabHandler = new Event('tabHandler');
   let modalSwiper = initModalSwiper();
@@ -115,6 +125,7 @@ function choiceType() {
   let types = document.querySelectorAll('.js-choice-type');
   let container = document.querySelector('.js-choice-type-addings');
   let outputContainer = document.querySelector('.js-choice-type-output');
+  let ranges = document.querySelectorAll('.js-range');
 
   if ( !types.length || !container ) {
     return
@@ -131,6 +142,15 @@ function choiceType() {
     type.addEventListener('click', function() {
       if ( type.classList.contains('is-active') ) {
         return;
+      }
+      if ( ranges.length ) {
+        ranges.forEach((range) => {
+          let preset = range.dataset.preset;
+          let rangeMin = range.dataset.min;
+          let setMin = rangeMin ? rangeMin : 0;
+
+          range.noUiSlider.set(preset ? preset : setMin);
+        });
       }
 
       for (const typeIn of types) {
@@ -225,7 +245,7 @@ function changePriceHandle() {
   outputPrice.textContent = albumPrice;
   outputDiscountPrice.textContent = albumPriceWithDiscount;
   typeOutput.textContent = activeChoice.querySelector('.calculate-types__title').textContent;
-  listsOutput.textContent = albumLists;
+  listsOutput.textContent = albumLists + baseLists;
   albumsOutput.textContent = albums;
   persantageOutput.textContent = percentage + '%';
   discountSummOutput.textContent = (albums * albumPriceWithDiscount) + ' ₽';
@@ -622,7 +642,7 @@ function initDragNDrop() {
   ['dragenter', 'dragover'].forEach(eventName => {
     dropArea.addEventListener(eventName, highlight, false);
   });
-  
+
   ['dragleave', 'drop'].forEach(eventName => {
     dropArea.addEventListener(eventName, unhighlight, false);
   });
@@ -669,6 +689,7 @@ function initRange() {
       let sliderMax = Number(slider.dataset.max);
       let sliderStep = Number(slider.dataset.step);
       let sliderPips = Number(slider.dataset.pips);
+      let sliderPreset = Number(slider.dataset.preset);
 
       if ( slider.dataset.individual ) {
         sliderRange = {
@@ -683,8 +704,10 @@ function initRange() {
         };
       }
 
+      let preset = sliderPreset ? sliderPreset : 0;
+
       noUiSlider.create(slider, {
-        start: [0],
+        start: [preset],
         step: sliderStep,
         range: sliderRange,
         connect: 'lower',
@@ -754,8 +777,8 @@ function initAlbumSlider() {
     spaceBetween: 12,
     lazy: true,
     navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+      nextEl: '.js-swiper-album-next',
+      prevEl: '.js-swiper-album-prev',
     },
   });
 
@@ -779,7 +802,7 @@ function initSwiper() {
         spaceBetween: 30,
         loop: false,
         preloadImages: false,
-        lazy: true, 
+        lazy: true,
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
@@ -806,7 +829,7 @@ function initSwiper() {
         spaceBetween: 30,
         loop: false,
         preloadImages: false,
-        lazy: true, 
+        lazy: true,
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
@@ -836,6 +859,10 @@ function initSwiperStatick() {
     loop: false,
     preloadImages: false,
     lazy: true,
+    navigation: {
+      nextEl: '.js-swiper-container-statick-next',
+      prevEl: '.js-swiper-container-statick-prev',
+    },
     followFinger: false,
     breakpoints: {
       459: {
@@ -999,7 +1026,7 @@ function accordion() {
           setTimeout(() => {
             let readyContent = subItem.querySelector('.js-accordion-content');
             let readyContentHeight = readyContent.scrollHeight;
-  
+
             readyContent.style.maxHeight = readyContentHeight + 'px';
           }, 100);
         }

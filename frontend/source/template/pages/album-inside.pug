@@ -31,6 +31,11 @@ block content
 														img(data-src="img/albums/album.jpg" alt=`album${lengthSlides0++}`).swiper-lazy
 														.swiper-lazy-preloader
 													h3.album-preview__text Название дизайна
+									.swiper-button-set
+										.swiper-button-prev.swiper-button.js-swiper-container-statick-prev
+											+svg-use('slider-arrow-thin', '')
+										.swiper-button-next.swiper-button.js-swiper-container-statick-next
+											+svg-use('slider-arrow-thin', '')
 
 			.row
 				.col-12
@@ -45,9 +50,9 @@ block content
 											picture.album__image
 												img(data-src="img/albums/album-inside@2x.jpg" alt=`album${lengthSlides1++}`).swiper-lazy
 												.swiper-lazy-preloader
-							.swiper-button-prev.main-slider__btn
+							.swiper-button-prev.main-slider__btn.js-swiper-album-prev
 								+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')
-							.swiper-button-next.main-slider__btn
+							.swiper-button-next.main-slider__btn.js-swiper-album-next
 								+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')
 						.album__contents
 							.card-album.card-album_naked
