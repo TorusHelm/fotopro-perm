@@ -7,11 +7,19 @@ mixin card-album(data)
                 .card-album__image-hover Посмотреть примеры <br>альбомов
         .col-lg-8.position-static
             .card-album__content
-                a(href="#").btn.btn_warning.btn_download.card-album__psd
+                if !data.withoutPSD
+                    a(href="#").btn.btn_warning.btn_download.card-album__psd
                 h3.card-album__title.subtitle!= data.title
-                .card-album__price
-                    p.caption Стоимость альбома
-                    h4!= data.price + ' ₽'
+                if data.priceType && data.priceType === 'list'
+                    .card-album__price-set
+                        each price in data.price
+                            .card-album__price
+                                p.caption!= price.title
+                                h4!= price.sum + ' ₽'
+                else
+                    .card-album__price
+                        p.caption Стоимость альбома
+                        h4!= data.price + ' ₽'
                 .card-album__desc!= data.desc
                 ul.card-album__list
                     each itemList in data.list

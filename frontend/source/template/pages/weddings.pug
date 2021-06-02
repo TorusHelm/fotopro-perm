@@ -1,0 +1,330 @@
+extends ../_template
+block variables
+	- var title = 'Свадебные альбомы'
+
+block content
+
+	main
+		include ../modules/card-step/card-step
+		include ../modules/card/card
+
+		article.container
+			.row
+				.col
+					.main-slider__wrapper
+						.swiper-container.main-slider.js-main-swiper-container
+							.swiper-wrapper
+								-
+									let length = 0;
+
+								while length < 6
+									.swiper-slide.main-slider__slide(data-slider=length++)
+										if ( length == 1 )
+											picture.main-slider__slide-bg
+												img(src="http://fotopro-perm.ru/storage/images/banners/2788815980096831.jpg", alt="")
+											.row
+												.col-xl-10
+													h1.main-slider__title.title Типография ФОТОПРО Типография ФОТОПРО
+													.main-slider__desc Оперативная печать и&nbsp;изготовление выпускных <br>альбомов для родителей, выпускников <br>и&nbsp;профессиональных фотографов в&nbsp;любом количестве Оперативная печать и&nbsp;изготовление выпускных <br>альбомов для родителей, выпускников <br>и&nbsp;профессиональных фотографов в&nbsp;любом количестве
+										else
+											picture.main-slider__slide-bg
+												img(src="http://fotopro-perm.ru/storage/images/banners/2788815980096831.jpg", alt="")
+											.row
+												.col-xl-10
+													h2.main-slider__title.title Типография ФОТОПРО
+													.main-slider__desc Оперативная печать и&nbsp;изготовление выпускных <br>альбомов для родителей, выпускников <br>и&nbsp;профессиональных фотографов в&nbsp;любом количестве
+							.swiper-pagination
+						.swiper-button-prev.main-slider__btn.js-swiper-main-prev
+							+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')
+						.swiper-button-next.main-slider__btn.js-swiper-main-next
+							+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')
+
+		article.space-article.container
+			h1.title.space-title Варианты создания свадебного альбома
+			.row
+				-
+					let weddingsVar = [
+						{
+							img: 'img/weddings/wedding-var-1.svg',
+							title: 'Создание макетов в&nbsp;онлайн-редаторе',
+							btn: 'Создать',
+							link: '#'
+						},
+						{
+							img: 'img/weddings/wedding-var-2.svg',
+							title: 'Изготовление фотокниг по&nbsp;Вашим готовым макетам',
+							btn: 'Скачать шаблоны',
+							link: '#'
+						},
+						{
+							img: 'img/weddings/wedding-var-3.svg',
+							title: 'Изготовление фотокниги «под&nbsp;ключ» с&nbsp;созданием макетов',
+							btn: 'Подробнее',
+							link: '#'
+						}
+					];
+
+				each item in weddingsVar
+					.col-12.card-alert__outer
+						.card-alert
+							.card-alert__icon
+								img(src=item.img, alt=item.title)
+							.card-alert__content
+								.card-alert__desc!= item.title
+								a.card-alert__btn.btn.btn_warning(href=item.link)!= item.btn
+
+		article.space-article.article-dirty.container
+			h2.title.space-title Виды свадебных фотокниг
+
+			include ../modules/card-album/card-album
+			-
+				let weddingCards = [
+					{
+						slides: [
+							'./img/albums/albums-card.jpg',
+						],
+						modal: '#types',
+						id: '3',
+						title: 'Название фотокниги',
+						withoutPSD: true,
+						priceType: 'list',
+						price: [
+							{
+								title: 'Стоимость печати',
+								sum: '234'
+							},
+							{
+								title: 'Стоимость изготовления «под ключ» ',
+								sum: '1 234'
+							}
+						],
+						desc: 'Значимость этих проблем настолько очевидна, что постоянное информационно-пропагандистское обеспечение нашей деятельности позволяет оценить значение системы обучения кадров, соответствует насущным потребностям.',
+						list: [
+							'твёрдый переплёт, фабричная <strong>нередактируемая</strong> обложка',
+							'глянцевые листы, плотность 190гр',
+							'от 10 стр.',
+						],
+					},
+					{
+						slides: [
+							'./img/albums/albums-card.jpg',
+						],
+						modal: '#types',
+						id: '3',
+						title: 'Название фотокниги',
+						withoutPSD: true,
+						priceType: 'list',
+						price: [
+							{
+								title: 'Стоимость печати',
+								sum: '234'
+							},
+							{
+								title: 'Стоимость изготовления «под ключ» ',
+								sum: '1 234'
+							}
+						],
+						desc: 'Значимость этих проблем настолько очевидна, что постоянное информационно-пропагандистское обеспечение нашей деятельности позволяет оценить значение системы обучения кадров, соответствует насущным потребностям.',
+						list: [
+							'твёрдый переплёт, фабричная <strong>нередактируемая</strong> обложка',
+							'глянцевые листы, плотность 190гр',
+							'от 10 стр.',
+						],
+					}
+				];
+			.row
+				.col-12
+					each item in weddingCards
+						+card-album(item).space-album-cards
+
+		article.container.space-article
+			h2.title.space-title Свадебные фотокниги с&nbsp;«оживающими» AR фото
+			.ar-page-video
+				.ar-page-video__bg
+				.ar-page-video__title.space-title
+					h2.title.text-secondary Посмотри как это работает
+				.ar-page-video__preview.js-modal-init.js-modal-init-video(data-target="#video")
+					video(autoplay muted loop)#ar-page-video
+						source(src="img/ar-page-video.mp4" type="video/mp4")
+					.ar-page-video__preview-play
+						svg(xmlns="http://www.w3.org/2000/svg" width="18" height="22" viewBox="0 0 18 22")
+							path(d="M9.293,2.793a2,2,0,0,1,3.413,0L20.14,14.957A2,2,0,0,1,18.434,18H3.566A2,2,0,0,1,1.86,14.957Z" transform="translate(18) rotate(90)" fill="#fa0")
+				.ar-page-video__price
+					.ar-page-video__price-content
+						h3.text_semibold.mb-1 Стоимость AR альбома
+						h4.subtitle_semibold 2 500 ₽
+					.ar-page-video__price-btn
+						button.btn.btn_warning.btn_fixed Заказать
+
+		article.space-article.container
+			h1.title.space-title 4 шага создания вашей Свадебной  фотокниги	с&nbsp;«оживающими» фото
+			.row
+				-
+					let data = [
+						{
+							img: 'img/card-step/card-step1.png',
+							text: 'Выбираете вариант <br>и&nbsp;заключаете договор <br>на&nbsp;изготовление'
+						},
+						{
+							img: 'img/card-step/card-step5.png',
+							text: 'Предоставляете фото <br>и&nbsp;видео материал в&nbsp;работу'
+						},
+						{
+							img: 'img/card-step/card-step3.png',
+							text: 'Мы делаем свою работу: <br>создание макетов, согласование, <br>печать, изготовление фотокниг'
+						},
+						{
+							img: 'img/card-step/card-step6.png',
+							text: 'Вы получаете готовые альбомы'
+						},
+					];
+
+				each item in data
+					.col-md-6.col-xl-3.space-card-steps
+						+card-step(item)
+
+		article.space-article.bg-info
+			.container
+				h1.title.space-title.text-white Поробуйте сами
+				ul.block-steps.col-xl-10.p-0.space-page
+					li.block-steps__item
+						.block-steps__count 1
+						.block-steps__content
+							.block-steps__title Скачайте бесплатное приложение
+								br
+								a(href="#" target="_blanc").block-steps__title-icon
+									img(src="img/store_apple.png")
+								a(href="#" target="_blanc").block-steps__title-icon
+									img(src="img/store_google.png")
+							a(href="#" target="_blanc").block-steps__icon
+								img(src="img/stories-logo.png")
+					li.block-steps__item
+						.block-steps__count 2
+						.block-steps__content
+							.block-steps__title Наведите камеру на&nbsp;QR-код справа
+							a(href="#" target="_blanc").block-steps__icon
+								img(src="img/qr-stories.png")
+					li.block-steps__item
+						.block-steps__count 3
+						.block-steps__content
+							.block-steps__title Наведите камеру на&nbsp;фото ниже и&nbsp;они оживут
+
+				.row
+					.col-12.col-sm-6
+						img.d-block.mw-100(src="img/weddings/wedding-example-1.jpg")
+						img.d-block.mw-100.mt-3(src="img/weddings/wedding-example-2.jpg")
+						img.d-block.mw-100.mt-3(src="img/weddings/wedding-example-6.jpg")
+					.col-12.col-sm-6.mt-3.mt-sm-0
+						img.d-block.mw-100(src="img/weddings/wedding-example-4.jpg")
+						img.d-block.mw-100.mt-3(src="img/weddings/wedding-example-5.jpg")
+						img.d-block.mw-100.mt-3(src="img/weddings/wedding-example-3.jpg")
+
+		article.space-article.article-dirty
+			.container
+				h1.title.space-page Часто задаваемые вопросы
+				.accordion.js-accordion
+					-
+						let weddingFAQ = [
+							{
+								itemTitle: 'Оформление заказа',
+								subitems: [
+									{
+										subtitle: 'Что требуется чтобы сделать заказ?',
+										list: [
+											'Для выпускных фотоальбомов «под ключ» минимальный заказ – 20 штук.',
+											'Стоимость и возможность изготовления меньшего количество альбомов обговаривается дополнительно.'
+										]
+									},
+								],
+							},
+							{
+								itemTitle: 'Оплата и стоимость',
+								subitems: [
+									{
+										subtitle: 'Что требуется чтобы сделать заказ?',
+										list: [
+											'Для выпускных фотоальбомов «под ключ» минимальный заказ – 20 штук.',
+											'Стоимость и возможность изготовления меньшего количество альбомов обговаривается дополнительно.'
+										]
+									},
+								],
+							}
+						];
+					each accordionItem in weddingFAQ
+						.accordion__item.js-accordion-item(class=`${accordionItem.isActive ? 'is-active' : ''}`)
+							.accordion__title.js-accordion-init!= accordionItem.itemTitle
+								.accordion__btn.accordion__toggler.accordion__toggler_main
+									+svg-use('bird')
+
+							.accordion__content.js-accordion-content
+								.accordion
+									each accordionSubitem in accordionItem.subitems
+										.accordion__subitem.js-accordion-subitem(class=`${accordionSubitem.isActive ? 'is-active' : ''}`)
+											.accordion__subtitle.js-accordion-init!= accordionSubitem.subtitle
+											.accordion__content.js-accordion-content
+												ul.questions-list
+													each textContent in accordionSubitem.list
+														li.questions-list__item.text!= textContent
+											.accordion__btn.accordion__toggler
+												+svg-use('bird')
+
+						.accordion__hr
+
+					.accordion__hr
+
+		article.space-article
+			.container
+				.image-block
+					.image-block__img
+						img(src="img/wedding-image-block.jpg")
+					.image-block__content
+						.image-block__title.title.space-title Получите бесплатный образец свадебной фотокниги
+						.image-block__btn.btn.btn_warning.btn_big Оставить заявку
+
+		article.container.pt-0
+			.block-specialities
+				h2.title.mb-2.mb-md-3 Специальные условия <br>для фотографов и видеографов
+				h3.block-specialities__subtitle.title.title_md По вопросам сотрудничества на постоянной <br>основе&nbsp;на специальных условиях просьба писать <br>на&nbsp;почту <a href="#" class="link link_inline">fotopro.perm@mail.ru</a>  или звонить по тел. <a href="tel:+203-23-00" class="link link_bold link_warning">203-23-00</a>
+				.block-specialities__bg
+					img(src="img/specialities.png")
+
+	+modal('types')(data-slider="true")
+		.container
+			.row.justify-content-center
+				.col-12.col-xl-10
+					.modal-container.modal-container_no-space.modal-container_no-bg
+						.modal__close.js-modal-close
+							+svg-use('close-modal')
+						.main-slider__wrapper
+							.swiper-container.main-slider.js-main-swiper-modal
+								.swiper-wrapper.js-main-swiper-modal-container
+									-
+										let length = 0;
+
+									while length < 6
+										.swiper-slide.main-slider__slide(data-slider=length++)
+											if (length == 1)
+												picture.main-slider__slide-bg
+													img(src="http://fotopro-perm.ru/storage/images/albums/625061597812410ek001.JPG", alt="")
+											else
+												picture.main-slider__slide-bg
+													img(src="img/main-banner/main-banner1.jpg", alt="")
+
+							.swiper-button-prev.main-slider__btn.js-modal-swiper-prev
+								+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')
+							.swiper-button-next.main-slider__btn.js-modal-swiper-next
+								+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')
+
+	+modal('video')(data-slider="true").js-modal-video-container
+		.container
+			.row.justify-content-center
+				.col-12.col-xl-10
+					.modal-container.modal-container_no-space.modal-container_no-bg
+						.modal__close.js-modal-close
+							+svg-use('close-modal')
+						.main-slider__wrapper.ar-page-video__preview
+							video(controls).js-modal-video
+								source(src="img/ar-page-video.mp4" type="video/mp4")
+							.ar-page-video__preview-play.js-modal-video-play
+								svg(xmlns="http://www.w3.org/2000/svg" width="18" height="22" viewBox="0 0 18 22")
+									path(d="M9.293,2.793a2,2,0,0,1,3.413,0L20.14,14.957A2,2,0,0,1,18.434,18H3.566A2,2,0,0,1,1.86,14.957Z" transform="translate(18) rotate(90)" fill="#fa0")

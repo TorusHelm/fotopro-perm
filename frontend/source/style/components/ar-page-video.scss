@@ -1,0 +1,138 @@
+.ar-page-video {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr 120px 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  padding-bottom: 58px;
+
+  @include respondTo(max-xl) {
+    grid-template-rows: auto 1fr 120px 1fr;
+  }
+
+  @include respondTo(max-lg) {
+    grid-template-rows: auto 1fr auto 1fr;
+  }
+
+  @include respondTo(max-md) {
+    display: block;
+  }
+
+  &__title {
+    grid-row: 1;
+    grid-column: 1/5;
+
+    @include respondTo(max-xl) {
+      grid-column: 1/13;
+    }
+
+    @include respondTo(xl) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__price {
+    grid-row: 2;
+    grid-column: 1/7;
+    background-color: $clean;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba($black, 0.1);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include respondTo(max-xl) {
+      grid-row: 3;
+    }
+
+    @include respondTo(max-lg) {
+      grid-column: 1/6;
+      padding: 24px;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    @include respondTo(max-md) {
+      margin-top: 32px;
+    }
+
+    &-btn {
+      margin-top: 16px;
+    }
+  }
+
+  &__preview {
+    grid-row: 1/4;
+    grid-column: 5/13;
+    border-radius: 32px;
+    overflow: hidden;
+    position: relative;
+
+    @include respondTo(max-xl) {
+      grid-row: 2/5;
+    }
+
+    @at-root .js-modal-video-container & {
+      border-radius: 16px;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: rgba($black, 0.5);
+      pointer-events: none;
+
+      @at-root .js-modal-video-container & {
+        display: none;
+      }
+    }
+
+    video {
+      width: 100%;
+      display: block;
+      outline: none;
+
+      &.js-modal-video {
+        cursor: pointer;
+      }
+    }
+
+    &-play {
+      height: 64px;
+      width: 64px;
+      border-radius: 50%;
+      background-color: $clean;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      cursor: pointer;
+
+      svg {
+        display: block;
+        flex: 0 0 auto;
+        margin-left: 4px;
+      }
+    }
+  }
+
+  &__bg {
+    height: 320px;
+    width: 320px;
+    background-color: #FBD86C;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    z-index: -1;
+  }
+}

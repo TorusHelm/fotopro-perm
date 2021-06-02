@@ -25,12 +25,13 @@ block content
 										-
 											let lengthSlides0 = 0;
 										while lengthSlides0 < 6
-											.swiper-slide
-												a(href="/album-inside.html" class=`${ lengthSlides0 == 2 ? 'is-active' : '' }`).album-preview
+											.swiper-slide.text-center
+												a(href="/album-inside.html" class=`${ lengthSlides0 == 2 ? 'is-active' : '' }`).album-preview.h-auto
 													picture.album-preview__image
 														img(data-src="img/albums/album.jpg" alt=`album${lengthSlides0++}`).swiper-lazy
 														.swiper-lazy-preloader
 													h3.album-preview__text Название дизайна
+												button(type="button" data-target="#scrollToBlock").btn.mt-2.js-scrollToBlock-init.d-md-none Посмотреть
 									.swiper-button-set
 										.swiper-button-prev.swiper-button.js-swiper-container-statick-prev
 											+svg-use('slider-arrow-thin', '')
@@ -39,7 +40,7 @@ block content
 
 			.row
 				.col-12
-					.album
+					.album#scrollToBlock
 						.album__slider.space-page
 							.swiper-container.js-swiper-album
 								.swiper-wrapper
@@ -48,8 +49,7 @@ block content
 									while lengthSlides1 < 6
 										.swiper-slide
 											picture.album__image
-												img(data-src="img/albums/album-inside@2x.jpg" alt=`album${lengthSlides1++}`).swiper-lazy
-												.swiper-lazy-preloader
+												img(src="img/albums/album-inside@2x.jpg" alt=`album${lengthSlides1++}`).swiper-lazy
 							.swiper-button-prev.main-slider__btn.js-swiper-album-prev
 								+svg-use('slider-arrow', 'main-banner__arrow', '12.068', '26.219')
 							.swiper-button-next.main-slider__btn.js-swiper-album-next

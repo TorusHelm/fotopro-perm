@@ -1,0 +1,90 @@
+.card-alert {
+  display: flex;
+  border-radius: 16px;
+  background-color: $dirty;
+  font-weight: 500;
+  line-height: 1.3;
+  min-height: 120px;
+  overflow: hidden;
+  font-size: 20px;
+
+  @include respondTo(lg) {
+    font-size: 24px;
+  }
+
+  @include respondTo(max-sm) {
+    flex-wrap: wrap;
+  }
+
+  &__outer {
+    margin-top: 16px;
+
+    @include respondTo(lg) {
+      margin-top: 24px;
+    }
+
+    @include respondTo(md) {
+      margin-top: 32px;
+    }
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &__icon {
+    flex: 0 0 160px;
+    max-width: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $link;
+
+    @include respondTo(max-sm) {
+      flex: 0 0 100%;
+      max-width: 100%;
+      min-height: 120px;
+    }
+  }
+
+  &__content {
+    padding: 8px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1 1 auto;
+
+    @include respondTo(max-md) {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 16px 24px;
+    }
+
+    @include respondTo(max-sm) {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+
+  &__desc {
+    flex: 0 1 auto;
+    padding-right: 24px;
+
+    @include respondTo(max-md) {
+      padding-right: 0;
+      flex: 0 0 auto;
+    }
+  }
+
+  &__btn {
+    width: 200px;
+    font-size: 16px;
+    padding-left: 8px;
+    padding-right: 8px;
+    flex: 0 0 auto;
+
+    @include respondTo(max-md) {
+      margin-top: 24px;
+    }
+  }
+}

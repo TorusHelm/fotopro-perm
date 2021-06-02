@@ -2,12 +2,20 @@
     let menuItems = [
         {
             href: '/albums.html',
+            title: 'Выпускные альбомы',
+        },
+        {
+            href: '/albums.html',
             title: 'Виды альбомов',
             isActive: true
         },
         {
             href: '/disigns.html',
             title: 'Варианты дизайна'
+        },
+        {
+            href: '/weddings.html',
+            title: 'Свадебные фотокниги'
         },
         {
             href: '#',
@@ -29,12 +37,12 @@ header.header.js-header
             a(href="/").logo__icon
                 img(src="./img/logo.png", alt="logo")
             .logo__braker
-            h2.logo__title Выпускные альбомы для вузов, <br>школ и&nbsp;детских садов
+            h2.logo__title Выпускные альбомы <br>свадебные фотокниги
             .header__toggler
                 .toggler.js-header-toggler
                     .toggler__row
         .header__contacts
-            .header__address 
+            .header__address
                 a(href="tel:+73422032300") +7 (342) <strong>203 23 00</strong>
                 | г. Пермь, ул. Крупской, 75
             .header__btn
@@ -45,7 +53,7 @@ header.header.js-header
                     li.header-menu__item(class=`${item.isActive ? 'is-active' : ''}`)
                         a(href=item.href)!= item.title
             .header__menu-footer
-                .header__address 
+                .header__address
                     a(href="tel:+73422032300") +7 (342) <strong>203 23 00</strong>
                     | г. Пермь, ул. Крупской, 75
                 .header__btn

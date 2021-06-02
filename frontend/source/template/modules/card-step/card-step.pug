@@ -3,8 +3,12 @@ mixin card-step(item)
         .card-step__header
             .card-step__image
                 img(src=item.img, alt=item.title)
-            h4.card-step__title!= item.title
+            if item.title
+                h4.card-step__title!= item.title
         .card-step__content
-            ul.card-step__list
-                each listItem in item.list
-                    li.card-step__list-item!= listItem
+            if item.list
+                ul.card-step__list
+                    each listItem in item.list
+                        li.card-step__list-item!= listItem
+            else if item.text
+                p.card-step__text!= item.text

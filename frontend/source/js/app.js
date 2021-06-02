@@ -32,6 +32,9 @@ document.addEventListener('DOMContentLoaded', function() {
   setHandlersPrice();
   getTruePriceCard();
   sortDesignsPage();
+  initModal();
+  videPlay();
+  // scrollToBlock();
 
   if ( window.location.hash ) {
     let target = document.querySelector(`[data-target="${window.location.hash}"]`);
@@ -56,6 +59,57 @@ document.addEventListener('DOMContentLoaded', function() {
     initMainCardsSlider();
   }
 });
+
+function initModal() {
+  let inits = document.querySelectorAll('.js-modal-init');
+  let body = document.body;
+
+  if (inits.length) {
+    for (const init of inits) {
+      let target = document.querySelector(init.dataset.target);
+      let closes = target.querySelectorAll('.js-modal-close');
+      let video = target.querySelector(".js-modal-video");
+      let play = target.querySelector(".js-modal-video-play");
+      let initVideo = init.querySelector("video");
+
+      if (target) {
+        if (closes.length) {
+          for (const close of closes) {
+            close.addEventListener('click', function () {
+              target.classList.remove('is-active');
+              body.classList.remove('modal-is-active');
+
+              video && video.pause();
+              play && play.classList.remove("d-none");
+              init.classList.contains("js-modal-init-video") && initVideo.play();
+            });
+          }
+        }
+
+        init.addEventListener('click', function () {
+          target.classList.add('is-active');
+          body.classList.add('modal-is-active');
+
+          init.classList.contains("js-modal-init-video") && initVideo.pause();
+        });
+      }
+    }
+  }
+}
+
+function scrollToBlock() {
+  let inits = document.querySelectorAll('.js-scrollToBlock-init');
+
+  if ( inits.length ) {
+    inits.forEach(function(init) {
+      let target = document.querySelector(init.dataset.target);
+
+      init.addEventListener('click', function() {
+        target.scrollIntoView({block: "center", behavior: "smooth"});
+      });
+    });
+  }
+}
 
 function sortDesignsPage() {
   let targets = document.querySelectorAll('.js-sort input');
@@ -143,6 +197,7 @@ function choiceType() {
       if ( type.classList.contains('is-active') ) {
         return;
       }
+
       if ( ranges.length ) {
         ranges.forEach((range) => {
           let preset = range.dataset.preset;
@@ -245,12 +300,12 @@ function changePriceHandle() {
   outputPrice.textContent = albumPrice;
   outputDiscountPrice.textContent = albumPriceWithDiscount;
   typeOutput.textContent = activeChoice.querySelector('.calculate-types__title').textContent;
-  listsOutput.textContent = albumLists + baseLists;
+  listsOutput.textContent = baseLists > 0 ? albumLists : baseLists; // Количество листов
   albumsOutput.textContent = albums;
   persantageOutput.textContent = percentage + '%';
   discountSummOutput.textContent = (albums * albumPriceWithDiscount) + ' ₽';
 
-  window.calcData = `Вид альбома: ${typeOutput.textContent},\n Количество страниц: ${albumLists},\n Количество альбомов: ${albums},\n Количество выпускников в альбоме: ${peoples},\n Количество человек на одном развороте: ${peoplesOnTurn},\n Количествово разворотов с фотоисторией: ${historyTurns},\n Цена за альбом: ${albumPrice},\n Скидка: ${percentage + '%'},\n Итоговая стоимость альбомов: ${(albums * albumPriceWithDiscount) + ' ₽'};`
+  window.calcData = `Вид альбома: ${typeOutput.textContent},\n Количество листов: ${albumLists},\n Количество альбомов: ${albums},\n Количество выпускников в альбоме: ${peoples},\n Количество человек на одном развороте: ${peoplesOnTurn},\n Количествово разворотов с фотоисторией: ${historyTurns},\n Цена за альбом: ${albumPrice},\n Скидка: ${percentage + '%'},\n Итоговая стоимость альбомов: ${(albums * albumPriceWithDiscount) + ' ₽'};`
 }
 
 function getBasePrice(arr) {
@@ -270,7 +325,7 @@ function getPriceForAlbum(basePrice, albumLists, baseLists, baseTurnPrice) {
     some = albumLists - baseLists;
   }
 
-  return basePrice + some * baseTurnPrice;
+  return (some * baseTurnPrice) + basePrice;
 }
 
 function getDiscountPercent(albums) {
@@ -551,9 +606,10 @@ function initModal(modalSwiper) {
   if ( inits.length ) {
     for (const init of inits) {
       let target = document.querySelector(init.dataset.target);
-      let closes = target.querySelectorAll('.js-modal-close');
 
       if ( target ) {
+        let closes = target.querySelectorAll('.js-modal-close');
+
         if ( closes.length ) {
           for (const close of closes) {
             close.addEventListener('click', function() {
@@ -567,7 +623,7 @@ function initModal(modalSwiper) {
           target.classList.add('is-active');
           body.classList.add('modal-is-active');
 
-          if ( target.dataset.slider == 'true' ) {
+          if ( target.dataset.slider == 'true' && modalSwiper ) {
             setTimeout(() => {
               modalSwiper.update();
             }, 100);
@@ -576,6 +632,23 @@ function initModal(modalSwiper) {
       }
     }
   }
+}
+
+function videPlay() {
+  let modalVideo = document.querySelector(".js-modal-video-container");
+
+  if (!modalVideo) return;
+
+  let play = modalVideo.querySelector(".js-modal-video-play");
+  let video = modalVideo.querySelector(".js-modal-video");
+
+  video.addEventListener("click", function() {
+    if (video.paused) {
+      play.classList.add("d-none");
+    } else {
+      play.classList.remove("d-none");
+    }
+  });
 }
 
 function initDragNDrop() {
@@ -773,9 +846,10 @@ function initAlbumSlider() {
     speed: 400,
     slidesPerView: 1,
     loop: false,
-    preloadImages: false,
+    // preloadImages: false,
     spaceBetween: 12,
-    lazy: true,
+    autoHeight: true,
+    // lazy: true,
     navigation: {
       nextEl: '.js-swiper-album-next',
       prevEl: '.js-swiper-album-prev',
@@ -852,7 +926,7 @@ function initSwiper() {
 }
 
 function initSwiperStatick() {
-  var mySwiper = new Swiper('.js-swiper-container-statick', {
+  var mySwiper = new Swiper('.js-swiper-container-static', {
     speed: 400,
     slidesPerView: 6,
     spaceBetween: 40,
@@ -860,8 +934,8 @@ function initSwiperStatick() {
     preloadImages: false,
     lazy: true,
     navigation: {
-      nextEl: '.js-swiper-container-statick-next',
-      prevEl: '.js-swiper-container-statick-prev',
+      nextEl: '.js-swiper-container-static-next',
+      prevEl: '.js-swiper-container-static-prev',
     },
     followFinger: false,
     breakpoints: {
@@ -879,6 +953,24 @@ function initSwiperStatick() {
       },
     }
   });
+
+  if ( mySwiper.slides && mySwiper.slides.length ) {
+    let currentActiveIndex;
+
+    for (let i = 0; i < mySwiper.slides.length; i++) {
+      let item = mySwiper.slides[i];
+      let currentActive = item.querySelector('.album-preview.is-active');
+
+      if ( currentActive ) {
+        currentActiveIndex = i;
+      }
+    }
+
+    if ( currentActiveIndex ) {
+      mySwiper.slideTo(currentActiveIndex);
+    }
+  }
+
 
   return mySwiper;
 }
@@ -967,36 +1059,36 @@ function initMainCardsSlider() {
 }
 
 function tab(tabHandler) {
-    let tabsContainer = document.querySelector(".js-tab-container");
+  let tabsContainer = document.querySelector(".js-tab-container");
 
-    if ( tabsContainer ) {
-      let menuItems = tabsContainer.querySelectorAll(".js-tab-menu-item");
+  if ( tabsContainer ) {
+    let menuItems = tabsContainer.querySelectorAll(".js-tab-menu-item");
 
-      menuItems.forEach( (menuItem) => {
+    menuItems.forEach( (menuItem) => {
 
-        menuItem.onclick = () => {
-          let activeMenuItem = Array.from(menuItems).find(getActiveTab);
-          let activeContentItem = tabsContainer.querySelector(activeMenuItem.dataset.target);
-          let currentContentItem = tabsContainer.querySelector(menuItem.dataset.target);
+      menuItem.onclick = () => {
+        let activeMenuItem = Array.from(menuItems).find(getActiveTab);
+        let activeContentItem = tabsContainer.querySelector(activeMenuItem.dataset.target);
+        let currentContentItem = tabsContainer.querySelector(menuItem.dataset.target);
 
-          activeMenuItem.classList.remove("is-active");
+        activeMenuItem.classList.remove("is-active");
 
-          if ( activeContentItem ) {
-            activeContentItem.classList.remove("is-active");
-          }
+        if ( activeContentItem ) {
+          activeContentItem.classList.remove("is-active");
+        }
 
-          if ( currentContentItem ) {
-            currentContentItem.classList.add("is-active");
-          }
+        if ( currentContentItem ) {
+          currentContentItem.classList.add("is-active");
+        }
 
-          menuItem.classList.add("is-active");
+        menuItem.classList.add("is-active");
 
-          if ( tabHandler ) {
-            document.dispatchEvent(tabHandler);
-          }
-        };
-      });
-    }
+        if ( tabHandler ) {
+          document.dispatchEvent(tabHandler);
+        }
+      };
+    });
+  }
 
   function getActiveTab(element) {
     return element.classList.contains("is-active");

@@ -1,5 +1,7 @@
 .link {
     &_inline {
         text-decoration: underline;
+        font-size: inherit;
+        line-height: inherit;
     }
 }
