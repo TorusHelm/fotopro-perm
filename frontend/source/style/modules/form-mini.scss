@@ -11,6 +11,10 @@
         }
     }
 
+    &__title {
+        padding-right: 32px;
+    }
+
     &__row {
         &:not(:first-child) {
             margin-top: 24px;
